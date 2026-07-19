@@ -47,7 +47,7 @@
 </sc-for>
 </div>
       </div>
-      <nav class="cs-nav" style="display:{{ navDisplay }}; align-items:center; gap:0px; flex-wrap:nowrap; min-width:0; flex-shrink:1; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;">
+      <nav class="cs-nav" style="display:{{ navDisplay }}; align-items:center; gap:0px; flex-wrap:nowrap; min-width:0; flex-shrink:1; overflow-x:{{ navOverflow }}; scrollbar-width:none; -ms-overflow-style:none;">
         <sc-for list="{{ navItemsBeforeCollections }}" as="item" hint-placeholder-count="2">
           <div style="padding:8px 10px; border-radius:{{ smallRadius }}px; font-weight:600; font-size:13px; white-space:nowrap; cursor:pointer; color:{{ item.color }}; background:{{ item.bg }}; transition:background .15s;" style-hover="background:#EEF2FA" onClick="{{ item.onClick }}">{{ item.label }}</div>
         </sc-for>
@@ -85,7 +85,7 @@
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="/cdn-cgi/l/email-protection#92f1e1a3a5a2a1d2fff3fbbce0e7" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
+            <a href="/cdn-cgi/l/email-protection#90f3e3a1a7a0a3d0fdf1f9bee2e5" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
           </div>
         </div>
       </div>
@@ -456,7 +456,7 @@
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
           <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
-          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#60031351575053200d01094e1215"><span class="__cf_email__" data-cfemail="51322260666162113c30387f2324">[email&#160;protected]</span></a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#d8bbabe9efe8eb98b5b9b1f6aaad"><span class="__cf_email__" data-cfemail="d1b2a2e0e6e1e291bcb0b8ffa3a4">[email&#160;protected]</span></a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
           <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
         </div>
@@ -1597,8 +1597,7 @@ class Component extends DCLogic {
       lines.push('Размер: ' + (f.size || '—'));
       if (f.comment) lines.push('Комментарий: ' + f.comment);
       if (this.state.attachedFileName) lines.push('Файл: ' + this.state.attachedFileName);
-    }
-    if (f.comment && (src === 'constructor' || src === 'cart')) lines.push('Комментарий: ' + f.comment);
+    }    if (f.comment && (src === 'constructor' || src === 'cart')) lines.push('Комментарий: ' + f.comment);
     if (src === 'constructor') {
       lines.push('Изделие: ' + (this.state.cProduct || '—'));
       if (this.state.textFront.content) lines.push('Текст (перед): ' + this.state.textFront.content);
@@ -1632,6 +1631,29 @@ class Component extends DCLogic {
           }
         } catch (e) {
           console.error('Mockup send failed', e);
+        }
+      }
+      const sendPhotoUrl = async (relSrc, caption) => {
+        if (!relSrc) return;
+        try {
+          const blob = await (await fetch(relSrc)).blob();
+          const fd = new FormData();
+          fd.append('chat_id', TG_CHAT_ID);
+          fd.append('caption', caption);
+          fd.append('photo', blob, 'photo.jpg');
+          await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd });
+        } catch (e) {
+          console.error('Photo send failed', e);
+        }
+      };
+      if (src !== 'constructor' && src !== 'cart') {
+        const p = (this._allProducts || []).find((pr) => pr.name === f.product);
+        if (p && p.photo) await sendPhotoUrl(p.photo, p.name);
+      }
+      if (src === 'cart') {
+        const items = Object.values(this.state.cart);
+        for (const it of items) {
+          if (it.photo) await sendPhotoUrl(it.photo, it.name);
         }
       }
     } catch (e) {
@@ -2037,6 +2059,7 @@ class Component extends DCLogic {
     });
 
     const productOptions = ['Выберите изделие', ...products.map((p) => p.name)];
+    this._allProducts = products;
 
     const vals = {
       isHome: this.state.page === 'home',
@@ -2559,6 +2582,7 @@ class Component extends DCLogic {
       grid3or1,
       grid4cols,
       heroSplitCols,
+      navOverflow: isMobile ? 'auto' : 'visible',
       heroPadding: isMobile ? '48px 20px' : '96px 24px',
       constructorLayoutCols: isMobile ? '1fr' : (isTablet ? '1fr 1fr' : '240px 1fr 280px'),
     };
