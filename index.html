@@ -85,7 +85,7 @@
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="mailto:cs1703@mai.ru" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
+            <a href="/cdn-cgi/l/email-protection#f29181c3c5c2c1b29f939bdc8087" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
           </div>
         </div>
       </div>
@@ -456,7 +456,7 @@
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
           <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
-          <div style="font-size:16px; margin-bottom:22px;"><a href="mailto:cs1703@mai.ru">cs1703@mai.ru</a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#92f1e1a3a5a2a1d2fff3fbbce0e7"><span class="__cf_email__" data-cfemail="0b68783a3c3b384b666a6225797e">[email&#160;protected]</span></a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
           <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
         </div>
@@ -1216,7 +1216,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{
   &quot;palette&quot;: {
     &quot;editor&quot;: &quot;color&quot;,
     &quot;default&quot;: [&quot;#1B4FA0&quot;, &quot;#123a7c&quot;, &quot;#EAF0FC&quot;],
@@ -1574,6 +1574,60 @@ class Component extends DCLogic {
     if (typeof window !== 'undefined') window.scrollTo(0, 0);
   };
 
+  async sendOrderToTelegram() {
+    const TG_TOKEN = '8983804440:AAEVVYIcD-f5YcPY3h3_Sguw6w0QRlkMD10';
+    const TG_CHAT_ID = '1730911641';
+    const f = this.state.form;
+    const src = this.state.orderSource;
+    let lines = ['🆕 Новый заказ — Кастом Студия', ''];
+    lines.push('Источник: ' + (src === 'constructor' ? 'Конструктор' : src === 'cart' ? 'Корзина' : 'Сайт'));
+    lines.push('Имя: ' + (f.name || '—'));
+    lines.push('Контакт: ' + (f.contact || '—'));
+    if (src !== 'constructor' && src !== 'cart') {
+      lines.push('Изделие: ' + (f.product || '—'));
+      lines.push('Способ печати: ' + (f.method || '—'));
+      lines.push('Кол-во: ' + (f.qty || '—'));
+      lines.push('Размер: ' + (f.size || '—'));
+      if (f.comment) lines.push('Комментарий: ' + f.comment);
+      if (this.state.attachedFileName) lines.push('Файл: ' + this.state.attachedFileName);
+    }
+    if (src === 'cart') {
+      const items = Object.values(this.state.cart);
+      if (items.length) {
+        lines.push('', 'Товары:');
+        items.forEach((it) => lines.push('• ' + it.name + ' × ' + it.qty + ' — ' + it.price));
+      }
+    }
+    if (src === 'constructor') {
+      lines.push('Изделие: ' + (this.state.cProduct || '—'));
+      if (this.state.textFront.content) lines.push('Текст (перед): ' + this.state.textFront.content);
+      if (this.state.textBack.content) lines.push('Текст (спина): ' + this.state.textBack.content);
+    }
+    const text = lines.join('\n');
+    try {
+      await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text }),
+      });
+      const sendImage = async (dataUrl, caption) => {
+        if (!dataUrl || !dataUrl.startsWith('data:')) return;
+        const blob = await (await fetch(dataUrl)).blob();
+        const fd = new FormData();
+        fd.append('chat_id', TG_CHAT_ID);
+        fd.append('caption', caption);
+        fd.append('photo', blob, 'design.png');
+        await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd });
+      };
+      if (src === 'constructor') {
+        await sendImage(this.state.design.src, 'Макет — перед');
+        await sendImage(this.state.designBack.src, 'Макет — спина');
+      }
+    } catch (e) {
+      console.error('Telegram send failed', e);
+    }
+    this.setState({ formSubmitted: true });
+  }
   renderVals() {
    try {
     const palette = this.props.palette ?? ['#1B4FA0', '#123a7c', '#EAF0FC'];
@@ -2452,7 +2506,7 @@ class Component extends DCLogic {
       formSubmitted: this.state.formSubmitted,
       formNotSubmitted: !this.state.formSubmitted,
       submitBg: accentColor,
-      submitForm: () => this.setState({ formSubmitted: true }),
+      submitForm: () => this.sendOrderToTelegram(),
       attachedFileLabel: this.state.attachedFileName ? '📎 ' + this.state.attachedFileName : 'Прикрепить файл макета',
       onAttachFile: (e) => {
         const file = e.target.files && e.target.files[0];
