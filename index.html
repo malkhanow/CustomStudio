@@ -84,8 +84,8 @@
         <div style="position:absolute; top:100%; right:0; padding-top:6px; width:150px; z-index:60; opacity:{{ contactMenuOpacity }}; transform:{{ contactMenuTransform }}; transition:opacity .22s ease, transform .22s ease; pointer-events:{{ contactMenuPointerEvents }};">
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
-            <a href="https://max.ru/u/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="mailto:info@cstmstd.ru" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
+            <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
+            <a href="mailto:cs1703@mai.ru" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
           </div>
         </div>
       </div>
@@ -171,7 +171,7 @@
             <p style="font-size:16px; line-height:1.7; color:#454C59; max-width:440px; margin:0 0 28px;">Выбери вещь, загрузи изображение или добавь текст — и сразу посмотри, как будет выглядеть твой принт.</p>
             <div style="display:inline-block; background:#14181F; color:#fff; padding:16px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:#2A2F3A" onClick="{{ go.constructor }}">Перейти в конструктор</div>
           </div>
-          <div style="width:100%; aspect-ratio:16/11; border-radius:{{ heroRadius }}px; overflow:hidden;"><img src="uploads/site-constructor-promo-photo.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+          <div style="width:100%; aspect-ratio:16/11; border-radius:{{ heroRadius }}px; overflow:hidden; position:relative;"><img src="uploads/site-constructor-promo-photo.webp" style="width:100%; height:100%; object-fit:cover; object-position:0% 50%; display:block;"></div>
         </div>
       </div>
 
@@ -238,7 +238,8 @@
         </sc-for>
       </div>
       <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 8px;">Каталог и цены</h1>
-      <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Цена уже включает базовую печать одним принтом. Оптом — дешевле, уточняйте в Telegram. После согласования макета — 100% предоплата.</p>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 16px;">Цена уже включает базовую печать одним принтом. Оптом — дешевле, уточняйте в Telegram. После согласования макета — 100% предоплата.</p>
+      <a href="uploads/price-textile.jpg" download="Прайс - текстиль.jpg" style="display:inline-flex; align-items:center; gap:8px; background:{{ accentColor }}; color:#fff; padding:12px 20px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:14px; text-decoration:none; margin-bottom:40px;">↓ Оптовый прайс на текстиль</a>
 
       <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:56px;">
         <sc-for list="{{ allProducts }}" as="p" hint-placeholder-count="9">
@@ -274,6 +275,7 @@
 
       <h2 style="font-family:'Unbounded'; font-size:24px; font-weight:700; margin:0 0 6px;">Стоимость нанесения принта</h2>
       <p style="color:#6B7280; font-size:15px; margin:0 0 20px;">Если приносишь своё изделие — платишь только за печать. Методы: DTF и термотрансферная плёнка. Укажите размер и место принта (грудь, спина, рукав) при заказе.</p>
+      <a href="uploads/price-services.jpg" download="Прайс - услуги.jpg" style="display:inline-flex; align-items:center; gap:8px; background:{{ accentColor }}; color:#fff; padding:12px 20px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:14px; text-decoration:none; margin-bottom:20px;">↓ Оптовый прайс на печать</a>
       <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; overflow:hidden; margin-bottom:56px;">
         <sc-for list="{{ printFormats }}" as="f" hint-placeholder-count="4">
           <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid #EEF1F6;">
@@ -311,7 +313,17 @@
   <sc-if value="{{ isHowto }}">
     <section data-screen-label="Как заказать" style="max-width:900px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
       <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 12px;">Как заказать</h1>
-      <p style="color:#6B7280; font-size:16px; margin:0 0 44px;">От идеи до готовой вещи — пять простых шагов.</p>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 20px;">Два способа получить вещь: выбрать готовое изделие из коллекций/каталога или заказать свой принт с нуля.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:44px;">
+        <div style="background:#F5F6F9; border-radius:{{ cardRadius }}px; padding:24px;">
+          <div style="font-weight:800; font-size:17px; margin-bottom:8px;">Готовое изделие</div>
+          <div style="color:#454C59; font-size:15px; line-height:1.6;">Выбираете вещь из «Каталога» или готовой коллекции, указываете размер и цвет — оформляете заказ, оплачиваете, забираете или получаете доставкой.</div>
+        </div>
+        <div style="background:#F5F6F9; border-radius:{{ cardRadius }}px; padding:24px;">
+          <div style="font-weight:800; font-size:17px; margin-bottom:8px;">Свой принт</div>
+          <div style="color:#454C59; font-size:15px; line-height:1.6;">Собираете макет в «Конструкторе» или присылаете свой — согласовываем, печатаем, отдаём готовую вещь.</div>
+        </div>
+      </div>
       <div style="display:flex; flex-direction:column; gap:0;">
         <sc-for list="{{ howtoSteps }}" as="step" hint-placeholder-count="5">
           <div style="display:flex; gap:20px; padding:24px 0; border-bottom:1px solid #E4E8F0;">
@@ -335,9 +347,9 @@
       <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 12px;">Портфолио</h1>
       <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Примеры готовых работ студии.</p>
 
-      <div style="background:#241417; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px;">
-        <div style="width:100%; aspect-ratio:4/3;"><img src="uploads/site-titan-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
-        <div onClick="{{ go.titan }}" style="padding:36px; color:#fff; display:flex; flex-direction:column; justify-content:center; cursor:pointer;">
+      <div onClick="{{ go.titan }}" style="background:#241417; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px; cursor:pointer;">
+        <div style="width:100%; aspect-ratio:4/3; position:relative; overflow:hidden;"><img src="uploads/site-titan-cover.webp" style="width:100%; height:100%; object-fit:cover; object-position:50% 52.454%; display:block;"></div>
+        <div style="padding:36px; color:#fff; display:flex; flex-direction:column; justify-content:center;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:14px; width:fit-content;">Авторский фан-арт мерч</div>
           <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:10px;">Проект «Атака титанов»</div>
           <div style="color:#D9C4C4; font-size:14px; line-height:1.6; margin-bottom:18px;">Мерч-коллекция в мрачной фэнтези-эстетике, вдохновлённая любимым тайтлом — авторские иллюстрации, без использования чужих логотипов и персонажей.</div>
@@ -346,8 +358,8 @@
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 2fr; gap:16px; margin-bottom:40px;">
-        <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="uploads/site-portfolio-strip-small.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
-        <div style="width:100%; aspect-ratio:2/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="uploads/site-portfolio-strip-wide.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div onClick="{{ openPortfolioStripSmall }}" style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="uploads/site-portfolio-strip-small.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div onClick="{{ openPortfolioStripWide }}" style="width:100%; aspect-ratio:2/1; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="uploads/site-portfolio-strip-wide.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
       </div>
 
       <div onClick="{{ go.dora }}" style="background:#0F1F3D; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px; cursor:pointer;">
@@ -357,11 +369,11 @@
           <div style="color:#C4CEE0; font-size:14px; line-height:1.6; margin-bottom:18px;">Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой — пять изделий, каждое своя визуальная история.</div>
           <div style="color:#fff; font-weight:700; font-size:14px; text-decoration:underline;">Смотреть проект →</div>
         </div>
-        <div style="width:100%; aspect-ratio:4/3; order:2;"><img src="uploads/site-dora-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div style="width:100%; aspect-ratio:4/3; order:2; position:relative; overflow:hidden;"><img src="uploads/site-dora-cover.webp" style="width:100%; height:100%; object-fit:cover; object-position:50% 50%; display:block;"></div>
       </div>
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
         <sc-for list="{{ portfolioItems }}" as="p" hint-placeholder-count="9">
-          <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;">
+          <div onClick="{{ p.openMedia }}" style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;">
             <img src="{{ p.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
         </sc-for>
@@ -369,11 +381,33 @@
     </section>
   </sc-if>
 
+  <sc-if value="{{ mediaOpen }}">
+    <div onClick="{{ closeMedia }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:40px; cursor:zoom-out; overflow:hidden;">
+      <div onClick="{{ closeMedia }}" style="position:absolute; top:24px; right:28px; color:#fff; font-size:32px; font-weight:300; cursor:pointer; line-height:1;">×</div>
+      <sc-if value="{{ mediaHasMultiple }}">
+        <div onClick="{{ mediaPrev }}" style="position:absolute; left:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+        <div onClick="{{ mediaNext }}" style="position:absolute; right:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+      </sc-if>
+      <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
+        <img src="{{ mediaSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
+      </div>
+    </div>
+  </sc-if>
+
   <!-- ============ REVIEWS ============ -->
   <sc-if value="{{ isReviews }}">
     <section data-screen-label="Отзывы" style="max-width:1000px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
       <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 12px;">Отзывы клиентов</h1>
-      <div style="margin-bottom:16px; width:300px; height:100px; overflow:hidden;"><iframe src="https://yandex.ru/sprav/widget/rating-badge/224123468063?type=rating" width="150" height="50" frameborder="0" style="border:0; transform:scale(2); transform-origin:top left;"></iframe></div>
+      <div style="display:flex; align-items:center; gap:20px; margin-bottom:16px;">
+        <div style="width:300px; height:100px; overflow:hidden;"><iframe src="https://yandex.ru/sprav/widget/rating-badge/224123468063?type=rating" width="150" height="50" frameborder="0" style="border:0; transform:scale(2); transform-origin:top left;"></iframe></div>
+        <div style="display:flex; align-items:center; gap:20px; background:#F5F6F9; border-radius:{{ cardRadius }}px; padding:24px; max-width:480px;">
+          <img src="uploads/qr-reviews.png" style="width:120px; height:120px; border-radius:12px; flex-shrink:0;">
+          <div>
+            <div style="font-weight:800; font-size:16px; margin-bottom:6px;">Оставить отзыв</div>
+            <div style="color:#6B7280; font-size:14px; line-height:1.5;">Отсканируйте QR-код камерой телефона — откроется форма для отзыва.</div>
+          </div>
+        </div>
+      </div>
       <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Ждём и ваш отзыв — присылайте в Telegram или ВК.</p>
       <div style="margin:0 -24px; overflow:hidden; padding:8px 0;" onPointerDown="{{ marqueeDragStart }}" onPointerMove="{{ marqueeDragMove }}" onPointerUp="{{ marqueeDragEnd }}" onPointerLeave="{{ marqueeDragEnd }}" style-active="cursor:grabbing">
         <div ref="{{ marqueeRef }}" style="display:flex; gap:20px; width:max-content; will-change:transform; cursor:grab; user-select:none;">
@@ -399,7 +433,8 @@
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
         <div>
           <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0 0 16px;">«Кастом Студия» — печать на одежде в Санкт-Петербурге. Печатаем методом DTF и термотрансферными плёнками на футболках, толстовках, свитшотах, лонгсливах, шопперах и кепках.</p>
-          <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0;">Работаем и с готовыми макетами, и помогаем создать принт с нуля: подготовим изображение к печати или нарисуем его для вас.</p>
+          <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0 0 16px;">Работаем и с готовыми макетами, и помогаем создать принт с нуля: подготовим изображение к печати или нарисуем его для вас.</p>
+          <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0;">Кроме печати на заказ, у нас есть готовые коллекции авторского мерча, которые можно купить сразу, без ожидания печати.</p>
         </div>
         <div style="width:100%; aspect-ratio:4/3; border-radius:{{ heroRadius }}px; overflow:hidden;"><image-slot id="about-photo" shape="rect" placeholder="Фото студии / команды"></image-slot></div>
       </div>
@@ -751,7 +786,7 @@
         <sc-for list="{{ doraItems }}" as="item" hint-placeholder-count="6">
           <div style="display:grid; grid-template-columns:{{ item.cols }}; gap:40px; align-items:center;">
             <sc-if value="{{ item.imageFirst }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div onClick="{{ item.openMedia }}" style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
             <div>
               <div style="color:{{ accentColor }}; font-weight:800; font-size:13px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px;">{{ item.tag }}</div>
@@ -759,7 +794,7 @@
               <div style="color:#454C59; font-size:15px; line-height:1.75;">{{ item.desc }}</div>
             </div>
             <sc-if value="{{ item.imageSecond }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div onClick="{{ item.openMedia }}" style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
           </div>
         </sc-for>
@@ -771,7 +806,7 @@
           <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0 0 24px;">Помимо одежды был создан полноценный дизайнерский журнал — не каталог товаров, а документальное сопровождение проекта: как рождались идеи, почему принимались те или иные дизайнерские решения, какие технологии использовались, какие сложности возникали и каким образом музыка превращалась в визуальный язык. Журнал играет роль «making of» и показывает весь путь создания коллекции.</p>
           <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;">
             <sc-for list="{{ doraJournalPages }}" as="jp" hint-placeholder-count="3">
-              <div style="width:100%; aspect-ratio:3/4; border-radius:{{ smallRadius }}px; overflow:hidden;"><img src="{{ jp.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div onClick="{{ jp.openMedia }}" style="width:100%; aspect-ratio:3/4; border-radius:{{ smallRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="{{ jp.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-for>
           </div>
           <a href="uploads/zhurnal-proekt-dora-szhatyy.pdf" target="_blank" style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:15px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; text-decoration:none;">Скачать журнал (PDF)</a>
@@ -789,7 +824,7 @@
   <!-- ============ PRODUCT DETAIL ============ -->
   <sc-if value="{{ isProduct }}">
     <section data-screen-label="Товар" style="max-width:1100px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
-      <div onClick="{{ go.catalog }}" style="color:{{ accentColor }}; font-weight:700; font-size:14px; cursor:pointer; margin-bottom:12px;">← Назад в каталог</div>
+      <div onClick="{{ activeProduct.backClick }}" style="color:{{ accentColor }}; font-weight:700; font-size:14px; cursor:pointer; margin-bottom:12px;">{{ activeProduct.backLabel }}</div>
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:24px;">
         <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="2">
           <sc-if value="{{ bc.isLast }}">
@@ -807,12 +842,18 @@
             <sc-if value="{{ activeProduct.badge }}">
               <div style="position:absolute; top:10px; left:10px; z-index:2; background:#B5453F; color:#fff; font-weight:800; font-size:11px; padding:5px 10px; border-radius:5px;">{{ activeProduct.badge }}</div>
             </sc-if>
-            <img src="{{ activeProductPhoto }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ frontOpacity }}; transition:opacity .35s ease;">
-            <sc-if value="{{ activeProductPhotoBack }}">
-              <img src="{{ activeProductPhotoBack }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ backOpacityDetail }}; transition:opacity .35s ease; pointer-events:none;">
-            </sc-if>
-            <sc-if value="{{ galleryOverride }}" hint-placeholder-val="{{ false }}">
-              <img src="{{ galleryOverride }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ galleryOverrideOpacity }}; transition:opacity .35s ease;">
+            <div onClick="{{ openLightbox }}" style="position:absolute; inset:0; cursor:zoom-in;">
+              <img src="{{ activeProductPhoto }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ frontOpacity }}; transition:opacity .35s ease;">
+              <sc-if value="{{ activeProductPhotoBack }}">
+                <img src="{{ activeProductPhotoBack }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ backOpacityDetail }}; transition:opacity .35s ease; pointer-events:none;">
+              </sc-if>
+              <sc-if value="{{ galleryOverride }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ galleryOverride }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ galleryOverrideOpacity }}; transition:opacity .35s ease;">
+              </sc-if>
+            </div>
+            <sc-if value="{{ detailPhotoNav.hasMultiple }}">
+              <div onClick="{{ detailPhotoNav.prev }}" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.9); box-shadow:0 4px 12px rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:3; color:#14181F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+              <div onClick="{{ detailPhotoNav.next }}" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.9); box-shadow:0 4px 12px rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:3; color:#14181F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
             </sc-if>
           </div>
           <sc-if value="{{ hasAnyThumbs }}">
@@ -890,11 +931,11 @@
       <div style="margin-top:64px;">
         <h2 style="font-family:'Unbounded'; font-size:22px; font-weight:800; margin:0 0 20px;">Похожие товары</h2>
         <div style="position:relative;">
-          <div onClick="{{ similarScrollLeft }}" style="position:absolute; left:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2;">←</div>
-          <div ref="{{ similarScrollRef }}" style="display:flex; gap:16px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:4px;">
+          <div onClick="{{ similarScrollLeft }}" style="position:absolute; left:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; color:#14181F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+          <div ref="{{ similarScrollRef }}" onPointerDown="{{ similarDragStart }}" onPointerMove="{{ similarDragMove }}" onPointerUp="{{ similarDragEnd }}" onPointerLeave="{{ similarDragEnd }}" style="display:flex; gap:16px; overflow-x:auto; padding-bottom:4px; cursor:grab; user-select:none;" style-active="cursor:grabbing">
             <sc-for list="{{ similarProducts }}" as="sp" hint-placeholder-count="4">
               <div onClick="{{ sp.openDetail }}" style="flex:0 0 200px; background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer;">
-                <div style="width:100%; aspect-ratio:3/4;"><img src="{{ sp.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+                <div style="width:100%; aspect-ratio:3/4;"><img src="{{ sp.photo }}" style="width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;"></div>
                 <div style="padding:12px;">
                   <div style="font-weight:700; font-size:13px; margin-bottom:4px;">{{ sp.name }}</div>
                   <div style="color:{{ accentColor }}; font-weight:800; font-size:14px;">{{ sp.price }}</div>
@@ -902,10 +943,23 @@
               </div>
             </sc-for>
           </div>
-          <div onClick="{{ similarScrollRight }}" style="position:absolute; right:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2;">→</div>
+          <div onClick="{{ similarScrollRight }}" style="position:absolute; right:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; color:#14181F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
         </div>
       </div>
     </section>
+  </sc-if>
+
+  <sc-if value="{{ lightboxOpen }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:40px; cursor:zoom-out; overflow:hidden;">
+      <div onClick="{{ closeLightbox }}" style="position:absolute; top:24px; right:28px; color:#fff; font-size:32px; font-weight:300; cursor:pointer; line-height:1;">×</div>
+      <sc-if value="{{ detailPhotoNav.hasMultiple }}">
+        <div onClick="{{ detailPhotoNav.prev }}" style="position:absolute; left:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+        <div onClick="{{ detailPhotoNav.next }}" style="position:absolute; right:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+      </sc-if>
+      <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
+        <img src="{{ detailPhotoNav.currentSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
+      </div>
+    </div>
   </sc-if>
   <sc-if value="{{ isTitan }}">
     <section data-screen-label="Проект Титан" style="animation:cs-fade .4s ease;">
@@ -926,7 +980,7 @@
         <sc-for list="{{ titanItems }}" as="item" hint-placeholder-count="3">
           <div style="display:grid; grid-template-columns:{{ item.cols }}; gap:40px; align-items:center;">
             <sc-if value="{{ item.imageFirst }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div onClick="{{ item.openMedia }}" style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
             <div>
               <div style="color:#B5453F; font-weight:800; font-size:13px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px;">{{ item.tag }}</div>
@@ -934,7 +988,7 @@
               <div style="color:#454C59; font-size:15px; line-height:1.75;">{{ item.desc }}</div>
             </div>
             <sc-if value="{{ item.imageSecond }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div onClick="{{ item.openMedia }}" style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden; cursor:zoom-in;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
           </div>
         </sc-for>
@@ -963,7 +1017,7 @@
         </sc-for>
       </div>
       <div style="background:#241417; color:#fff; padding:64px 24px; position:relative; overflow:hidden;">
-        <div style="position:absolute; inset:0;"><img src="uploads/site-titan-shop-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div style="position:absolute; inset:0; overflow:hidden;"><img src="uploads/site-titan-shop-cover.webp" style="width:100%; height:100%; object-fit:cover; object-position:50% 70%; display:block;"></div>
         <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); pointer-events:none;"></div>
         <div style="max-width:1200px; margin:0 auto; position:relative;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Коллекция · Аниме одежда</div>
@@ -1017,7 +1071,7 @@
         </sc-for>
       </div>
       <div style="background:#0F1F3D; color:#fff; padding:64px 24px; position:relative; overflow:hidden;">
-        <div style="position:absolute; inset:0;"><img src="uploads/site-dora-shop-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div style="position:absolute; inset:0; overflow:hidden;"><img src="uploads/site-dora-shop-cover.webp" style="width:100%; height:100%; object-fit:cover; object-position:50% 20%; display:block;"></div>
         <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); pointer-events:none;"></div>
         <div style="max-width:1200px; margin:0 auto; position:relative;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Коллекция · Музыка</div>
@@ -1226,6 +1280,10 @@ class Component extends DCLogic {
     heroPhotoIds: ['dora-cover','titan-cover','portfolio-0','portfolio-1'],
     heroHover: { idx: null, x: 0, y: 0 },
     heroFadingIdx: null,
+    mediaList: null,
+    mediaIndex: null,
+    productZoomed: false,
+    productZoomY: 0.5,
     cart: {},
     cartOpen: false,
   };
@@ -1235,9 +1293,21 @@ class Component extends DCLogic {
     const shuffled = [...this.heroPhotoPool].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, 4);
   }
+  openMedia(list, i) {
+    this.setState({ mediaList: list, mediaIndex: i, productZoomed: false, productZoomY: 0.5 });
+  }
+  closeMedia = () => this.setState({ mediaList: null, mediaIndex: null, productZoomed: false, productZoomY: 0.5 });
+  mediaPrev = (e) => {
+    if (e) e.stopPropagation();
+    this.setState((s) => ({ mediaIndex: (s.mediaIndex - 1 + s.mediaList.length) % s.mediaList.length, productZoomed: false, productZoomY: 0.5 }));
+  };
+  mediaNext = (e) => {
+    if (e) e.stopPropagation();
+    this.setState((s) => ({ mediaIndex: (s.mediaIndex + 1) % s.mediaList.length, productZoomed: false, productZoomY: 0.5 }));
+  };
   openHeroProduct(id) {
     const pr = (this._heroProducts || []).find((p) => p.slotId === id);
-    this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
+    this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', galleryOverride: null, lightboxOpen: false, productZoomed: false, productZoomY: 0.5, selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
     if (typeof window !== 'undefined') window.scrollTo(0, 0);
   }
   getHeroMeta(id) {
@@ -1246,7 +1316,7 @@ class Component extends DCLogic {
       return { label: pr.name, desc: pr.desc, link: () => this.openHeroProduct(id), photo: pr.photo };
     }
     if (id.indexOf('dora') === 0) return { label: 'Проект «Дора»', desc: 'Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой.', link: () => this.setPage('dora'), photo: 'uploads/site-' + id + '.webp' };
-    if (id.indexOf('titan') === 0) return { label: 'Проект «Титан»', desc: 'Авторский фан-арт мерч в мрачной фэнтези-эстетике.', link: () => this.setPage('titan'), photo: 'uploads/site-' + id + '.webp' };
+    if (id.indexOf('titan') === 0) return { label: 'Проект «Атака титанов»', desc: 'Авторский фан-арт мерч в мрачной фэнтези-эстетике.', link: () => this.setPage('titan'), photo: 'uploads/site-' + id + '.webp' };
     return { label: 'Наши работы', desc: 'Из портфолио готовых работ студии.', link: () => this.setPage('portfolio'), photo: 'uploads/site-' + id + '.webp' };
   }
   buildHeroTile(id, idx) {
@@ -1499,7 +1569,7 @@ class Component extends DCLogic {
   }
 
   setPage = (p) => {
-    this.setState({ page: p });
+    this.setState({ page: p, lightboxOpen: false, mediaList: null, mediaIndex: null });
     if (p === 'reviews') { this._marqueeSpeed = 900; }
     if (typeof window !== 'undefined') window.scrollTo(0, 0);
   };
@@ -1522,36 +1592,36 @@ class Component extends DCLogic {
     const products = [
       { slotId: 'p-tshirt-std', name: 'Футболка стандарт', price: '650 ₽', desc: 'Хлопковая футболка, плотность 180 г/м², печать одним принтом до А4.', photo: 'uploads/models/white-tshirt-standard-front.jpg', photoBack: 'uploads/models/white-tshirt-standard-back.jpg', blackPhoto: 'uploads/models/black-tshirt-standard-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-standard-back.jpg' },
       { slotId: 'p-tshirt-prem', name: 'Футболка оверсайз премиум', price: '1 200 ₽', desc: 'Плотность 240 г/м², свободный крой, премиум-качество.', photo: 'uploads/models/white-tshirt-oversize-front.jpg', photoBack: 'uploads/models/white-tshirt-oversize-back.jpg', blackPhoto: 'uploads/models/black-tshirt-oversize-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-oversize-back.jpg' },
-      { slotId: 'p-tshirt-women', name: 'Женская футболка', price: '700 ₽', desc: 'Приталенный женский крой, плотность 180 г/м², мягкий хлопок.', photo: 'uploads/models/white-tshirt-women-front.jpg', photoBack: 'uploads/models/white-tshirt-women-back.jpg', blackPhoto: 'uploads/models/black-tshirt-women-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-women-back.jpg' },
+      { slotId: 'p-tshirt-women', name: 'Женская футболка', price: '600 ₽', desc: 'Приталенный женский крой, плотность 180 г/м², мягкий хлопок.', photo: 'uploads/models/white-tshirt-women-front.jpg', photoBack: 'uploads/models/white-tshirt-women-back.jpg', blackPhoto: 'uploads/models/black-tshirt-women-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-women-back.jpg' },
       { slotId: 'p-polo', name: 'Футболка поло', price: '850 ₽', desc: 'Классическое поло с воротником, плотность 180 г/м², под нанесение принта или лого.', photo: 'uploads/models/white-polo-front.jpg', photoBack: 'uploads/models/white-polo-back.jpg', blackPhoto: 'uploads/models/black-polo-front.jpg', blackPhotoBack: 'uploads/models/black-polo-back.jpg' },
       { slotId: 'p-sweatshirt', name: 'Свитшот', price: '1 800 ₽', desc: 'Плотный свитшот без капюшона, плотность 320 г/м², приятный к телу.', photo: 'uploads/models/white-sweatshirt-front.jpg', photoBack: 'uploads/models/white-sweatshirt-back.jpg', blackPhoto: 'uploads/models/black-sweatshirt-front.jpg', blackPhotoBack: 'uploads/models/black-sweatshirt-back.jpg' },
       { slotId: 'p-hoodie-std', name: 'Толстовка стандарт', price: '2 300 ₽', desc: 'Толстовка с капюшоном, плотность 340 г/м², классическая посадка.', photo: 'uploads/models/white-hoodie-front.jpg', photoBack: 'uploads/models/white-hoodie-back.jpg', blackPhoto: 'uploads/models/black-hoodie-front.jpg', blackPhotoBack: 'uploads/models/black-hoodie-back.jpg' },
       { slotId: 'p-hoodie-over', name: 'Толстовка оверсайз', price: '2 800 ₽', desc: 'Свободный оверсайз силуэт, плотность 340 г/м².', photo: 'uploads/beloe-hudi-muzhskoe-oversayz-pered.jpg', photoBack: 'uploads/beloe-hudi-muzhskoe-oversayz-spina.jpg', blackPhoto: 'uploads/chernoe-hudi-muzhskoe-oversayz-pered.jpg', blackPhotoBack: 'uploads/chernoe-hudi-muzhskoe-oversayz-spina.jpg' },
       { slotId: 'p-longsleeve', name: 'Лонгслив', price: '900 ₽', desc: 'Футболка с длинным рукавом, плотность 180 г/м², под сезон.', photo: 'uploads/models/white-longsleeve-front.jpg', photoBack: 'uploads/models/white-longsleeve-back.jpg', blackPhoto: 'uploads/models/black-longsleeve-front.jpg', blackPhotoBack: 'uploads/models/black-longsleeve-back.jpg' },
       { slotId: 'p-shopper', name: 'Шоппер', price: '500 ₽', desc: 'Плотная сумка-шоппер под лого или принт.', photo: 'uploads/models/white-shopper-front.jpg', blackPhoto: 'uploads/models/black-shopper-front.jpg' },
-      { slotId: 'p-cap', name: 'Кепка', price: 'цена по запросу', desc: 'Кепка под вышивку или печать, уточняйте в Telegram.', photo: 'uploads/belaya-kepka-pered.jpg', photoBack: 'uploads/belaya-kepka-spina.jpg', blackPhoto: 'uploads/chernaya-kepka-pered.jpg', blackPhotoBack: 'uploads/chernaya-kepka-spina.jpg' },
+      { slotId: 'p-cap', name: 'Кепка', price: '500 ₽', desc: 'Кепка под вышивку или печать, уточняйте в Telegram.', photo: 'uploads/belaya-kepka-pered.jpg', photoBack: 'uploads/belaya-kepka-spina.jpg', blackPhoto: 'uploads/chernaya-kepka-pered.jpg', blackPhotoBack: 'uploads/chernaya-kepka-spina.jpg' },
     ];
 
     const titanProducts = [
-      { slotId: 'titan-eren', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРЕН ЙЕГЕР»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Эрена Йегера на груди, готичный принт «JAEGER» на спине.', photo: 'uploads/titan/eren-yeager-white-front.jpg', photoBack: 'uploads/titan/jaeger-logo-white-back.jpg', blackPhoto: 'uploads/titan/eren-yeager-black-front.jpg', blackPhotoBack: 'uploads/titan/jaeger-logo-black-back.jpg', gallery: ['uploads/eren-glavnaya.png', 'uploads/eren-print.jpg', 'uploads/eren.png'] },
-      { slotId: 'titan-mikasa', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «МИКАСА АККЕРМАН»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Микасы на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/mikasa-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/mikasa-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/mikasa-print.png', 'uploads/mikasa-i-eren.png'] },
-      { slotId: 'titan-levi', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЛЕВИ АККЕРМАН»', price: '1 990 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд капитана Леви на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/levi-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/levi-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/levi-glavnaya.png', 'uploads/levi-print.png'] },
-      { slotId: 'titan-armin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АРМИН АРЛЕРТ»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Армина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/armin-arlert-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/armin-arlert-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/armin-print.jpg'] },
-      { slotId: 'titan-erwin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРВИН СМИТ»', price: '1 990 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд командующего Эрвина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/erwin-smith-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/erwin-smith-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/ervin-glavnaya.png', 'uploads/ervin-print.jpg'] },
-      { slotId: 'titan-hange', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХАНЖЕ ЗОЕ»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Ханже Зое на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/hange-zoe-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/hange-zoe-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/handzhi-glavnaya.png', 'uploads/handzhi-print.jpg', 'uploads/handzhi.png'] },
-      { slotId: 'titan-historia', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХИСТОРИЯ РАЙС»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд королевы Хистории на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/historia-reiss-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/historia-reiss-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/historiya-glavnaya.png', 'uploads/historiya-print.jpg'] },
-      { slotId: 'titan-jean', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЖАН КИРШТАЙН»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Жана на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/jean-kirschtein-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/jean-kirschtein-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/zhan-glavnaya.png', 'uploads/zhan-print.png', 'uploads/zhan.png'] },
-      { slotId: 'titan-annie', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АННИ ЛЕОНХАРТ»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Анни Леонхарт на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/annie-leonhart-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/annie-leonhart-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/enni-glavnaya.png', 'uploads/enni-print.png', 'uploads/enni.png'] },
-      { slotId: 'titan-pieck', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ПИК ФИНГЕР»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Пик Фингер на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/pieck-finger-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/pieck-finger-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg' },
+      { slotId: 'titan-eren', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРЕН ЙЕГЕР»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Эрена Йегера на груди, готичный принт «JAEGER» на спине.', photo: 'uploads/titan/eren-yeager-white-front.jpg', photoBack: 'uploads/titan/jaeger-logo-white-back.jpg', blackPhoto: 'uploads/titan/eren-yeager-black-front.jpg', blackPhotoBack: 'uploads/titan/jaeger-logo-black-back.jpg', gallery: ['uploads/eren-glavnaya.png', 'uploads/eren-print.jpg', 'uploads/eren.png'] },
+      { slotId: 'titan-mikasa', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «МИКАСА АККЕРМАН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Микасы на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/mikasa-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/mikasa-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/mikasa-print.png', 'uploads/mikasa-i-eren.png'] },
+      { slotId: 'titan-levi', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЛЕВИ АККЕРМАН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд капитана Леви на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/levi-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/levi-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/levi-glavnaya.png', 'uploads/levi-print.png'] },
+      { slotId: 'titan-armin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АРМИН АРЛЕРТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Армина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/armin-arlert-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/armin-arlert-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/armin-print.jpg'] },
+      { slotId: 'titan-erwin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРВИН СМИТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд командующего Эрвина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/erwin-smith-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/erwin-smith-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/ervin-glavnaya.png', 'uploads/ervin-print.jpg'] },
+      { slotId: 'titan-hange', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХАНЖЕ ЗОЕ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Ханже Зое на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/hange-zoe-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/hange-zoe-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/handzhi-glavnaya.png', 'uploads/handzhi-print.jpg', 'uploads/handzhi.png'] },
+      { slotId: 'titan-historia', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХИСТОРИЯ РАЙС»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд королевы Хистории на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/historia-reiss-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/historia-reiss-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/historiya-glavnaya.png', 'uploads/historiya-print.jpg'] },
+      { slotId: 'titan-jean', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЖАН КИРШТАЙН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Жана на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/jean-kirschtein-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/jean-kirschtein-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/zhan-glavnaya.png', 'uploads/zhan-print.png', 'uploads/zhan.png'] },
+      { slotId: 'titan-annie', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АННИ ЛЕОНХАРТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Анни Леонхарт на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/annie-leonhart-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/annie-leonhart-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/enni-glavnaya.png', 'uploads/enni-print.png', 'uploads/enni.png'] },
+      { slotId: 'titan-pieck', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ПИК ФИНГЕР»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Пик Фингер на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/pieck-finger-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/pieck-finger-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg' },
     ];
 
     const doraProducts = [
-      { slotId: 'dora-hoodie-1', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕТ ТЕБЯ»', oldPrice: '7 990 ₽', price: '5 992 ₽', discount: '-25%', installment: '1 498 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Худи с карандашной иллюстрацией на спине — тема расставания и внутреннего надлома, дополнена пришивными элементами ткани.' },
-      { slotId: 'dora-hoodie-2', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «РОЗОВЫЕ ВОЛОСЫ»', oldPrice: '7 990 ₽', price: '6 392 ₽', discount: '-20%', installment: '1 598 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. На спине — путь героини от мечты к сцене, на груди — минималистичная вышивка.' },
-      { slotId: 'dora-hoodie-3', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LOVERBOY»', oldPrice: '8 490 ₽', price: '6 368 ₽', discount: '-25%', installment: '1 592 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Стилизованная Эйфелева башня на спине, лаконичный перед — вдохновлено клипом трека.' },
-      { slotId: 'dora-hoodie-4', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕ ИГРА»', oldPrice: '7 990 ₽', price: '6 392 ₽', discount: '-20%', installment: '1 598 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Игровые образы и пиксельная эстетика на груди, история на спине — по мотивам одноимённого трека.' },
-      { slotId: 'dora-hoodie-5', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LUNYA»', oldPrice: '6 990 ₽', price: '5 592 ₽', discount: '-20%', installment: '1 398 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Портрет собаки Доры — Лунтика — на спине, вышивка «LUNYA» на груди.' },
-      { slotId: 'dora-sweatshirt', collection: 'dora', badge: 'ДОРА', name: 'СВИТШОТ | «CUTE ROCK»', oldPrice: '5 490 ₽', price: '4 392 ₽', discount: '-20%', installment: '1 098 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Надпись выполнена объёмной вспенивающейся печатью — эффект ощущается на ощупь.' },
+      { slotId: 'dora-hoodie-1', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕТ ТЕБЯ»', price: '8 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Худи с карандашной иллюстрацией на спине — тема расставания и внутреннего надлома, дополнена пришивными элементами ткани.', photo: 'uploads/Дора/Худи-неттебя-перед.png', photoBack: 'uploads/Дора/Худи-неттебя-спина.png', gallery: ['uploads/Дора/Худи-неттебя-рукав1.png', 'uploads/Дора/Худи-неттебя-рукав2.png', 'uploads/Дора фотосет/Нет тебя 1-8b0b7261.jpg', 'uploads/Дора фотосет/Нет тебя 2-95ac38ff.jpg', 'uploads/Дора фотосет/Нет тебя 3-7f55b453.jpg'] },
+      { slotId: 'dora-hoodie-2', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «РОЗОВЫЕ ВОЛОСЫ»', price: '7 390 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. На спине — путь героини от мечты к сцене, на груди — минималистичная вышивка.', photo: 'uploads/Дора/Худи-розовые волосы-перед.png', photoBack: 'uploads/Дора/Худи-розовые волосы-спина.png', gallery: ['uploads/Дора/Худи-розовые волосы-рукав1.png', 'uploads/Дора/Худи-розовые волосы-рукав2.png', 'uploads/Дора фотосет/Розовые волосы 1-0656480d.jpg', 'uploads/Дора фотосет/Розовые волосы 2-db327ec0.jpg', 'uploads/Дора фотосет/Розовые волосы 3-471f63f4.jpg', 'uploads/Дора фотосет/Розовые волосы 4-bbba83c3.jpg', 'uploads/Дора фотосет/Розовые волосы 5-be945cf2.jpg', 'uploads/Дора фотосет/Розовые волосы 6-64775ae3.jpg'] },
+      { slotId: 'dora-hoodie-3', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LOVERBOY»', price: '5 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Стилизованная Эйфелева башня на спине, лаконичный перед — вдохновлено клипом трека.', photo: 'uploads/Дора/Худи-loverboy-перед.png', photoBack: 'uploads/Дора/Худи-loverboy-спина.png', gallery: ['uploads/Дора фотосет/Loverboy 1-4a9533f1.jpg', 'uploads/Дора фотосет/Loverboy 2-023d47fd.jpg'] },
+      { slotId: 'dora-hoodie-4', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕ ИГРА»', price: '6 390 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Игровые образы и пиксельная эстетика на груди, история на спине — по мотивам одноимённого трека.', photo: 'uploads/Дора/Худи-неигра-перед.png', photoBack: 'uploads/Дора/Худи-неигра-спина.png', gallery: ['uploads/Дора/Худи-неигра-рукав1.png', 'uploads/Дора/Худи-неигра-рукав2.png', 'uploads/Дора фотосет/Не игра 1-272d7e89.jpg', 'uploads/Дора фотосет/Не игра 2-950d61f0.jpg', 'uploads/Дора фотосет/Не игра 3-770b38c5.jpg'] },
+      { slotId: 'dora-hoodie-5', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LUNYA»', price: '7 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Портрет собаки Доры — Лунтика — на спине, вышивка «LUNYA» на груди.', photo: 'uploads/Дора/Худи-луня-перед.png', photoBack: 'uploads/Дора/Худи-луня-спина.png', gallery: ['uploads/Дора фотосет/LUNYA 1-eed9a8f4.jpg', 'uploads/Дора фотосет/LUNYA 2-fcc0de74.jpg', 'uploads/Дора фотосет/LUNYA 3-aa6231c2.jpg'] },
+      { slotId: 'dora-sweatshirt', collection: 'dora', badge: 'ДОРА', name: 'СВИТШОТ | «CUTE ROCK»', price: '4 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Надпись выполнена объёмной вспенивающейся печатью — эффект ощущается на ощупь.', photo: 'uploads/Дора/Свитшот-белый-cuterock-перед.png', photoBack: 'uploads/Дора/Свитшот-белый-cuterock-спина.png', gallery: ['uploads/Дора/Свитшот-cuterock-перед.png', 'uploads/Дора/Свитшот-cuterock-спинаэ.png', 'uploads/Дора фотосет/CUTEROCK 1-b3834c0b.jpg', 'uploads/Дора фотосет/CUTEROCK 2-54977702.jpg'] },
     ];
 
     const printFormats = [
@@ -1572,10 +1642,10 @@ class Component extends DCLogic {
     ];
 
     const howtoSteps = [
-      { num: '1', title: 'Выбор изделия, размера и цвета', desc: 'Берёте изделие из каталога (футболка, худи и т.д.) или приносите своё — уточняете размер и цвет.' },
-      { num: '2', title: 'Изображение и параметры печати', desc: 'Присылаете макет или текст в электронном виде, указываете размер и место принта (грудь, спина, рукав).' },
+      { num: '1', title: 'Выбор: готовое или свой принт', desc: 'Берёте вещь из каталога или готовой коллекции («Атака титанов», «Дора») — либо создаёте свой принт: приносите своё изделие или выбираете из каталога, указываете размер и цвет.' },
+      { num: '2', title: 'Изображение и параметры печати', desc: 'Для своего принта — присылаете макет или текст, указываете размер и место (грудь, спина, рукав). Для готового изделия этот шаг не нужен.' },
       { num: '3', title: 'Согласование макета', desc: 'Делаем цифровой макет — как принт будет смотреться на изделии — и вносим правки, пока не утвердите. Нужен дизайнер? Поможем улучшить, отрисовать, убрать фон или подготовить файл к печати — как доп. услугу.' },
-      { num: '4', title: 'Предоплата и печать', desc: 'После утверждения макета — 100% предоплата удобным способом, и мы печатаем заказ.' },
+      { num: '4', title: 'Предоплата и печать', desc: 'После утверждения макета (или сразу для готового изделия) — 100% предоплата удобным способом, дальше печатаем или собираем заказ.' },
       { num: '5', title: 'Получение заказа', desc: 'Сообщаем, когда заказ готов. Забрать можно в студии на наб. Обводного канала, 136к1Б — или оформить доставку.' },
     ];
 
@@ -1599,12 +1669,12 @@ class Component extends DCLogic {
     const portfolioItems = Array.from({ length: 6 }).map((_, i) => ({ slotId: 'portfolio-' + i, label: 'Готовая работа', photo: 'uploads/site-portfolio-' + i + '.webp' }));
 
     const doraItems = [
-      { slotId: 'dora-1', tag: 'Худи 1', name: '«Нет тебя»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый эмоциональный дизайн коллекции. Основан на теме расставания, внутреннего надлома и воспоминаний — пустоты после окончания отношений, переданной через карандашную иллюстрацию, пришивные элементы ткани и сложную композицию. Именно с этого дизайна начался весь проект, хотя завершён он был последним.' },
-      { slotId: 'dora-2', tag: 'Худи 2', name: '«Розовые волосы»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Работа о пути человека к собственной мечте. Композиция показывает две версии Доры — маленькую девочку, которая только мечтает о сцене, и взрослую артистку, уже добившуюся успеха. Между ними — толпа зрителей и фиолетовый дым, символизирующие время, путь и внутренний рост. На груди — минималистичная вышивка; во время работы над этим дизайном был разработан единый модельный лист персонажа Доры для всей коллекции.' },
-      { slotId: 'dora-3', tag: 'Худи 3', name: '«Loverboy»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый визуальный дизайн проекта, вдохновлённый клипом песни. Центральный элемент — стилизованная Эйфелева башня, вокруг которой построена вся композиция. Главная задача — баланс между высокой детализацией и современным минимализмом: передняя часть изделия выполнена максимально просто, чтобы не конкурировать с крупной композицией на спине.' },
-      { slotId: 'dora-4', tag: 'Худи 4', name: '«Не игра»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Дизайн основан на одноимённом треке и его обложке — в работе объединены игровые образы из PUBG Mobile, пиксельная эстетика и сюжет песни. На груди — два персонажа, выходящие из дыма, на спине — история человека, настолько увлечённого игрой, что он перестаёт замечать любимого человека. Идея дизайна: любовь может превращаться в войну, если люди перестают видеть друг друга.' },
-      { slotId: 'dora-5', tag: 'Худи 5', name: '«LUNYA»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Худи, посвящённая собаке Доры — Лунтику. Самый минималистичный предмет коллекции: на спине — портрет Лунтика, вдохновлённый стилистикой клипа Sia — Chandelier, на груди — аккуратная вышивка имени «LUNYA». Задача — современная вещь, которая выглядит ярко, но остаётся удобной для повседневной носки.' },
-      { slotId: 'dora-6', tag: 'Дополнительный предмет', name: 'Свитшот «Cute Rock»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'В отличие от остальных изделий, здесь акцент сделан не на иллюстрации, а на материале: надпись выполнена объёмной вспенивающейся полиуретановой печатью, благодаря чему дизайн воспринимается не только визуально, но и тактильно.' },
+      { slotId: 'dora-1', gallery: ['uploads/Дора/Худи-неттебя-перед.png', 'uploads/Дора/Худи-неттебя-спина.png', 'uploads/Дора/Худи-неттебя-рукав1.png', 'uploads/Дора/Худи-неттебя-рукав2.png'], tag: 'Худи 1', name: '«Нет тебя»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый эмоциональный дизайн коллекции. Основан на теме расставания, внутреннего надлома и воспоминаний — пустоты после окончания отношений, переданной через карандашную иллюстрацию, пришивные элементы ткани и сложную композицию. Именно с этого дизайна начался весь проект, хотя завершён он был последним.' },
+      { slotId: 'dora-2', gallery: ['uploads/Дора/Худи-розовые волосы-перед.png', 'uploads/Дора/Худи-розовые волосы-спина.png', 'uploads/Дора/Худи-розовые волосы-рукав1.png', 'uploads/Дора/Худи-розовые волосы-рукав2.png'], tag: 'Худи 2', name: '«Розовые волосы»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Работа о пути человека к собственной мечте. Композиция показывает две версии Доры — маленькую девочку, которая только мечтает о сцене, и взрослую артистку, уже добившуюся успеха. Между ними — толпа зрителей и фиолетовый дым, символизирующие время, путь и внутренний рост. На груди — минималистичная вышивка; во время работы над этим дизайном был разработан единый модельный лист персонажа Доры для всей коллекции.' },
+      { slotId: 'dora-3', gallery: ['uploads/Дора/Худи-loverboy-перед.png', 'uploads/Дора/Худи-loverboy-спина.png'], tag: 'Худи 3', name: '«Loverboy»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый визуальный дизайн проекта, вдохновлённый клипом песни. Центральный элемент — стилизованная Эйфелева башня, вокруг которой построена вся композиция. Главная задача — баланс между высокой детализацией и современным минимализмом: передняя часть изделия выполнена максимально просто, чтобы не конкурировать с крупной композицией на спине.' },
+      { slotId: 'dora-4', gallery: ['uploads/Дора/Худи-неигра-перед.png', 'uploads/Дора/Худи-неигра-спина.png', 'uploads/Дора/Худи-неигра-рукав1.png', 'uploads/Дора/Худи-неигра-рукав2.png'], tag: 'Худи 4', name: '«Не игра»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Дизайн основан на одноимённом треке и его обложке — в работе объединены игровые образы из PUBG Mobile, пиксельная эстетика и сюжет песни. На груди — два персонажа, выходящие из дыма, на спине — история человека, настолько увлечённого игрой, что он перестаёт замечать любимого человека. Идея дизайна: любовь может превращаться в войну, если люди перестают видеть друг друга.' },
+      { slotId: 'dora-5', gallery: ['uploads/Дора/Худи-луня-перед.png', 'uploads/Дора/Худи-луня-спина.png'], tag: 'Худи 5', name: '«LUNYA»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Худи, посвящённая собаке Доры — Лунтику. Самый минималистичный предмет коллекции: на спине — портрет Лунтика, вдохновлённый стилистикой клипа Sia — Chandelier, на груди — аккуратная вышивка имени «LUNYA». Задача — современная вещь, которая выглядит ярко, но остаётся удобной для повседневной носки.' },
+      { slotId: 'dora-6', gallery: ['uploads/Дора/Свитшот-белый-cuterock-перед.png', 'uploads/Дора/Свитшот-белый-cuterock-спина.png', 'uploads/Дора/Свитшот-cuterock-перед.png', 'uploads/Дора/Свитшот-cuterock-спинаэ.png'], tag: 'Дополнительный предмет', name: 'Свитшот «Cute Rock»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'В отличие от остальных изделий, здесь акцент сделан не на иллюстрации, а на материале: надпись выполнена объёмной вспенивающейся полиуретановой печатью, благодаря чему дизайн воспринимается не только визуально, но и тактильно.' },
     ].map((it) => ({ ...it, photo: 'uploads/site-' + it.slotId + '.webp' }));
     const doraJournalPages = ['dora-journal-1', 'dora-journal-2', 'dora-journal-3'].map((id) => ({ id, photo: 'uploads/site-' + id + '.webp' }));
 
@@ -1639,7 +1709,7 @@ class Component extends DCLogic {
       titanShop: () => this.setPage('titan-shop'),
       product: (id) => {
         const pr = products.find((p) => p.slotId === id);
-        this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
+        this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', galleryOverride: null, lightboxOpen: false, productZoomed: false, productZoomY: 0.5, selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
         if (typeof window !== 'undefined') window.scrollTo(0, 0);
       },
       howto: () => this.setPage('howto'),
@@ -1893,10 +1963,10 @@ class Component extends DCLogic {
       isTitanShop: this.state.page === 'titan-shop',
       isDoraShop: this.state.page === 'dora-shop',
       titanItems: [
-        { slotId: 'titan-1', tag: 'Худи', name: '«Разведкорпус»', desc: 'Силуэт солдата на фоне заходящего солнца и крылья свободы на спине — печать DTF по плотному худи.', cols: '1fr 1fr', imageFirst: true, photo: 'uploads/site-titan-1.webp' },
-        { slotId: 'titan-2', tag: 'Свитшот', name: '«За стеной»', desc: 'Минималистичная композиция: разрушенные стены и тень титана на горизонте.', cols: '1fr 1fr', imageSecond: true, photo: 'uploads/site-titan-2.webp' },
-        { slotId: 'titan-3', tag: 'Футболка', name: '«Память»', desc: 'Список имён и символ клятвы — дань памяти павшим персонажам, выполнено вышивкой и печатью.', cols: '1fr 1fr', imageFirst: true, photo: 'uploads/site-titan-3.webp' },
-      ],
+        { slotId: 'titan-1', tag: 'Футболка', name: '«Клинок»', desc: 'Стилизованный клинок с трещинами и подписью на японском — печать DTF по белой футболке.', cols: '1fr 1fr', imageFirst: true, photo: 'uploads/site-titan-1.webp' },
+        { slotId: 'titan-2', tag: 'Футболка', name: '«Взгляд»', desc: 'Крупный план — только глаза персонажа, минималистичный принт на груди чёрной футболки.', cols: '1fr 1fr', imageSecond: true, photo: 'uploads/site-titan-2.webp' },
+        { slotId: 'titan-3', tag: 'Футболка', name: '«JAEGER»', desc: 'Крупная готическая надпись «JAEGER» с кровавыми потёками во всю спину чёрной футболки.', cols: '1fr 1fr', imageFirst: true, photo: 'uploads/titan/jaeger-logo-black-back.jpg' },
+      ].map((it, i, arr) => ({ ...it, openMedia: () => this.openMedia(arr.map((a) => a.photo), i) })),
       isReviews: this.state.page === 'reviews',
       isAbout: this.state.page === 'about',
       isContacts: this.state.page === 'contacts',
@@ -2141,7 +2211,10 @@ class Component extends DCLogic {
         const p = products.find((pr) => pr.slotId === this.state.activeProductId);
         const found = p || products[0] || {};
         const hasColorOptions = multiColorIds.includes(found.slotId);
-        return { ...found, hasDiscount: !!found.oldPrice, noCollection: hasColorOptions, hasColorOptions, singleColorOnly: !!found.collection && !hasColorOptions };
+        const isCollectionProduct = !!found.collection;
+        return { ...found, hasDiscount: !!found.oldPrice, noCollection: hasColorOptions, hasColorOptions, singleColorOnly: !!found.collection && !hasColorOptions,
+          backLabel: isCollectionProduct ? '← Назад в коллекцию' : '← Назад в каталог',
+          backClick: found.collection === 'titan' ? go.titanShop : found.collection === 'dora' ? go.doraShop : go.catalog };
       })(),
       galleryPhotos: (() => {
         const p = products.find((pr) => pr.slotId === this.state.activeProductId);
@@ -2218,12 +2291,74 @@ class Component extends DCLogic {
         front: () => this.setState({ productView: 'front', galleryOverride: null }),
         back: () => this.setState({ productView: 'back', galleryOverride: null }),
       },
+      detailPhotoNav: (() => {
+        const photoMapF = {
+          'p-tshirt-std': { white: 'uploads/models/white-tshirt-standard-front.jpg', black: 'uploads/models/black-tshirt-standard-front.jpg' },
+          'p-tshirt-women': { white: 'uploads/models/white-tshirt-women-front.jpg', black: 'uploads/models/black-tshirt-women-front.jpg' },
+          'p-tshirt-prem': { white: 'uploads/models/white-tshirt-oversize-front.jpg', black: 'uploads/models/black-tshirt-oversize-front.jpg' },
+          'p-polo': { white: 'uploads/models/white-polo-front.jpg', black: 'uploads/models/black-polo-front.jpg' },
+          'p-sweatshirt': { white: 'uploads/models/white-sweatshirt-front.jpg', black: 'uploads/models/black-sweatshirt-front.jpg' },
+          'p-hoodie-std': { white: 'uploads/models/white-hoodie-front.jpg', black: 'uploads/models/black-hoodie-front.jpg' },
+          'p-hoodie-over': { white: 'uploads/beloe-hudi-muzhskoe-oversayz-pered.jpg', black: 'uploads/chernoe-hudi-muzhskoe-oversayz-pered.jpg' },
+          'p-cap': { white: 'uploads/belaya-kepka-pered.jpg', black: 'uploads/chernaya-kepka-pered.jpg' },
+          'p-longsleeve': { white: 'uploads/models/white-longsleeve-front.jpg', black: 'uploads/models/black-longsleeve-front.jpg' },
+          'p-shopper': { white: 'uploads/models/white-shopper-front.jpg', black: 'uploads/models/black-shopper-front.jpg' },
+        };
+        const photoMapB = {
+          'p-tshirt-std': { white: 'uploads/models/white-tshirt-standard-back.jpg', black: 'uploads/models/black-tshirt-standard-back.jpg' },
+          'p-tshirt-women': { white: 'uploads/models/white-tshirt-women-back.jpg', black: 'uploads/models/black-tshirt-women-back.jpg' },
+          'p-tshirt-prem': { white: 'uploads/models/white-tshirt-oversize-back.jpg', black: 'uploads/models/black-tshirt-oversize-back.jpg' },
+          'p-polo': { white: 'uploads/models/white-polo-back.jpg', black: 'uploads/models/black-polo-back.jpg' },
+          'p-sweatshirt': { white: 'uploads/models/white-sweatshirt-back.jpg', black: 'uploads/models/black-sweatshirt-back.jpg' },
+          'p-hoodie-std': { white: 'uploads/models/white-hoodie-back.jpg', black: 'uploads/models/black-hoodie-back.jpg' },
+          'p-hoodie-over': { white: 'uploads/beloe-hudi-muzhskoe-oversayz-spina.jpg', black: 'uploads/chernoe-hudi-muzhskoe-oversayz-spina.jpg' },
+          'p-cap': { white: 'uploads/belaya-kepka-spina.jpg', black: 'uploads/chernaya-kepka-spina.jpg' },
+          'p-longsleeve': { white: 'uploads/models/white-longsleeve-back.jpg', black: 'uploads/models/black-longsleeve-back.jpg' },
+        };
+        const cur = products.find((pr) => pr.slotId === this.state.activeProductId) || {};
+        const color = this.state.activeProductColor;
+        const entryF = photoMapF[this.state.activeProductId];
+        const front = (entryF && entryF[color]) || (color === 'black' ? (cur.blackPhoto || cur.photo) : cur.photo) || '';
+        const entryB = photoMapB[this.state.activeProductId];
+        const back = (entryB && entryB[color]) || (color === 'black' ? (cur.blackPhotoBack || cur.photoBack) : cur.photoBack) || '';
+        const gallery = cur.gallery || [];
+        const seq = [front, back, ...gallery].filter(Boolean);
+        let currentSrc = front;
+        if (this.state.galleryOverride) currentSrc = this.state.galleryOverride;
+        else if (this.state.productView === 'back' && back) currentSrc = back;
+        let idx = seq.indexOf(currentSrc);
+        if (idx < 0) idx = 0;
+        const goTo = (src) => {
+          if (src === front) this.setState({ productView: 'front', galleryOverride: null });
+          else if (src === back) this.setState({ productView: 'back', galleryOverride: null });
+          else this.setState({ galleryOverride: src });
+        };
+        return {
+          currentSrc,
+          hasMultiple: seq.length > 1,
+          prev: (e) => { if (e) e.stopPropagation(); goTo(seq[(idx - 1 + seq.length) % seq.length]); },
+          next: (e) => { if (e) e.stopPropagation(); goTo(seq[(idx + 1) % seq.length]); },
+        };
+      })(),
+      lightboxOpen: this.state.lightboxOpen,
+      openLightbox: () => this.setState({ lightboxOpen: true, productZoomed: false, productZoomY: 0.5 }),
+      closeLightbox: () => this.setState({ lightboxOpen: false, productZoomed: false, productZoomY: 0.5 }),
+      productZoomed: this.state.productZoomed,
+      toggleProductZoom: (e) => { if (e) e.stopPropagation(); this.setState((s) => ({ productZoomed: !s.productZoomed, productZoomY: 0.5 })); },
+      onProductZoomMove: (e) => {
+        if (!this.state.productZoomed) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const frac = Math.min(1, Math.max(0, (e.clientY - rect.top) / rect.height));
+        this.setState({ productZoomY: frac });
+      },
+      productZoomTransform: this.state.productZoomed ? 'scale(1.7) translateY(' + ((0.5 - this.state.productZoomY) * 46) + '%)' : 'scale(1)',
+      productZoomCursor: this.state.productZoomed ? 'zoom-out' : 'zoom-in',
       activeColorName: this.state.activeProductColor === 'black' ? 'Чёрный' : 'Белый',
       productColorSwatches: ['white', 'black'].map((c) => ({
         hex: c === 'white' ? '#ffffff' : '#1A1A1A',
         border: this.state.activeProductColor === c ? '2px solid ' + accentColor : '1.5px solid #D0D5DE',
         ring: this.state.activeProductColor === c ? '0 0 0 3px ' + accentLight : 'none',
-        onClick: () => this.setState({ activeProductColor: c }),
+        onClick: () => this.setState({ activeProductColor: c, galleryOverride: null }),
       })),
       productQty: this.state.productQty,
       decProductQty: () => this.setState((s) => ({ productQty: Math.max(1, s.productQty - 1) })),
@@ -2240,11 +2375,26 @@ class Component extends DCLogic {
       similarProducts: (() => {
         const cur = products.find((pr) => pr.slotId === this.state.activeProductId);
         const pool = enrichedProducts.filter((p) => p.slotId !== this.state.activeProductId);
-        return cur && cur.collection ? pool.filter((p) => p.collection === cur.collection) : pool.filter((p) => !p.collection);
+        const list = cur && cur.collection ? pool.filter((p) => p.collection === cur.collection) : pool.filter((p) => !p.collection);
+        return list.map((p) => ({ ...p, openDetail: () => { if (!this._similarDragMoved) go.product(p.slotId); } }));
       })(),
       similarScrollRef: this.similarScrollRef,
       similarScrollLeft: () => { if (this.similarScrollRef.current) this.similarScrollRef.current.scrollBy({ left: -220, behavior: 'smooth' }); },
       similarScrollRight: () => { if (this.similarScrollRef.current) this.similarScrollRef.current.scrollBy({ left: 220, behavior: 'smooth' }); },
+      similarDragStart: (e) => {
+        this._similarDragging = true;
+        this._similarDragMoved = false;
+        this._similarStartX = e.clientX;
+        this._similarStartScroll = this.similarScrollRef.current ? this.similarScrollRef.current.scrollLeft : 0;
+        if (e.target.setPointerCapture) { try { e.target.setPointerCapture(e.pointerId); } catch (err) {} }
+      },
+      similarDragMove: (e) => {
+        if (!this._similarDragging || !this.similarScrollRef.current) return;
+        const dx = e.clientX - this._similarStartX;
+        if (Math.abs(dx) > 4) this._similarDragMoved = true;
+        this.similarScrollRef.current.scrollLeft = this._similarStartScroll - dx;
+      },
+      similarDragEnd: () => { this._similarDragging = false; },
       howtoSteps,
       testimonials,
       featuredTestimonials: testimonials.slice(0, 3),
@@ -2272,9 +2422,30 @@ class Component extends DCLogic {
         this._marqueeDragging = false;
         this._marqueeSpeed = -this._marqueeVelocity;
       },
-      portfolioItems,
-      doraItems,
-      doraJournalPages,
+      portfolioMediaList: ['uploads/site-portfolio-strip-small.webp', 'uploads/site-portfolio-strip-wide.webp', ...portfolioItems.map((p) => p.photo)],
+      openPortfolioStripSmall: () => this.openMedia(['uploads/site-portfolio-strip-small.webp', 'uploads/site-portfolio-strip-wide.webp', ...portfolioItems.map((p) => p.photo)], 0),
+      openPortfolioStripWide: () => this.openMedia(['uploads/site-portfolio-strip-small.webp', 'uploads/site-portfolio-strip-wide.webp', ...portfolioItems.map((p) => p.photo)], 1),
+      portfolioItems: portfolioItems.map((p, i) => ({ ...p, openMedia: () => this.openMedia(['uploads/site-portfolio-strip-small.webp', 'uploads/site-portfolio-strip-wide.webp', ...portfolioItems.map((pp) => pp.photo)], i + 2) })),
+      doraItems: (() => {
+        const doraMediaList = doraItems.flatMap((it) => it.gallery || [it.photo]).concat(doraJournalPages.map((jp) => jp.photo));
+        let offset = 0;
+        return doraItems.map((it) => {
+          const start = offset;
+          offset += (it.gallery || [it.photo]).length;
+          return { ...it, openMedia: () => this.openMedia(doraMediaList, start) };
+        });
+      })(),
+      doraJournalPages: (() => {
+        const doraMediaList = doraItems.flatMap((it) => it.gallery || [it.photo]).concat(doraJournalPages.map((jp) => jp.photo));
+        const doraPhotoCount = doraItems.reduce((n, it) => n + (it.gallery || [it.photo]).length, 0);
+        return doraJournalPages.map((jp, i) => ({ ...jp, openMedia: () => this.openMedia(doraMediaList, doraPhotoCount + i) }));
+      })(),
+      mediaOpen: this.state.mediaList !== null,
+      mediaSrc: this.state.mediaList !== null ? this.state.mediaList[this.state.mediaIndex] : '',
+      mediaHasMultiple: this.state.mediaList !== null && this.state.mediaList.length > 1,
+      closeMedia: this.closeMedia,
+      mediaPrev: this.mediaPrev,
+      mediaNext: this.mediaNext,
       form: this.state.form,
       setField,
       productOptions,
