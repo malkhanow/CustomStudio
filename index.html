@@ -112,7 +112,7 @@
           <div style="position:relative; height:660px; display:flex; flex-direction:column; gap:3px;">
             <div style="position:relative; height:430px; background:#E4E7EE; overflow:hidden; cursor:pointer;" onMouseEnter="{{ heroMainTile.onEnter }}" onMouseMove="{{ heroMainTile.onMove }}" onMouseLeave="{{ heroMainTile.onLeave }}" onClick="{{ heroMainTile.onTileClick }}">
               <div style="position:absolute; inset:0; transform:{{ heroMainTile.transform }}; transition:transform .4s ease; filter:{{ heroMainTile.blur }};">
-                <image-slot id="{{ heroPhotoMain }}" shape="rect" placeholder="Крупное фото — новая коллекция / готовая работа" src="{{ heroMainTile.photoSrc }}"></image-slot>
+                <img src="{{ heroMainTile.photoSrc }}" style="width:100%; height:100%; object-fit:cover; display:block;">
               </div>
               <div style="position:absolute; inset:0; background:#000; opacity:{{ heroMainTile.overlayOpacity }}; transition:{{ heroMainTile.overlayTransition }}; pointer-events:none;"></div>
               <div style="position:absolute; left:16px; right:16px; bottom:14px; color:#fff; pointer-events:none;">
@@ -132,7 +132,7 @@
               <sc-for list="{{ heroSlidesTop3 }}" as="slide" hint-placeholder-count="3">
                 <div style="position:relative; background:#E4E7EE; overflow:hidden; cursor:pointer;" onMouseEnter="{{ slide.onEnter }}" onMouseMove="{{ slide.onMove }}" onMouseLeave="{{ slide.onLeave }}" onClick="{{ slide.onTileClick }}">
                   <div style="position:absolute; inset:0; transform:{{ slide.transform }}; transition:transform .4s ease; filter:{{ slide.blur }};">
-                    <image-slot id="{{ slide.id }}" shape="rect" placeholder="{{ slide.placeholder }}" src="{{ slide.photoSrc }}"></image-slot>
+                    <img src="{{ slide.photoSrc }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                   </div>
                   <div style="position:absolute; inset:0; background:#000; opacity:{{ slide.overlayOpacity }}; transition:{{ slide.overlayTransition }}; pointer-events:none;"></div>
                   <div style="position:absolute; left:10px; right:10px; bottom:10px; color:#fff; pointer-events:none;">
@@ -171,7 +171,7 @@
             <p style="font-size:16px; line-height:1.7; color:#454C59; max-width:440px; margin:0 0 28px;">Выбери вещь, загрузи изображение или добавь текст — и сразу посмотри, как будет выглядеть твой принт.</p>
             <div style="display:inline-block; background:#14181F; color:#fff; padding:16px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:#2A2F3A" onClick="{{ go.constructor }}">Перейти в конструктор</div>
           </div>
-          <div style="width:100%; aspect-ratio:16/11; border-radius:{{ heroRadius }}px; overflow:hidden;"><image-slot id="constructor-promo-photo" shape="rect" placeholder="Скриншот конструктора в действии"></image-slot></div>
+          <div style="width:100%; aspect-ratio:16/11; border-radius:{{ heroRadius }}px; overflow:hidden;"><img src="uploads/site-constructor-promo-photo.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         </div>
       </div>
 
@@ -186,7 +186,7 @@
               <div style="position:relative; width:100%; aspect-ratio:3/4; overflow:hidden;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
                 <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
                   <sc-if value="{{ L.isMain }}">
-                    <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                    <img src="{{ L.src }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};">
                   </sc-if>
                   <sc-if value="{{ L.isOverlay }}">
                     <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
@@ -246,7 +246,7 @@
             <div style="position:relative; width:100%; aspect-ratio:3/4; overflow:hidden;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
               <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
                 <sc-if value="{{ L.isMain }}">
-                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                  <img src="{{ L.src }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};">
                 </sc-if>
                 <sc-if value="{{ L.isOverlay }}">
                   <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
@@ -336,7 +336,7 @@
       <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Примеры готовых работ студии.</p>
 
       <div style="background:#241417; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px;">
-        <div style="width:100%; aspect-ratio:4/3;"><image-slot id="titan-cover" shape="rect" placeholder="Обложка проекта «Титан»"></image-slot></div>
+        <div style="width:100%; aspect-ratio:4/3;"><img src="uploads/site-titan-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         <div onClick="{{ go.titan }}" style="padding:36px; color:#fff; display:flex; flex-direction:column; justify-content:center; cursor:pointer;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:14px; width:fit-content;">Авторский фан-арт мерч</div>
           <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:10px;">Проект «Атака титанов»</div>
@@ -346,8 +346,8 @@
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 2fr; gap:16px; margin-bottom:40px;">
-        <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="portfolio-strip-small" shape="rect" placeholder="Фото готовых работ"></image-slot></div>
-        <div style="width:100%; aspect-ratio:2/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="portfolio-strip-wide" shape="rect" placeholder="Фото готовых работ"></image-slot></div>
+        <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="uploads/site-portfolio-strip-small.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div style="width:100%; aspect-ratio:2/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="uploads/site-portfolio-strip-wide.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
       </div>
 
       <div onClick="{{ go.dora }}" style="background:#0F1F3D; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px; cursor:pointer;">
@@ -357,12 +357,12 @@
           <div style="color:#C4CEE0; font-size:14px; line-height:1.6; margin-bottom:18px;">Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой — пять изделий, каждое своя визуальная история.</div>
           <div style="color:#fff; font-weight:700; font-size:14px; text-decoration:underline;">Смотреть проект →</div>
         </div>
-        <div style="width:100%; aspect-ratio:4/3; order:2;"><image-slot id="dora-cover" shape="rect" placeholder="Обложка проекта «Дора»"></image-slot></div>
+        <div style="width:100%; aspect-ratio:4/3; order:2;"><img src="uploads/site-dora-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
       </div>
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
         <sc-for list="{{ portfolioItems }}" as="p" hint-placeholder-count="9">
           <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;">
-            <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.label }}"></image-slot>
+            <img src="{{ p.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
         </sc-for>
       </div>
@@ -702,7 +702,7 @@
           <sc-for list="{{ cartItems }}" as="item" hint-placeholder-count="3">
             <div style="display:flex; align-items:center; gap:16px; padding:18px 22px; border-bottom:1px solid #EEF1F6;">
               <div style="width:64px; height:64px; border-radius:{{ smallRadius }}px; overflow:hidden; flex-shrink:0; background:#F3F5F9;">
-                <image-slot id="{{ item.slotId }}" shape="rect" placeholder="Фото" src="{{ item.photo }}"></image-slot>
+                <img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;">
               </div>
               <div style="flex:1;">
                 <div style="font-weight:700; font-size:15px; margin-bottom:4px;">{{ item.name }}</div>
@@ -751,7 +751,7 @@
         <sc-for list="{{ doraItems }}" as="item" hint-placeholder-count="6">
           <div style="display:grid; grid-template-columns:{{ item.cols }}; gap:40px; align-items:center;">
             <sc-if value="{{ item.imageFirst }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
             <div>
               <div style="color:{{ accentColor }}; font-weight:800; font-size:13px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px;">{{ item.tag }}</div>
@@ -759,7 +759,7 @@
               <div style="color:#454C59; font-size:15px; line-height:1.75;">{{ item.desc }}</div>
             </div>
             <sc-if value="{{ item.imageSecond }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
           </div>
         </sc-for>
@@ -771,7 +771,7 @@
           <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0 0 24px;">Помимо одежды был создан полноценный дизайнерский журнал — не каталог товаров, а документальное сопровождение проекта: как рождались идеи, почему принимались те или иные дизайнерские решения, какие технологии использовались, какие сложности возникали и каким образом музыка превращалась в визуальный язык. Журнал играет роль «making of» и показывает весь путь создания коллекции.</p>
           <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;">
             <sc-for list="{{ doraJournalPages }}" as="jp" hint-placeholder-count="3">
-              <div style="width:100%; aspect-ratio:3/4; border-radius:{{ smallRadius }}px; overflow:hidden;"><image-slot id="{{ jp }}" shape="rect" placeholder="Разворот журнала"></image-slot></div>
+              <div style="width:100%; aspect-ratio:3/4; border-radius:{{ smallRadius }}px; overflow:hidden;"><img src="{{ jp.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-for>
           </div>
           <a href="uploads/zhurnal-proekt-dora-szhatyy.pdf" target="_blank" style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:15px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; text-decoration:none;">Скачать журнал (PDF)</a>
@@ -807,7 +807,7 @@
             <sc-if value="{{ activeProduct.badge }}">
               <div style="position:absolute; top:10px; left:10px; z-index:2; background:#B5453F; color:#fff; font-weight:800; font-size:11px; padding:5px 10px; border-radius:5px;">{{ activeProduct.badge }}</div>
             </sc-if>
-            <image-slot id="{{ activeProduct.slotId }}" shape="rect" placeholder="{{ activeProduct.name }}" src="{{ activeProductPhoto }}" style="position:absolute; inset:0; opacity:{{ frontOpacity }}; transition:opacity .35s ease;"></image-slot>
+            <img src="{{ activeProductPhoto }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ frontOpacity }}; transition:opacity .35s ease;">
             <sc-if value="{{ activeProductPhotoBack }}">
               <img src="{{ activeProductPhotoBack }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ backOpacityDetail }}; transition:opacity .35s ease; pointer-events:none;">
             </sc-if>
@@ -894,7 +894,7 @@
           <div ref="{{ similarScrollRef }}" style="display:flex; gap:16px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:4px;">
             <sc-for list="{{ similarProducts }}" as="sp" hint-placeholder-count="4">
               <div onClick="{{ sp.openDetail }}" style="flex:0 0 200px; background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer;">
-                <div style="width:100%; aspect-ratio:3/4;"><image-slot id="{{ sp.slotId }}-sim" shape="rect" placeholder="{{ sp.name }}" src="{{ sp.photo }}"></image-slot></div>
+                <div style="width:100%; aspect-ratio:3/4;"><img src="{{ sp.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
                 <div style="padding:12px;">
                   <div style="font-weight:700; font-size:13px; margin-bottom:4px;">{{ sp.name }}</div>
                   <div style="color:{{ accentColor }}; font-weight:800; font-size:14px;">{{ sp.price }}</div>
@@ -926,7 +926,7 @@
         <sc-for list="{{ titanItems }}" as="item" hint-placeholder-count="3">
           <div style="display:grid; grid-template-columns:{{ item.cols }}; gap:40px; align-items:center;">
             <sc-if value="{{ item.imageFirst }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
             <div>
               <div style="color:#B5453F; font-weight:800; font-size:13px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px;">{{ item.tag }}</div>
@@ -934,7 +934,7 @@
               <div style="color:#454C59; font-size:15px; line-height:1.75;">{{ item.desc }}</div>
             </div>
             <sc-if value="{{ item.imageSecond }}">
-              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
             </sc-if>
           </div>
         </sc-for>
@@ -963,7 +963,7 @@
         </sc-for>
       </div>
       <div style="background:#241417; color:#fff; padding:64px 24px; position:relative; overflow:hidden;">
-        <div style="position:absolute; inset:0;"><image-slot id="titan-shop-cover" shape="rect" placeholder="Обложка коллекции «Атака титанов»"></image-slot></div>
+        <div style="position:absolute; inset:0;"><img src="uploads/site-titan-shop-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); pointer-events:none;"></div>
         <div style="max-width:1200px; margin:0 auto; position:relative;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Коллекция · Аниме одежда</div>
@@ -979,7 +979,7 @@
                 <div style="position:absolute; top:10px; left:10px; z-index:3; background:#B5453F; color:#fff; font-weight:800; font-size:11px; letter-spacing:0.5px; padding:5px 10px; border-radius:5px;">{{ p.badge }}</div>
                 <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
                   <sc-if value="{{ L.isMain }}">
-                    <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                    <img src="{{ L.src }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};">
                   </sc-if>
                   <sc-if value="{{ L.isOverlay }}">
                     <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
@@ -1017,7 +1017,7 @@
         </sc-for>
       </div>
       <div style="background:#0F1F3D; color:#fff; padding:64px 24px; position:relative; overflow:hidden;">
-        <div style="position:absolute; inset:0;"><image-slot id="dora-shop-cover" shape="rect" placeholder="Обложка коллекции «Дора»"></image-slot></div>
+        <div style="position:absolute; inset:0;"><img src="uploads/site-dora-shop-cover.webp" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); pointer-events:none;"></div>
         <div style="max-width:1200px; margin:0 auto; position:relative;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Коллекция · Музыка</div>
@@ -1033,7 +1033,7 @@
                 <div style="position:absolute; top:10px; left:10px; z-index:3; background:#1B4FA0; color:#fff; font-weight:800; font-size:11px; letter-spacing:0.5px; padding:5px 10px; border-radius:5px;">{{ p.badge }}</div>
                 <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
                   <sc-if value="{{ L.isMain }}">
-                    <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                    <img src="{{ L.src }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};">
                   </sc-if>
                   <sc-if value="{{ L.isOverlay }}">
                     <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
@@ -1070,7 +1070,7 @@
           <sc-for list="{{ cartItems }}" as="item" hint-placeholder-count="3">
             <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-bottom:1px solid #EEF1F6;">
               <div style="width:48px; height:48px; border-radius:{{ smallRadius }}px; overflow:hidden; flex-shrink:0; background:#F3F5F9;">
-                <image-slot id="{{ item.slotId }}" shape="rect" placeholder="Фото" src="{{ item.photo }}"></image-slot>
+                <img src="{{ item.photo }}" style="width:100%; height:100%; object-fit:cover; display:block;">
               </div>
               <div style="flex:1;">
                 <div style="font-weight:700; font-size:14px;">{{ item.name }}</div>
@@ -1245,9 +1245,9 @@ class Component extends DCLogic {
     if (pr && pr.collection) {
       return { label: pr.name, desc: pr.desc, link: () => this.openHeroProduct(id), photo: pr.photo };
     }
-    if (id.indexOf('dora') === 0) return { label: 'Проект «Дора»', desc: 'Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой.', link: () => this.setPage('dora'), photo: null };
-    if (id.indexOf('titan') === 0) return { label: 'Проект «Титан»', desc: 'Авторский фан-арт мерч в мрачной фэнтези-эстетике.', link: () => this.setPage('titan'), photo: null };
-    return { label: 'Наши работы', desc: 'Из портфолио готовых работ студии.', link: () => this.setPage('portfolio'), photo: null };
+    if (id.indexOf('dora') === 0) return { label: 'Проект «Дора»', desc: 'Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой.', link: () => this.setPage('dora'), photo: 'uploads/site-' + id + '.webp' };
+    if (id.indexOf('titan') === 0) return { label: 'Проект «Титан»', desc: 'Авторский фан-арт мерч в мрачной фэнтези-эстетике.', link: () => this.setPage('titan'), photo: 'uploads/site-' + id + '.webp' };
+    return { label: 'Наши работы', desc: 'Из портфолио готовых работ студии.', link: () => this.setPage('portfolio'), photo: 'uploads/site-' + id + '.webp' };
   }
   buildHeroTile(id, idx) {
     const meta = this.getHeroMeta(id);
@@ -1596,7 +1596,7 @@ class Component extends DCLogic {
       { name: 'Светлана Назарова', date: '22 мая 2024', stars: '★★★★★', text: 'Работает приятный молодой человек, быстро накидал макет, учёл все пожелания. Печать на одежде была готова уже через 15 минут. Спасибо!' },
     ];
 
-    const portfolioItems = Array.from({ length: 6 }).map((_, i) => ({ slotId: 'portfolio-' + i, label: 'Готовая работа' }));
+    const portfolioItems = Array.from({ length: 6 }).map((_, i) => ({ slotId: 'portfolio-' + i, label: 'Готовая работа', photo: 'uploads/site-portfolio-' + i + '.webp' }));
 
     const doraItems = [
       { slotId: 'dora-1', tag: 'Худи 1', name: '«Нет тебя»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый эмоциональный дизайн коллекции. Основан на теме расставания, внутреннего надлома и воспоминаний — пустоты после окончания отношений, переданной через карандашную иллюстрацию, пришивные элементы ткани и сложную композицию. Именно с этого дизайна начался весь проект, хотя завершён он был последним.' },
@@ -1605,8 +1605,8 @@ class Component extends DCLogic {
       { slotId: 'dora-4', tag: 'Худи 4', name: '«Не игра»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Дизайн основан на одноимённом треке и его обложке — в работе объединены игровые образы из PUBG Mobile, пиксельная эстетика и сюжет песни. На груди — два персонажа, выходящие из дыма, на спине — история человека, настолько увлечённого игрой, что он перестаёт замечать любимого человека. Идея дизайна: любовь может превращаться в войну, если люди перестают видеть друг друга.' },
       { slotId: 'dora-5', tag: 'Худи 5', name: '«LUNYA»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Худи, посвящённая собаке Доры — Лунтику. Самый минималистичный предмет коллекции: на спине — портрет Лунтика, вдохновлённый стилистикой клипа Sia — Chandelier, на груди — аккуратная вышивка имени «LUNYA». Задача — современная вещь, которая выглядит ярко, но остаётся удобной для повседневной носки.' },
       { slotId: 'dora-6', tag: 'Дополнительный предмет', name: 'Свитшот «Cute Rock»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'В отличие от остальных изделий, здесь акцент сделан не на иллюстрации, а на материале: надпись выполнена объёмной вспенивающейся полиуретановой печатью, благодаря чему дизайн воспринимается не только визуально, но и тактильно.' },
-    ];
-    const doraJournalPages = ['dora-journal-1', 'dora-journal-2', 'dora-journal-3'];
+    ].map((it) => ({ ...it, photo: 'uploads/site-' + it.slotId + '.webp' }));
+    const doraJournalPages = ['dora-journal-1', 'dora-journal-2', 'dora-journal-3'].map((id) => ({ id, photo: 'uploads/site-' + id + '.webp' }));
 
     const navRaw = [
       { key: 'home', label: 'Главная' },
@@ -1618,12 +1618,15 @@ class Component extends DCLogic {
       { key: 'about', label: 'О нас' },
       { key: 'contacts', label: 'Контакты' },
     ];
-    const navItems = navRaw.map((n) => ({
-      label: n.label,
-      onClick: () => this.setPage(n.key),
-      color: this.state.page === n.key ? accentColor : '#454C59',
-      bg: this.state.page === n.key ? accentLight : 'transparent',
-    }));
+    const navItems = navRaw.map((n) => {
+      const active = n.key === 'portfolio' ? ['portfolio', 'titan', 'dora'].includes(this.state.page) : this.state.page === n.key;
+      return {
+        label: n.label,
+        onClick: () => this.setPage(n.key),
+        color: active ? accentColor : '#454C59',
+        bg: active ? accentLight : 'transparent',
+      };
+    });
 
     const go = {
       home: () => this.setPage('home'),
@@ -1890,9 +1893,9 @@ class Component extends DCLogic {
       isTitanShop: this.state.page === 'titan-shop',
       isDoraShop: this.state.page === 'dora-shop',
       titanItems: [
-        { slotId: 'titan-1', tag: 'Худи', name: '«Разведкорпус»', desc: 'Силуэт солдата на фоне заходящего солнца и крылья свободы на спине — печать DTF по плотному худи.', cols: '1fr 1fr', imageFirst: true },
-        { slotId: 'titan-2', tag: 'Свитшот', name: '«За стеной»', desc: 'Минималистичная композиция: разрушенные стены и тень титана на горизонте.', cols: '1fr 1fr', imageSecond: true },
-        { slotId: 'titan-3', tag: 'Футболка', name: '«Память»', desc: 'Список имён и символ клятвы — дань памяти павшим персонажам, выполнено вышивкой и печатью.', cols: '1fr 1fr', imageFirst: true },
+        { slotId: 'titan-1', tag: 'Худи', name: '«Разведкорпус»', desc: 'Силуэт солдата на фоне заходящего солнца и крылья свободы на спине — печать DTF по плотному худи.', cols: '1fr 1fr', imageFirst: true, photo: 'uploads/site-titan-1.webp' },
+        { slotId: 'titan-2', tag: 'Свитшот', name: '«За стеной»', desc: 'Минималистичная композиция: разрушенные стены и тень титана на горизонте.', cols: '1fr 1fr', imageSecond: true, photo: 'uploads/site-titan-2.webp' },
+        { slotId: 'titan-3', tag: 'Футболка', name: '«Память»', desc: 'Список имён и символ клятвы — дань памяти павшим персонажам, выполнено вышивкой и печатью.', cols: '1fr 1fr', imageFirst: true, photo: 'uploads/site-titan-3.webp' },
       ],
       isReviews: this.state.page === 'reviews',
       isAbout: this.state.page === 'about',
@@ -2075,7 +2078,7 @@ class Component extends DCLogic {
       closeContactMenu: () => this.setState({ contactMenuOpen: false }),
       openCollectionsMenu: () => this.setState({ collectionsMenuOpen: true }),
       closeCollectionsMenu: () => this.setState({ collectionsMenuOpen: false }),
-      collectionsColor: (this.state.page === 'dora' || this.state.page === 'titan') ? accentColor : '#454C59',
+      collectionsColor: (this.state.page === 'dora-shop' || this.state.page === 'titan-shop') ? accentColor : '#454C59',
       collectionsMenuOpacity: this.state.collectionsMenuOpen ? 1 : 0,
       collectionsMenuTransform: this.state.collectionsMenuOpen ? 'translateY(0)' : 'translateY(-6px)',
       collectionsMenuPointer: this.state.collectionsMenuOpen ? 'auto' : 'none',
