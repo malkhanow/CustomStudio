@@ -85,7 +85,7 @@
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="/cdn-cgi/l/email-protection#f29181c3c5c2c1b29f939bdc8087" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
+            <a href="/cdn-cgi/l/email-protection#dbb8a8eaecebe89bb6bab2f5a9ae" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
           </div>
         </div>
       </div>
@@ -348,7 +348,7 @@
       <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Примеры готовых работ студии.</p>
 
       <div onClick="{{ go.titan }}" style="background:#241417; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px; cursor:pointer;">
-        <div style="width:100%; aspect-ratio:4/3; position:relative; overflow:hidden;"><img src="uploads/site-titan-cover.webp" style="width:100%; height:100%; object-fit:cover; object-position:50% 52.454%; display:block;"></div>
+        <div style="width:100%; aspect-ratio:4/3; position:relative; overflow:hidden;"><img src="uploads/site-titan-cover.webp" style="width:100%; height:100%; object-fit:cover; object-position:50% 100%; display:block;"></div>
         <div style="padding:36px; color:#fff; display:flex; flex-direction:column; justify-content:center;">
           <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:14px; width:fit-content;">Авторский фан-арт мерч</div>
           <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:10px;">Проект «Атака титанов»</div>
@@ -436,7 +436,7 @@
           <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0 0 16px;">Работаем и с готовыми макетами, и помогаем создать принт с нуля: подготовим изображение к печати или нарисуем его для вас.</p>
           <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0;">Кроме печати на заказ, у нас есть готовые коллекции авторского мерча, которые можно купить сразу, без ожидания печати.</p>
         </div>
-        <div style="width:100%; aspect-ratio:4/3; border-radius:{{ heroRadius }}px; overflow:hidden;"><image-slot id="about-photo" shape="rect" placeholder="Фото студии / команды"></image-slot></div>
+        <div style="width:100%; aspect-ratio:4/3; border-radius:{{ heroRadius }}px; overflow:hidden;"><img src="uploads/about-photo.png" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
       </div>
     </section>
   </sc-if>
@@ -456,7 +456,7 @@
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
           <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
-          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#92f1e1a3a5a2a1d2fff3fbbce0e7"><span class="__cf_email__" data-cfemail="0b68783a3c3b384b666a6225797e">[email&#160;protected]</span></a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#56352567616665163b373f782423"><span class="__cf_email__" data-cfemail="751606444245463518141c5b0700">[email&#160;protected]</span></a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
           <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
         </div>
@@ -1416,7 +1416,7 @@ class Component extends DCLogic {
     });
   };
 
-  downloadMockup = () => {
+  buildMockupCanvas = async () => {
     const loadImg = (src) => new Promise((res, rej) => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
@@ -1424,47 +1424,50 @@ class Component extends DCLogic {
       img.onerror = rej;
       img.src = src;
     });
-    const gColorLower = (this.state.garmentColor || '#ffffff').toLowerCase();
-    const productImages = this._productImages || {};
+    const zoneRect = this.zoneRef.current.getBoundingClientRect();
+    const stageRect = this.zoneRef.current.parentElement.getBoundingClientRect();
+    const relLeft = (zoneRect.left - stageRect.left) / stageRect.width;
+    const relTop = (zoneRect.top - stageRect.top) / stageRect.height;
+    const relW = zoneRect.width / stageRect.width;
+    const relH = zoneRect.height / stageRect.height;
+    const includeBack = this.state.backEnabled && this.state.designBack.src;
+    const panelW = 900, panelH = 1000;
+    const canvas = document.createElement('canvas');
+    canvas.width = includeBack ? panelW * 2 + 40 : panelW;
+    canvas.height = panelH;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const drawSide = async (offsetX, garmentSrc, design, zoneWidthPx, zoneHeightPx) => {
+      const garment = await loadImg(garmentSrc);
+      ctx.drawImage(garment, offsetX, 0, panelW, panelH);
+      if (design && design.src) {
+        const dImg = await loadImg(design.src);
+        const zx = offsetX + relLeft * panelW;
+        const zy = relTop * panelH;
+        const zw = relW * panelW;
+        const zh = relH * panelH;
+        const dW = (design.w / zoneWidthPx) * zw;
+        const dH = dW * (dImg.height / dImg.width);
+        const dX = zx + (design.x / zoneWidthPx) * zw;
+        const dY = zy + (design.y / zoneHeightPx) * zh;
+        ctx.drawImage(dImg, dX, dY, dW, dH);
+      }
+    };
+
+    const productImg = (this._lastProductImg) || {};
+    await drawSide(0, productImg.front, this.state.design, this.zoneRef.current.clientWidth, this.zoneRef.current.clientHeight);
+    if (includeBack) {
+      await drawSide(panelW + 40, productImg.back, this.state.designBack, this.zoneRefBack.current.clientWidth, this.zoneRefBack.current.clientHeight);
+    }
+    return canvas;
+  };
+
+  downloadMockup = () => {
     (async () => {
       try {
-        const zoneRect = this.zoneRef.current.getBoundingClientRect();
-        const stageRect = this.zoneRef.current.parentElement.getBoundingClientRect();
-        const relLeft = (zoneRect.left - stageRect.left) / stageRect.width;
-        const relTop = (zoneRect.top - stageRect.top) / stageRect.height;
-        const relW = zoneRect.width / stageRect.width;
-        const relH = zoneRect.height / stageRect.height;
-        const includeBack = this.state.backEnabled && this.state.designBack.src;
-        const panelW = 900, panelH = 1000;
-        const canvas = document.createElement('canvas');
-        canvas.width = includeBack ? panelW * 2 + 40 : panelW;
-        canvas.height = panelH;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        const drawSide = async (offsetX, garmentSrc, design, zRect) => {
-          const garment = await loadImg(garmentSrc);
-          ctx.drawImage(garment, offsetX, 0, panelW, panelH);
-          if (design && design.src) {
-            const dImg = await loadImg(design.src);
-            const zx = offsetX + relLeft * panelW;
-            const zy = relTop * panelH;
-            const zw = relW * panelW;
-            const zh = relH * panelH;
-            const dW = (design.w / this.zoneRef.current.clientWidth) * zw;
-            const dH = dW * (dImg.height / dImg.width);
-            const dX = zx + (design.x / this.zoneRef.current.clientWidth) * zw;
-            const dY = zy + (design.y / this.zoneRef.current.clientHeight) * zh;
-            ctx.drawImage(dImg, dX, dY, dW, dH);
-          }
-        };
-
-        const productImg = (this._lastProductImg) || {};
-        await drawSide(0, productImg.front, this.state.design, null);
-        if (includeBack) {
-          await drawSide(panelW + 40, productImg.back, this.state.designBack, null);
-        }
+        const canvas = await this.buildMockupCanvas();
         const link = document.createElement('a');
         link.download = 'custom-studio-mockup.png';
         link.href = canvas.toDataURL('image/png');
@@ -1591,17 +1594,19 @@ class Component extends DCLogic {
       if (f.comment) lines.push('Комментарий: ' + f.comment);
       if (this.state.attachedFileName) lines.push('Файл: ' + this.state.attachedFileName);
     }
+    if (f.comment && (src === 'constructor' || src === 'cart')) lines.push('Комментарий: ' + f.comment);
+    if (src === 'constructor') {
+      lines.push('Изделие: ' + (this.state.cProduct || '—'));
+      if (this.state.textFront.content) lines.push('Текст (перед): ' + this.state.textFront.content);
+      if (this.state.textBack.content) lines.push('Текст (спина): ' + this.state.textBack.content);
+    }
     if (src === 'cart') {
+      lines.push('Комментарий: ' + (f.comment || '—'));
       const items = Object.values(this.state.cart);
       if (items.length) {
         lines.push('', 'Товары:');
         items.forEach((it) => lines.push('• ' + it.name + ' × ' + it.qty + ' — ' + it.price));
       }
-    }
-    if (src === 'constructor') {
-      lines.push('Изделие: ' + (this.state.cProduct || '—'));
-      if (this.state.textFront.content) lines.push('Текст (перед): ' + this.state.textFront.content);
-      if (this.state.textBack.content) lines.push('Текст (спина): ' + this.state.textBack.content);
     }
     const text = lines.join('\n');
     try {
@@ -1610,18 +1615,18 @@ class Component extends DCLogic {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: TG_CHAT_ID, text }),
       });
-      const sendImage = async (dataUrl, caption) => {
-        if (!dataUrl || !dataUrl.startsWith('data:')) return;
-        const blob = await (await fetch(dataUrl)).blob();
-        const fd = new FormData();
-        fd.append('chat_id', TG_CHAT_ID);
-        fd.append('caption', caption);
-        fd.append('photo', blob, 'design.png');
-        await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd });
-      };
       if (src === 'constructor') {
-        await sendImage(this.state.design.src, 'Макет — перед');
-        await sendImage(this.state.designBack.src, 'Макет — спина');
+        try {
+          const canvas = await this.buildMockupCanvas();
+          const blob = await new Promise((res) => canvas.toBlob(res, 'image/png'));
+          const fd = new FormData();
+          fd.append('chat_id', TG_CHAT_ID);
+          fd.append('caption', 'Готовый макет на изделии');
+          fd.append('photo', blob, 'mockup.png');
+          await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd });
+        } catch (e) {
+          console.error('Mockup send failed', e);
+        }
       }
     } catch (e) {
       console.error('Telegram send failed', e);
@@ -1657,25 +1662,25 @@ class Component extends DCLogic {
     ];
 
     const titanProducts = [
-      { slotId: 'titan-eren', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРЕН ЙЕГЕР»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Эрена Йегера на груди, готичный принт «JAEGER» на спине.', photo: 'uploads/titan/eren-yeager-white-front.jpg', photoBack: 'uploads/titan/jaeger-logo-white-back.jpg', blackPhoto: 'uploads/titan/eren-yeager-black-front.jpg', blackPhotoBack: 'uploads/titan/jaeger-logo-black-back.jpg', gallery: ['uploads/eren-glavnaya.png', 'uploads/eren-print.jpg', 'uploads/eren.png'] },
-      { slotId: 'titan-mikasa', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «МИКАСА АККЕРМАН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Микасы на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/mikasa-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/mikasa-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/mikasa-print.png', 'uploads/mikasa-i-eren.png'] },
-      { slotId: 'titan-levi', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЛЕВИ АККЕРМАН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд капитана Леви на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/levi-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/levi-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/levi-glavnaya.png', 'uploads/levi-print.png'] },
-      { slotId: 'titan-armin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АРМИН АРЛЕРТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Армина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/armin-arlert-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/armin-arlert-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/armin-print.jpg'] },
-      { slotId: 'titan-erwin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРВИН СМИТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд командующего Эрвина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/erwin-smith-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/erwin-smith-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/ervin-glavnaya.png', 'uploads/ervin-print.jpg'] },
-      { slotId: 'titan-hange', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХАНЖЕ ЗОЕ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Ханже Зое на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/hange-zoe-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/hange-zoe-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/handzhi-glavnaya.png', 'uploads/handzhi-print.jpg', 'uploads/handzhi.png'] },
-      { slotId: 'titan-historia', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХИСТОРИЯ РАЙС»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд королевы Хистории на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/historia-reiss-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/historia-reiss-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/historiya-glavnaya.png', 'uploads/historiya-print.jpg'] },
-      { slotId: 'titan-jean', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЖАН КИРШТАЙН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Жана на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/jean-kirschtein-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/jean-kirschtein-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/zhan-glavnaya.png', 'uploads/zhan-print.png', 'uploads/zhan.png'] },
-      { slotId: 'titan-annie', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АННИ ЛЕОНХАРТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Анни Леонхарт на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/annie-leonhart-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/annie-leonhart-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/enni-glavnaya.png', 'uploads/enni-print.png', 'uploads/enni.png'] },
-      { slotId: 'titan-pieck', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ПИК ФИНГЕР»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Пик Фингер на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/pieck-finger-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/pieck-finger-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg' },
+      { slotId: 'titan-eren', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРЕН ЙЕГЕР»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Эрена Йегера на груди, готичный принт «JAEGER» на спине.', photo: 'uploads/titan/eren-yeager-white-front.jpg', photoBack: 'uploads/titan/jaeger-logo-white-back.jpg', blackPhoto: 'uploads/titan/eren-yeager-black-front.jpg', blackPhotoBack: 'uploads/titan/jaeger-logo-black-back.jpg', gallery: ['uploads/eren-glavnaya.png', 'uploads/eren-print.jpg', 'uploads/eren.png'] },
+      { slotId: 'titan-mikasa', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «МИКАСА АККЕРМАН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Микасы на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/mikasa-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/mikasa-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/mikasa-print.png', 'uploads/mikasa-i-eren.png'] },
+      { slotId: 'titan-levi', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЛЕВИ АККЕРМАН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд капитана Леви на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/levi-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/levi-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/levi-glavnaya.png', 'uploads/levi-print.png'] },
+      { slotId: 'titan-armin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АРМИН АРЛЕРТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Армина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/armin-arlert-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/armin-arlert-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/armin-print.jpg'] },
+      { slotId: 'titan-erwin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРВИН СМИТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд командующего Эрвина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/erwin-smith-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/erwin-smith-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/ervin-glavnaya.png', 'uploads/ervin-print.jpg'] },
+      { slotId: 'titan-hange', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХАНЖЕ ЗОЕ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Ханже Зое на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/hange-zoe-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/hange-zoe-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/handzhi-glavnaya.png', 'uploads/handzhi-print.jpg', 'uploads/handzhi.png'] },
+      { slotId: 'titan-historia', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХИСТОРИЯ РАЙС»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд королевы Хистории на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/historia-reiss-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/historia-reiss-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/historiya-glavnaya.png', 'uploads/historiya-print.jpg'] },
+      { slotId: 'titan-jean', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЖАН КИРШТАЙН»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Жана на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/jean-kirschtein-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/jean-kirschtein-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/zhan-glavnaya.png', 'uploads/zhan-print.png', 'uploads/zhan.png'] },
+      { slotId: 'titan-annie', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АННИ ЛЕОНХАРТ»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Анни Леонхарт на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/annie-leonhart-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/annie-leonhart-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/enni-glavnaya.png', 'uploads/enni-print.png', 'uploads/enni.png'] },
+      { slotId: 'titan-pieck', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ПИК ФИНГЕР»', price: '2 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 5 дней. Взгляд Пик Фингер на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/pieck-finger-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/pieck-finger-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg' },
     ];
 
     const doraProducts = [
-      { slotId: 'dora-hoodie-1', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕТ ТЕБЯ»', price: '8 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Худи с карандашной иллюстрацией на спине — тема расставания и внутреннего надлома, дополнена пришивными элементами ткани.', photo: 'uploads/Дора/Худи-неттебя-перед.png', photoBack: 'uploads/Дора/Худи-неттебя-спина.png', gallery: ['uploads/Дора/Худи-неттебя-рукав1.png', 'uploads/Дора/Худи-неттебя-рукав2.png', 'uploads/Дора фотосет/Нет тебя 1-8b0b7261.jpg', 'uploads/Дора фотосет/Нет тебя 2-95ac38ff.jpg', 'uploads/Дора фотосет/Нет тебя 3-7f55b453.jpg'] },
-      { slotId: 'dora-hoodie-2', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «РОЗОВЫЕ ВОЛОСЫ»', price: '7 390 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. На спине — путь героини от мечты к сцене, на груди — минималистичная вышивка.', photo: 'uploads/Дора/Худи-розовые волосы-перед.png', photoBack: 'uploads/Дора/Худи-розовые волосы-спина.png', gallery: ['uploads/Дора/Худи-розовые волосы-рукав1.png', 'uploads/Дора/Худи-розовые волосы-рукав2.png', 'uploads/Дора фотосет/Розовые волосы 1-0656480d.jpg', 'uploads/Дора фотосет/Розовые волосы 2-db327ec0.jpg', 'uploads/Дора фотосет/Розовые волосы 3-471f63f4.jpg', 'uploads/Дора фотосет/Розовые волосы 4-bbba83c3.jpg', 'uploads/Дора фотосет/Розовые волосы 5-be945cf2.jpg', 'uploads/Дора фотосет/Розовые волосы 6-64775ae3.jpg'] },
-      { slotId: 'dora-hoodie-3', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LOVERBOY»', price: '5 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Стилизованная Эйфелева башня на спине, лаконичный перед — вдохновлено клипом трека.', photo: 'uploads/Дора/Худи-loverboy-перед.png', photoBack: 'uploads/Дора/Худи-loverboy-спина.png', gallery: ['uploads/Дора фотосет/Loverboy 1-4a9533f1.jpg', 'uploads/Дора фотосет/Loverboy 2-023d47fd.jpg'] },
-      { slotId: 'dora-hoodie-4', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕ ИГРА»', price: '6 390 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Игровые образы и пиксельная эстетика на груди, история на спине — по мотивам одноимённого трека.', photo: 'uploads/Дора/Худи-неигра-перед.png', photoBack: 'uploads/Дора/Худи-неигра-спина.png', gallery: ['uploads/Дора/Худи-неигра-рукав1.png', 'uploads/Дора/Худи-неигра-рукав2.png', 'uploads/Дора фотосет/Не игра 1-272d7e89.jpg', 'uploads/Дора фотосет/Не игра 2-950d61f0.jpg', 'uploads/Дора фотосет/Не игра 3-770b38c5.jpg'] },
-      { slotId: 'dora-hoodie-5', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LUNYA»', price: '7 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Портрет собаки Доры — Лунтика — на спине, вышивка «LUNYA» на груди.', photo: 'uploads/Дора/Худи-луня-перед.png', photoBack: 'uploads/Дора/Худи-луня-спина.png', gallery: ['uploads/Дора фотосет/LUNYA 1-eed9a8f4.jpg', 'uploads/Дора фотосет/LUNYA 2-fcc0de74.jpg', 'uploads/Дора фотосет/LUNYA 3-aa6231c2.jpg'] },
-      { slotId: 'dora-sweatshirt', collection: 'dora', badge: 'ДОРА', name: 'СВИТШОТ | «CUTE ROCK»', price: '4 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Надпись выполнена объёмной вспенивающейся печатью — эффект ощущается на ощупь.', photo: 'uploads/Дора/Свитшот-белый-cuterock-перед.png', photoBack: 'uploads/Дора/Свитшот-белый-cuterock-спина.png', gallery: ['uploads/Дора/Свитшот-cuterock-перед.png', 'uploads/Дора/Свитшот-cuterock-спинаэ.png', 'uploads/Дора фотосет/CUTEROCK 1-b3834c0b.jpg', 'uploads/Дора фотосет/CUTEROCK 2-54977702.jpg'] },
+      { slotId: 'dora-hoodie-1', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕТ ТЕБЯ»', price: '8 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 7 дней. Худи с карандашной иллюстрацией на спине — тема расставания и внутреннего надлома, дополнена пришивными элементами ткани.', photo: 'uploads/Дора/Худи-неттебя-перед.png', photoBack: 'uploads/Дора/Худи-неттебя-спина.png', gallery: ['uploads/Дора/Худи-неттебя-рукав1.png', 'uploads/Дора/Худи-неттебя-рукав2.png', 'uploads/Дора фотосет/Нет тебя 1-8b0b7261.jpg', 'uploads/Дора фотосет/Нет тебя 2-95ac38ff.jpg', 'uploads/Дора фотосет/Нет тебя 3-7f55b453.jpg'] },
+      { slotId: 'dora-hoodie-2', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «РОЗОВЫЕ ВОЛОСЫ»', price: '7 390 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 7 дней. На спине — путь героини от мечты к сцене, на груди — минималистичная вышивка.', photo: 'uploads/Дора/Худи-розовые волосы-перед.png', photoBack: 'uploads/Дора/Худи-розовые волосы-спина.png', gallery: ['uploads/Дора/Худи-розовые волосы-рукав1.png', 'uploads/Дора/Худи-розовые волосы-рукав2.png', 'uploads/Дора фотосет/Розовые волосы 1-0656480d.jpg', 'uploads/Дора фотосет/Розовые волосы 2-db327ec0.jpg', 'uploads/Дора фотосет/Розовые волосы 3-471f63f4.jpg', 'uploads/Дора фотосет/Розовые волосы 4-bbba83c3.jpg', 'uploads/Дора фотосет/Розовые волосы 5-be945cf2.jpg', 'uploads/Дора фотосет/Розовые волосы 6-64775ae3.jpg'] },
+      { slotId: 'dora-hoodie-3', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LOVERBOY»', price: '5 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 7 дней. Стилизованная Эйфелева башня на спине, лаконичный перед — вдохновлено клипом трека.', photo: 'uploads/Дора/Худи-loverboy-перед.png', photoBack: 'uploads/Дора/Худи-loverboy-спина.png', gallery: ['uploads/Дора фотосет/Loverboy 1-4a9533f1.jpg', 'uploads/Дора фотосет/Loverboy 2-023d47fd.jpg'] },
+      { slotId: 'dora-hoodie-4', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕ ИГРА»', price: '6 390 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 7 дней. Игровые образы и пиксельная эстетика на груди, история на спине — по мотивам одноимённого трека.', photo: 'uploads/Дора/Худи-неигра-перед.png', photoBack: 'uploads/Дора/Худи-неигра-спина.png', gallery: ['uploads/Дора/Худи-неигра-рукав1.png', 'uploads/Дора/Худи-неигра-рукав2.png', 'uploads/Дора фотосет/Не игра 1-272d7e89.jpg', 'uploads/Дора фотосет/Не игра 2-950d61f0.jpg', 'uploads/Дора фотосет/Не игра 3-770b38c5.jpg'] },
+      { slotId: 'dora-hoodie-5', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LUNYA»', price: '7 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 7 дней. Портрет собаки Доры — Лунтика — на спине, вышивка «LUNYA» на груди.', photo: 'uploads/Дора/Худи-луня-перед.png', photoBack: 'uploads/Дора/Худи-луня-спина.png', gallery: ['uploads/Дора фотосет/LUNYA 1-eed9a8f4.jpg', 'uploads/Дора фотосет/LUNYA 2-fcc0de74.jpg', 'uploads/Дора фотосет/LUNYA 3-aa6231c2.jpg'] },
+      { slotId: 'dora-sweatshirt', collection: 'dora', badge: 'ДОРА', name: 'СВИТШОТ | «CUTE ROCK»', price: '4 490 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 7 дней. Надпись выполнена объёмной вспенивающейся печатью — эффект ощущается на ощупь.', photo: 'uploads/Дора/Свитшот-белый-cuterock-перед.png', photoBack: 'uploads/Дора/Свитшот-белый-cuterock-спина.png', gallery: ['uploads/Дора/Свитшот-cuterock-перед.png', 'uploads/Дора/Свитшот-cuterock-спинаэ.png', 'uploads/Дора фотосет/CUTEROCK 1-b3834c0b.jpg', 'uploads/Дора фотосет/CUTEROCK 2-54977702.jpg'] },
     ];
 
     const printFormats = [
@@ -1968,9 +1973,10 @@ class Component extends DCLogic {
     const garmentPhotoSrcBack = (gColorLower === '#1a1a1a' && productImg.backBlack) ? productImg.backBlack : productImg.back;
     const showTint = gColorLower !== '#ffffff' && gColorLower !== '#1a1a1a';
 
-    const zonePxWidth = 640 * 0.48;
+    const zoneFrontW = (this.zoneRef.current && this.zoneRef.current.clientWidth) || (640 * 0.48);
+    const zoneBackW = (this.zoneRefBack.current && this.zoneRefBack.current.clientWidth) || (640 * 0.48);
     const realZoneCm = 42;
-    const computeFormat = (w) => {
+    const computeFormat = (w, zonePxWidth) => {
       const cm = Math.round((w / zonePxWidth) * realZoneCm);
       let label, price;
       if (cm <= 12.5) { label = 'А6'; price = '400 ₽'; }
@@ -1980,8 +1986,8 @@ class Component extends DCLogic {
       else { label = 'А2'; price = '1000 ₽'; }
       return { cm, label, price };
     };
-    const frontFormat = this.state.design.src ? computeFormat(this.state.design.w) : (this.state.textFront.content ? computeFormat(this.state.textFront.size * 4) : { cm: 0, label: '—', price: '0 ₽' });
-    const backFormat = this.state.designBack.src ? computeFormat(this.state.designBack.w) : (this.state.textBack.content ? computeFormat(this.state.textBack.size * 4) : { cm: 0, label: '—', price: '0 ₽' });
+    const frontFormat = this.state.design.src ? computeFormat(this.state.design.w, zoneFrontW) : (this.state.textFront.content ? computeFormat(this.state.textFront.size * 4, zoneFrontW) : { cm: 0, label: '—', price: '0 ₽' });
+    const backFormat = this.state.designBack.src ? computeFormat(this.state.designBack.w, zoneBackW) : (this.state.textBack.content ? computeFormat(this.state.textBack.size * 4, zoneBackW) : { cm: 0, label: '—', price: '0 ₽' });
     const printCmVal = frontFormat.cm;
     const printFormatLabel = frontFormat.label;
     const printPrice = frontFormat.price;
@@ -2515,7 +2521,7 @@ class Component extends DCLogic {
       sizeIsUniversal: this.state.form.product === 'Шоппер' || this.state.form.product === 'Кепка',
       sizeIsSelectable: this.state.form.product !== 'Шоппер' && this.state.form.product !== 'Кепка',
       sizeOptions: ['S', 'M', 'L', 'XL', 'XXL', '3XL'],
-      orderShowCommentAndFile: this.state.orderSource !== 'constructor' && this.state.orderSource !== 'cart',
+      orderShowCommentAndFile: this.state.orderSource !== 'cart',
       orderTitle: this.state.orderSource === 'constructor' ? 'Отправить макет' : 'Оформить заказ',
       orderSubtitle: this.state.orderSource === 'constructor'
         ? 'Оставьте контакты — мы получим ваш макет из конструктора и свяжемся для уточнения деталей и оплаты.'
