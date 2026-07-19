@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0B0E14">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0B0E14"/>
+    <path d="M35 15 L20 25 L27 35 L35 30 L35 82 L65 82 L65 30 L73 35 L80 25 L65 15 Q50 25 35 15 Z" fill="#1B4FA0"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;family=PT+Sans:wght@400;700&amp;family=Roboto:wght@400;700&amp;family=Montserrat:wght@400;700&amp;family=Oswald:wght@400;700&amp;family=Playfair+Display:wght@400;700&amp;family=Merriweather:wght@400;700&amp;family=Comfortaa:wght@400;700&amp;family=Marck+Script&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #F3F5F9; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Manrope', sans-serif; }
+    ::selection { background: {{ accentColor }}; color: #fff; }
+    a { color: {{ accentColor }}; text-decoration: none; }
+    a:hover { color: {{ accentHover }}; }
+    input, textarea, select { font-family: 'Manrope', sans-serif; }
+    .cs-nav::-webkit-scrollbar { display: none; }
+    @keyframes cs-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes cs-photo-fade { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+    @keyframes cs-cat-walk { 0% { left: -60px; transform: scaleX(1); } 48% { left: calc(100% + 60px); transform: scaleX(1); } 50% { left: calc(100% + 60px); transform: scaleX(-1); } 98% { left: -60px; transform: scaleX(-1); } 100% { left: -60px; transform: scaleX(1); } }
+    @keyframes cs-cat-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  </style>
+  <script src="./image-slot.js"></script>
+</helmet>
+
+
+<div style="min-height:100vh; background:#F3F5F9; color:#14181F; display:flex; flex-direction:column;">
+
+  <!-- HEADER -->
+  <header style="position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #E4E8F0;">
+    <div style="max-width:1200px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:nowrap;">
+      <div style="display:flex; align-items:center; gap:12px; cursor:pointer; flex-shrink:0;" onClick="{{ goHome }}">
+        <img src="uploads/logo.png" style="width:44px; height:44px; border-radius:50%; flex-shrink:0; object-fit:contain;">
+<div style="width:130px; height:36px; display:flex; align-items:center; position:relative;">
+<sc-for list="{{ wordmarkSlides }}" as="wm" hint-placeholder-count="3">
+<img src="{{ wm.src }}" style="position:absolute; left:0; height:36px; width:auto; max-width:130px; object-fit:contain; opacity:{{ wm.opacity }}; transition:opacity .5s ease;">
+</sc-for>
+</div>
+      </div>
+      <nav class="cs-nav" style="display:{{ navDisplay }}; align-items:center; gap:0px; flex-wrap:nowrap; min-width:0; flex-shrink:1;">
+        <sc-for list="{{ navItemsBeforeCollections }}" as="item" hint-placeholder-count="2">
+          <div style="padding:8px 10px; border-radius:{{ smallRadius }}px; font-weight:600; font-size:13px; white-space:nowrap; cursor:pointer; color:{{ item.color }}; background:{{ item.bg }}; transition:background .15s;" style-hover="background:#EEF2FA" onClick="{{ item.onClick }}">{{ item.label }}</div>
+        </sc-for>
+        <div style="position:relative; flex-shrink:0;" data-menu-root="" onMouseEnter="{{ openCollectionsMenu }}" onMouseLeave="{{ closeCollectionsMenu }}">
+          <div style="padding:8px 10px; border-radius:{{ smallRadius }}px; font-weight:600; font-size:13px; white-space:nowrap; cursor:pointer; color:{{ collectionsColor }};" style-hover="background:#EEF2FA">Коллекции</div>
+          <div style="position:absolute; top:100%; left:0; padding-top:6px; z-index:60; opacity:{{ collectionsMenuOpacity }}; transform:{{ collectionsMenuTransform }}; transition:opacity .22s ease, transform .22s ease; pointer-events:{{ collectionsMenuPointer }};">
+            <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden; width:280px; padding:10px;">
+              <sc-for list="{{ collectionGroups }}" as="grp" hint-placeholder-count="2">
+                <div style="padding:8px 10px; margin-bottom:4px;">
+                  <div style="font-weight:800; font-size:11px; color:#9AA3B2; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">{{ grp.label }}</div>
+                  <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="1">
+                    <div style="padding:8px 10px; border-radius:{{ smallRadius }}px; font-size:14px; font-weight:600; color:#333A45; cursor:pointer;" style-hover="background:#F3F5F9" onClick="{{ it.onClick }}">{{ it.label }}</div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <sc-for list="{{ navItemsAfterCollections }}" as="item" hint-placeholder-count="4">
+          <div style="padding:8px 10px; border-radius:{{ smallRadius }}px; font-weight:600; font-size:13px; white-space:nowrap; cursor:pointer; color:{{ item.color }}; background:{{ item.bg }}; transition:background .15s;" style-hover="background:#EEF2FA" onClick="{{ item.onClick }}">{{ item.label }}</div>
+        </sc-for>
+      </nav>
+      <div style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+      <div style="position:relative; width:44px;" onClick="{{ go.cart }}">
+        <div style="width:44px; height:44px; border-radius:50%; background:#fff; border:1.5px solid #DCE2EE; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; position:relative;" style-hover="background:#F3F5F9">
+          🛒
+          <sc-if value="{{ cartHasItems }}">
+            <div style="position:absolute; top:-4px; right:-4px; background:{{ accentColor }}; color:#fff; font-size:11px; font-weight:800; min-width:18px; height:18px; border-radius:9px; display:flex; align-items:center; justify-content:center; padding:0 4px;">{{ cartCount }}</div>
+          </sc-if>
+        </div>
+      </div>
+      <div style="position:relative; width:150px;" onMouseEnter="{{ openContactMenu }}" onMouseLeave="{{ closeContactMenu }}">
+        <div style="background:{{ accentColor }}; color:#fff; padding:11px 20px; border-radius:{{ smallRadius }}px; font-weight:700; font-size:14px; white-space:nowrap; cursor:pointer; width:150px; text-align:center; box-sizing:border-box;">Написать</div>
+        <div style="position:absolute; top:100%; right:0; padding-top:6px; width:150px; z-index:60; opacity:{{ contactMenuOpacity }}; transform:{{ contactMenuTransform }}; transition:opacity .22s ease, transform .22s ease; pointer-events:{{ contactMenuPointerEvents }};">
+          <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
+            <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
+            <a href="https://max.ru/u/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
+            <a href="mailto:info@cstmstd.ru" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;">
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Главная" style="animation:cs-fade .4s ease;">
+      <div style="background:#0B0E14; color:#fff; position:relative; overflow:hidden;">
+        <div style="max-width:1440px; margin:0 auto; padding:96px 24px; display:grid; grid-template-columns:1fr 1.15fr; gap:0; align-items:stretch;">
+          <div style="padding:20px 8px 64px; display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); color:#B9C2D6; font-weight:700; font-size:12px; letter-spacing:0.5px; padding:7px 14px; border-radius:100px; margin-bottom:24px; width:fit-content; text-transform:uppercase;">Печать на одежде · Санкт-Петербург</div>
+            <h1 style="font-family:'Unbounded'; font-weight:800; font-size:56px; line-height:1.02; letter-spacing:-1px; margin:0 0 22px; text-transform:uppercase;">Создавай<br>Носи<br>Выделяйся</h1>
+            <p style="font-size:17px; line-height:1.65; color:#9AA3B2; max-width:460px; margin:0 0 34px;">Создай одежду со своим дизайном или выбери готовые коллекции Custom Studio. Онлайн-конструктор, собственное производство и дропы, которые не встретишь в масс-маркете.</p>
+            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:44px;">
+              <div style="background:{{ accentColor }}; color:#fff; padding:16px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:{{ accentHover }}" onClick="{{ go.orderHome }}">Оформить заказ</div>
+              <div style="background:transparent; border:1.5px solid rgba(255,255,255,0.25); color:#fff; padding:16px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:rgba(255,255,255,0.06)" onClick="{{ go.catalog }}">Смотреть каталог</div>
+            </div>
+          </div>
+          <div style="position:relative; height:660px; display:flex; flex-direction:column; gap:3px;">
+            <div style="position:relative; height:430px; background:#E4E7EE; overflow:hidden; cursor:pointer;" onMouseEnter="{{ heroMainTile.onEnter }}" onMouseMove="{{ heroMainTile.onMove }}" onMouseLeave="{{ heroMainTile.onLeave }}" onClick="{{ heroMainTile.onTileClick }}">
+              <div style="position:absolute; inset:0; transform:{{ heroMainTile.transform }}; transition:transform .4s ease; filter:{{ heroMainTile.blur }};">
+                <image-slot id="{{ heroPhotoMain }}" shape="rect" placeholder="Крупное фото — новая коллекция / готовая работа" src="{{ heroMainTile.photoSrc }}"></image-slot>
+              </div>
+              <div style="position:absolute; inset:0; background:#000; opacity:{{ heroMainTile.overlayOpacity }}; transition:{{ heroMainTile.overlayTransition }}; pointer-events:none;"></div>
+              <div style="position:absolute; left:16px; right:16px; bottom:14px; color:#fff; pointer-events:none;">
+                <sc-if value="{{ heroMainTile.hovered }}">
+                  <div style="font-weight:800; font-size:14px; margin-bottom:6px; text-shadow:0 1px 4px rgba(0,0,0,0.4);">{{ heroMainTile.label }}</div>
+                  <div style="font-size:12px; line-height:1.5; opacity:0.92; margin-bottom:10px; max-width:90%;">{{ heroMainTile.desc }}</div>
+                  <sc-if value="{{ heroMainTile.hasLink }}">
+                    <div onClick="{{ heroMainTile.onDetails }}" style="display:inline-block; background:#fff; color:#14181F; font-weight:700; font-size:12px; padding:7px 14px; border-radius:100px; pointer-events:auto; cursor:pointer;">Подробнее →</div>
+                  </sc-if>
+                </sc-if>
+                <sc-if value="{{ heroMainTile.notHovered }}">
+                  <div style="font-weight:700; font-size:11px; letter-spacing:0.3px; opacity:0.9; text-shadow:0 1px 3px rgba(0,0,0,0.5);">{{ heroMainTile.label }}</div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:3px; height:227px;">
+              <sc-for list="{{ heroSlidesTop3 }}" as="slide" hint-placeholder-count="3">
+                <div style="position:relative; background:#E4E7EE; overflow:hidden; cursor:pointer;" onMouseEnter="{{ slide.onEnter }}" onMouseMove="{{ slide.onMove }}" onMouseLeave="{{ slide.onLeave }}" onClick="{{ slide.onTileClick }}">
+                  <div style="position:absolute; inset:0; transform:{{ slide.transform }}; transition:transform .4s ease; filter:{{ slide.blur }};">
+                    <image-slot id="{{ slide.id }}" shape="rect" placeholder="{{ slide.placeholder }}" src="{{ slide.photoSrc }}"></image-slot>
+                  </div>
+                  <div style="position:absolute; inset:0; background:#000; opacity:{{ slide.overlayOpacity }}; transition:{{ slide.overlayTransition }}; pointer-events:none;"></div>
+                  <div style="position:absolute; left:10px; right:10px; bottom:10px; color:#fff; pointer-events:none;">
+                    <sc-if value="{{ slide.hovered }}">
+                      <div style="font-weight:800; font-size:12px; margin-bottom:4px; text-shadow:0 1px 3px rgba(0,0,0,0.4);">{{ slide.label }}</div>
+                      <div style="font-size:11px; line-height:1.4; opacity:0.9; margin-bottom:8px;">{{ slide.desc }}</div>
+                      <sc-if value="{{ slide.hasLink }}">
+                        <div onClick="{{ slide.onDetails }}" style="display:inline-block; background:#fff; color:#14181F; font-weight:700; font-size:11px; padding:5px 11px; border-radius:100px; pointer-events:auto; cursor:pointer;">Подробнее →</div>
+                      </sc-if>
+                    </sc-if>
+                    <sc-if value="{{ slide.notHovered }}">
+                      <div style="font-weight:700; font-size:10px; opacity:0.9; text-shadow:0 1px 3px rgba(0,0,0,0.5);">{{ slide.label }}</div>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      <div style="background:#E9EBF0; padding:32px 24px;">
+        <div style="max-width:1440px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
+          <sc-for list="{{ methods }}" as="m" hint-placeholder-count="4">
+            <div>
+              <div style="font-family:'Unbounded'; font-weight:700; font-size:14px; color:#14181F; margin-bottom:5px;">{{ m.title }}</div>
+              <div style="font-size:13px; color:#6B7280; line-height:1.5;">{{ m.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background:#F5F6F9; padding:80px 24px;">
+        <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:0.8fr 1.2fr; gap:56px; align-items:center;">
+          <div>
+            <div style="display:inline-block; background:#fff; border:1px solid #E4E8F0; color:{{ accentColor }}; font-weight:700; font-size:13px; padding:6px 14px; border-radius:100px; margin-bottom:20px;">Создай свой дизайн</div>
+            <h2 style="font-family: 'Unbounded'; font-size: 34px; font-weight: 800; margin: 0 0 16px; letter-spacing: -0.5px; color: #000000">Онлайн-конструктор</h2>
+            <p style="font-size:16px; line-height:1.7; color:#454C59; max-width:440px; margin:0 0 28px;">Выбери вещь, загрузи изображение или добавь текст — и сразу посмотри, как будет выглядеть твой принт.</p>
+            <div style="display:inline-block; background:#14181F; color:#fff; padding:16px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:#2A2F3A" onClick="{{ go.constructor }}">Перейти в конструктор</div>
+          </div>
+          <div style="width:100%; aspect-ratio:16/11; border-radius:{{ heroRadius }}px; overflow:hidden;"><image-slot id="constructor-promo-photo" shape="rect" placeholder="Скриншот конструктора в действии"></image-slot></div>
+        </div>
+      </div>
+
+      <div style="max-width:1200px; margin:0 auto; padding:72px 24px;">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px;">
+          <h2 style="font-family:'Unbounded'; font-size:28px; font-weight:700; margin:0;">Наш текстиль</h2>
+          <div style="color:{{ accentColor }}; font-weight:700; cursor:pointer;" onClick="{{ go.catalog }}">Все товары и цены →</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+          <sc-for list="{{ homeProducts }}" as="p" hint-placeholder-count="4">
+            <div style="background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; flex-direction:column; cursor:pointer;" onClick="{{ p.openDetail }}">
+              <div style="position:relative; width:100%; aspect-ratio:3/4; overflow:hidden;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
+                <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
+                  <sc-if value="{{ L.isMain }}">
+                    <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                  </sc-if>
+                  <sc-if value="{{ L.isOverlay }}">
+                    <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
+                  </sc-if>
+                </sc-for>
+                <sc-if value="{{ p.cardHasMulti }}">
+                  <div style="position:absolute; bottom:8px; left:0; right:0; z-index:3; display:flex; justify-content:center; gap:5px; pointer-events:none;">
+                    <sc-for list="{{ p.cardDots }}" as="d" hint-placeholder-count="2">
+                      <div style="width:6px; height:6px; border-radius:50%; background:{{ d.color }}; box-shadow:0 0 0 1px rgba(0,0,0,0.15);"></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+              <div style="padding:16px; display:flex; flex-direction:column; gap:8px; flex:1;">
+                <div style="font-weight:700; font-size:15px;">{{ p.name }}</div>
+                <div style="color:#6B7280; font-size:13px; line-height:1.5; flex:1;">{{ p.desc }}</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                  <div style="color:{{ accentColor }}; font-weight:800; font-size:17px;">{{ p.price }}</div>
+                  <div style="background:{{ accentLight }}; color:{{ accentColor }}; padding:8px 14px; border-radius:{{ smallRadius }}px; font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap;" style-hover="background:#DCE7FB" onClick="{{ p.addToCartStop }}">{{ p.cartLabel }}</div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background:#0F1F3D; color:#fff; padding:72px 24px;">
+        <div style="max-width:900px; margin:0 auto; text-align:center;">
+          <h2 style="font-family:'Unbounded'; font-size:30px; font-weight:700; margin:0 0 16px;">Не знаешь, с чего начать?</h2>
+          <p style="font-size:17px; color:#C4CEE0; margin:0 0 28px; line-height:1.6;">Посмотри, как проходит заказ от макета до готовой вещи — это займёт две минуты.</p>
+          <div style="display:inline-block; background:#fff; color:#0F1F3D; padding:15px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; cursor:pointer;" style-hover="background:{{ accentLight }}" onClick="{{ go.howto }}">Как заказать</div>
+        </div>
+      </div>
+    </div></section>
+  </sc-if>
+
+  <!-- ============ CATALOG ============ -->
+  <sc-if value="{{ isCatalog }}">
+    <section data-screen-label="Каталог" style="max-width:1200px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+        <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="2">
+          <sc-if value="{{ bc.isLast }}">
+            <span style="color:#9AA3B2; font-size:13px;">{{ bc.label }}</span>
+          </sc-if>
+          <sc-if value="{{ bc.onClick }}">
+            <span onClick="{{ bc.onClick }}" style="color:{{ accentColor }}; font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline;">{{ bc.label }}</span>
+            <span style="color:#C3CCDC; font-size:13px;">→</span>
+          </sc-if>
+        </sc-for>
+      </div>
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 8px;">Каталог и цены</h1>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Цена уже включает базовую печать одним принтом. Оптом — дешевле, уточняйте в Telegram. После согласования макета — 100% предоплата.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:56px;">
+        <sc-for list="{{ allProducts }}" as="p" hint-placeholder-count="9">
+          <div style="background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; flex-direction:column; cursor:pointer;" onClick="{{ p.openDetail }}">
+            <div style="position:relative; width:100%; aspect-ratio:3/4; overflow:hidden;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
+              <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
+                <sc-if value="{{ L.isMain }}">
+                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                </sc-if>
+                <sc-if value="{{ L.isOverlay }}">
+                  <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
+                </sc-if>
+              </sc-for>
+              <sc-if value="{{ p.cardHasMulti }}">
+                <div style="position:absolute; bottom:8px; left:0; right:0; display:flex; justify-content:center; gap:5px; pointer-events:none;">
+                  <sc-for list="{{ p.cardDots }}" as="d" hint-placeholder-count="2">
+                    <div style="width:6px; height:6px; border-radius:50%; background:{{ d.color }}; box-shadow:0 0 0 1px rgba(0,0,0,0.15);"></div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <div style="padding:16px; display:flex; flex-direction:column; gap:8px; flex:1;">
+              <div style="font-weight:700; font-size:15px;">{{ p.name }}</div>
+              <div style="color:#6B7280; font-size:13px; line-height:1.5; flex:1;">{{ p.desc }}</div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                <div style="color:{{ accentColor }}; font-weight:800; font-size:17px;">{{ p.price }}</div>
+                <div style="background:{{ accentLight }}; color:{{ accentColor }}; padding:8px 14px; border-radius:{{ smallRadius }}px; font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap;" style-hover="background:#DCE7FB" onClick="{{ p.addToCartStop }}">{{ p.cartLabel }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 style="font-family:'Unbounded'; font-size:24px; font-weight:700; margin:0 0 6px;">Стоимость нанесения принта</h2>
+      <p style="color:#6B7280; font-size:15px; margin:0 0 20px;">Если приносишь своё изделие — платишь только за печать. Методы: DTF и термотрансферная плёнка. Укажите размер и место принта (грудь, спина, рукав) при заказе.</p>
+      <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; overflow:hidden; margin-bottom:56px;">
+        <sc-for list="{{ printFormats }}" as="f" hint-placeholder-count="4">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid #EEF1F6;">
+            <div style="font-weight:700; font-size:15px;">Формат {{ f.name }} <span style="color:#9AA3B2; font-weight:500;">({{ f.size }})</span></div>
+            <div style="font-weight:800; color:{{ accentColor }};">{{ f.price }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 style="font-family:'Unbounded'; font-size:24px; font-weight:700; margin:0 0 6px;">Доп. услуги по макету</h2>
+      <p style="color:#6B7280; font-size:15px; margin:0 0 20px;">Перед печатью пришлём цифровой макет на согласование — вносим правки, пока не утвердите. Если своего изображения нет или его нужно доработать — поможет дизайнер.</p>
+      <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; overflow:hidden;">
+        <sc-for list="{{ addonServices }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid #EEF1F6;">
+            <div style="font-weight:700; font-size:15px;">{{ s.name }}</div>
+            <div style="font-weight:800; color:{{ accentColor }};">{{ s.price }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 style="font-family:'Unbounded'; font-size:24px; font-weight:700; margin:56px 0 6px;">Рекомендации по уходу</h2>
+      <p style="color:#6B7280; font-size:15px; margin:0 0 20px;">Чтобы принт держался как можно дольше.</p>
+      <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:24px 28px;">
+        <div style="font-size:15px; line-height:1.9; color:#454C59;">
+          <div>• Стирать при температуре не выше 30 °C, рекомендован слабый отжим</div>
+          <div>• Перед стиркой вывернуть одежду на изнаночную сторону</div>
+          <div>• Гладить утюгом при среднем нагреве, исключительно по изнаночной стороне</div>
+        </div>
+        <div style="margin-top:16px; font-weight:800; color:{{ accentColor }}; font-size:15px;">При соблюдении рекомендаций печать выдержит от 50 стирок и выше!</div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ HOW TO ORDER ============ -->
+  <sc-if value="{{ isHowto }}">
+    <section data-screen-label="Как заказать" style="max-width:900px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 12px;">Как заказать</h1>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 44px;">От идеи до готовой вещи — пять простых шагов.</p>
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <sc-for list="{{ howtoSteps }}" as="step" hint-placeholder-count="5">
+          <div style="display:flex; gap:20px; padding:24px 0; border-bottom:1px solid #E4E8F0;">
+            <div style="width:44px; height:44px; border-radius:50%; background:{{ accentColor }}; color:#fff; font-family:'Unbounded'; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;">{{ step.num }}</div>
+            <div>
+              <div style="font-weight:800; font-size:17px; margin-bottom:6px;">{{ step.title }}</div>
+              <div style="color:#454C59; font-size:15px; line-height:1.6;">{{ step.desc }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:40px; text-align:center;">
+        <div style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:16px 32px; border-radius:{{ buttonRadius }}px; font-weight:700; cursor:pointer;" style-hover="background:{{ accentHover }}" onClick="{{ go.orderHome }}">Оформить заказ</div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ PORTFOLIO ============ -->
+  <sc-if value="{{ isPortfolio }}">
+    <section data-screen-label="Портфолио" style="max-width:1200px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 12px;">Портфолио</h1>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Примеры готовых работ студии.</p>
+
+      <div style="background:#241417; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px;">
+        <div style="width:100%; aspect-ratio:4/3;"><image-slot id="titan-cover" shape="rect" placeholder="Обложка проекта «Титан»"></image-slot></div>
+        <div onClick="{{ go.titan }}" style="padding:36px; color:#fff; display:flex; flex-direction:column; justify-content:center; cursor:pointer;">
+          <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:14px; width:fit-content;">Авторский фан-арт мерч</div>
+          <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:10px;">Проект «Атака титанов»</div>
+          <div style="color:#D9C4C4; font-size:14px; line-height:1.6; margin-bottom:18px;">Мерч-коллекция в мрачной фэнтези-эстетике, вдохновлённая любимым тайтлом — авторские иллюстрации, без использования чужих логотипов и персонажей.</div>
+          <div style="color:#fff; font-weight:700; font-size:14px; text-decoration:underline;">Смотреть проект →</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:16px; margin-bottom:40px;">
+        <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="portfolio-strip-small" shape="rect" placeholder="Фото готовых работ"></image-slot></div>
+        <div style="width:100%; aspect-ratio:2/1; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="portfolio-strip-wide" shape="rect" placeholder="Фото готовых работ"></image-slot></div>
+      </div>
+
+      <div onClick="{{ go.dora }}" style="background:#0F1F3D; border-radius:{{ cardRadius }}px; padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:40px; cursor:pointer;">
+        <div style="padding:36px; color:#fff; display:flex; flex-direction:column; justify-content:center; order:1;">
+          <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:14px; width:fit-content;">Авторский проект</div>
+          <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:10px;">Проект «Дора»</div>
+          <div style="color:#C4CEE0; font-size:14px; line-height:1.6; margin-bottom:18px;">Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой — пять изделий, каждое своя визуальная история.</div>
+          <div style="color:#fff; font-weight:700; font-size:14px; text-decoration:underline;">Смотреть проект →</div>
+        </div>
+        <div style="width:100%; aspect-ratio:4/3; order:2;"><image-slot id="dora-cover" shape="rect" placeholder="Обложка проекта «Дора»"></image-slot></div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+        <sc-for list="{{ portfolioItems }}" as="p" hint-placeholder-count="9">
+          <div style="width:100%; aspect-ratio:1/1; border-radius:{{ cardRadius }}px; overflow:hidden;">
+            <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.label }}"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ REVIEWS ============ -->
+  <sc-if value="{{ isReviews }}">
+    <section data-screen-label="Отзывы" style="max-width:1000px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 12px;">Отзывы клиентов</h1>
+      <div style="margin-bottom:16px; width:300px; height:100px; overflow:hidden;"><iframe src="https://yandex.ru/sprav/widget/rating-badge/224123468063?type=rating" width="150" height="50" frameborder="0" style="border:0; transform:scale(2); transform-origin:top left;"></iframe></div>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 40px;">Ждём и ваш отзыв — присылайте в Telegram или ВК.</p>
+      <div style="margin:0 -24px; overflow:hidden; padding:8px 0;" onPointerDown="{{ marqueeDragStart }}" onPointerMove="{{ marqueeDragMove }}" onPointerUp="{{ marqueeDragEnd }}" onPointerLeave="{{ marqueeDragEnd }}" style-active="cursor:grabbing">
+        <div ref="{{ marqueeRef }}" style="display:flex; gap:20px; width:max-content; will-change:transform; cursor:grab; user-select:none;">
+          <sc-for list="{{ marqueeTestimonials }}" as="t" hint-placeholder-count="28">
+            <div style="width:300px; flex-shrink:0; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:22px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                <div style="font-weight:700; font-size:14px;">{{ t.name }}</div>
+                <div style="color:#F5A623; font-size:12px;">{{ t.stars }}</div>
+              </div>
+              <div style="color:#9AA3B2; font-size:11px; margin-bottom:8px;">{{ t.date }}</div>
+              <div style="color:#454C59; font-size:13px; line-height:1.55;">{{ t.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ ABOUT ============ -->
+  <sc-if value="{{ isAbout }}">
+    <section data-screen-label="О нас" style="max-width:1000px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 28px;">О студии</h1>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+        <div>
+          <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0 0 16px;">«Кастом Студия» — печать на одежде в Санкт-Петербурге. Печатаем методом DTF и термотрансферными плёнками на футболках, толстовках, свитшотах, лонгсливах, шопперах и кепках.</p>
+          <p style="font-size:16px; line-height:1.7; color:#454C59; margin:0;">Работаем и с готовыми макетами, и помогаем создать принт с нуля: подготовим изображение к печати или нарисуем его для вас.</p>
+        </div>
+        <div style="width:100%; aspect-ratio:4/3; border-radius:{{ heroRadius }}px; overflow:hidden;"><image-slot id="about-photo" shape="rect" placeholder="Фото студии / команды"></image-slot></div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ CONTACTS ============ -->
+  <sc-if value="{{ isContacts }}">
+    <section data-screen-label="Контакты" style="max-width:1000px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 28px;">Контакты</h1>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:28px;">
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Адрес</div>
+          <div style="font-size:16px; margin-bottom:22px;">наб. Обводного канала, 136к1Б, 4-я проходная, Санкт-Петербург</div>
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Telegram</div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="https://t.me/cstmstd" target="_blank">@cstmstd</a></div>
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Max</div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank">max.ru/u/f9LHodD0…</a></div>
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="mailto:cs1703@mai.ru">cs1703@mai.ru</a></div>
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
+          <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
+        </div>
+        <div style="border-radius:{{ cardRadius }}px; overflow:hidden;"><iframe src="https://yandex.ru/map-widget/v1/?z=12&amp;ol=biz&amp;oid=224123468063" width="100%" height="100%" style="border:0; display:block; min-height:320px;" loading="lazy"></iframe></div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ CONSTRUCTOR ============ -->
+  <sc-if value="{{ isConstructor }}">
+    <section data-screen-label="Конструктор" style="max-width:1560px; margin:0 auto; padding:48px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 8px; text-align:center;">Конструктор</h1>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 36px; text-align:center;">Загрузите своё изображение и разместите его на футболке — прямо здесь.</p>
+
+      <div style="display:grid; grid-template-columns:240px 1fr 280px; gap:24px; align-items:start;">
+
+        <!-- LEFT TOOLS -->
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:18px; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Изделие</div>
+            <div style="position:relative;" data-menu-root="">
+              <div onClick="{{ toggleProductMenu }}" style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 12px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; background:#fff; cursor:pointer; font-size:14px; font-weight:600; color:#333A45;">
+                <span>{{ cProduct }}</span>
+                <span style="color:#9AA3B2; font-size:12px; transform:{{ productMenuArrow }}; transition:transform .15s ease;">▾</span>
+              </div>
+              <sc-if value="{{ productMenuOpen }}">
+                <div style="position:absolute; top:calc(100% + 6px); left:0; right:0; background:#fff; border:1.5px solid #DCE2EE; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(20,30,60,0.14); z-index:20; overflow:hidden;">
+                  <sc-for list="{{ cProductOptionsWithPrice }}" as="opt" hint-placeholder-count="6">
+                    <div onClick="{{ opt.onClick }}" style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 12px; cursor:pointer; font-size:13px; color:#333A45; background:{{ opt.bg }};" style-hover="background:#F3F6FC">
+                      <span>{{ opt.value }}</span>
+                      <span style="color:{{ accentColor }}; font-weight:700; white-space:nowrap;">{{ opt.price }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Размер</div>
+            <div style="position:relative;" data-menu-root="">
+              <div onClick="{{ toggleSizeMenu }}" style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 12px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; background:#fff; cursor:pointer; font-size:14px; font-weight:600; color:#333A45;">
+                <span>{{ cSize }}</span>
+                <span style="color:#9AA3B2; font-size:12px; transform:{{ sizeMenuArrow }}; transition:transform .15s ease;">▾</span>
+              </div>
+              <sc-if value="{{ sizeMenuOpen }}">
+                <div style="position:absolute; top:calc(100% + 6px); left:0; right:0; background:#fff; border:1.5px solid #DCE2EE; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(20,30,60,0.14); z-index:20; overflow:hidden;">
+                  <sc-for list="{{ cSizeOptions }}" as="sz" hint-placeholder-count="6">
+                    <div onClick="{{ sz.onClick }}" style="padding:11px 12px; cursor:pointer; font-size:13px; color:#333A45; background:{{ sz.bg }};" style-hover="background:#F3F6FC">{{ sz.value }}</div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Помощь дизайнера</div>
+            <div style="position:relative;" data-menu-root="">
+              <div onClick="{{ toggleDesignerMenu }}" style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:11px 12px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; background:#fff; cursor:pointer; font-size:14px; font-weight:600; color:#333A45;">
+                <span>{{ designerServicesSummary }}</span>
+                <span style="color:#9AA3B2; font-size:12px; transform:{{ designerMenuArrow }}; transition:transform .15s ease;">▾</span>
+              </div>
+              <sc-if value="{{ designerMenuOpen }}">
+                <div style="position:absolute; top:calc(100% + 6px); left:0; right:0; background:#fff; border:1.5px solid #DCE2EE; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(20,30,60,0.14); z-index:20; padding:8px; display:flex; flex-direction:column; gap:6px;">
+                  <sc-for list="{{ designerServices }}" as="ds" hint-placeholder-count="4">
+                    <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; padding:10px 12px; border-radius:{{ smallRadius }}px; background:{{ ds.bg }}; border:{{ ds.borderStyle }}; transition:background .15s ease, border-color .15s ease;" style-hover="background:#F3F6FC">
+                      <div style="width:18px; height:18px; border-radius:5px; border:{{ ds.boxBorder }}; background:{{ ds.boxBg }}; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:background .15s ease, border-color .15s ease;">
+                        <sc-if value="{{ ds.checked }}">
+                          <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </sc-if>
+                      </div>
+                      <input type="checkbox" checked="{{ ds.checked }}" onChange="{{ ds.onToggle }}" style="display:none;">
+                      <div style="flex:1; display:flex; flex-direction:column; gap:2px;">
+                        <span style="font-size:13px; font-weight:600; color:#333A45; line-height:1.35;">{{ ds.name }}</span>
+                        <span style="font-size:12px; color:{{ accentColor }}; font-weight:700;">{{ ds.price }}</span>
+                      </div>
+                    </label>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Цвет изделия</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <sc-for list="{{ garmentColors }}" as="c" hint-placeholder-count="5">
+                <div onClick="{{ c.onClick }}" title="{{ c.name }}" style="width:34px; height:34px; border-radius:50%; cursor:pointer; background:{{ c.hex }}; border:{{ c.border }}; box-shadow:{{ c.ring }};"></div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <div style="font-weight:800; font-size:13px; color:#9AA3B2; text-transform:uppercase; letter-spacing:0.5px;">Печать на спине</div>
+              <div onClick="{{ toggleBackEnabled }}" style="width:42px; height:24px; border-radius:999px; background:{{ backToggleBg }}; position:relative; cursor:pointer; transition:background .2s ease; flex-shrink:0;">
+                <div style="position:absolute; top:2px; left:{{ backToggleLeft }}; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.25); transition:left .2s ease;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid #EEF1F6; padding-top:16px;">
+            <div style="font-weight:800; font-size:15px; margin-bottom:8px;">{{ cProduct }}</div>
+            <div style="color:#6B7280; font-size:13px; line-height:1.7;">Состав: хлопок 100%<br>Плотность: 160 г/м²<br>Крой: прямой</div>
+          </div>
+        </div>
+
+        <!-- CENTER STAGE -->
+        <div style="min-width:0; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:20px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+        <div style="width:100%; color:#9AA3B2; font-size:11px; line-height:1.6; text-align:center;">Допустима погрешность ±3 см в параметрах выбранного изделия.<br>Макет создан для общего представления и может отличаться от конечного продукта такими параметрами как модель изделия, оттенок и яркость принта, изображённых на экране.</div>
+        <div style="display:flex; align-items:center; gap:16px; margin:0 auto; max-width:100%; overflow-x:auto;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+            <sc-if value="{{ backEnabled }}">
+              <div style="font-weight:800; font-size:15px; color:#14181F; text-transform:uppercase; letter-spacing:0.5px;">Перед</div>
+            </sc-if>
+            <div style="position:relative; width:{{ stageWidth }}px; height:{{ stageHeight }}px; max-width:100%; margin:0 auto; user-select:none; touch-action:none;">
+              <img key="{{ garmentAnimKey }}" src="{{ garmentPhotoSrc }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; animation:cs-photo-fade .35s ease;">
+              <sc-if value="{{ showTint }}">
+                <div style="position:absolute; inset:0; background:{{ garmentColor }}; mix-blend-mode:multiply; opacity:0.5; pointer-events:none; transition:background-color .35s ease;"></div>
+              </sc-if>
+              <div ref="{{ zoneRef }}" style="position:absolute; left:{{ zoneLeft }}; top:{{ zoneTop }}; width:{{ zoneW }}; height:{{ zoneH }}; border:1.5px dashed #B3BCCC; overflow:hidden;">
+                <sc-if value="{{ hasDesign }}">
+                  <img src="{{ designSrc }}" onPointerDown="{{ startDrag }}" draggable="false" style="position:absolute; left:{{ designX }}px; top:{{ designY }}px; width:{{ designW }}px; height:auto; cursor:grab; user-select:none;">
+                </sc-if>
+                <sc-if value="{{ noDesign }}">
+                  <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; color:#AEB6C2; font-size:13px; padding:16px;">Область печати<br>Загрузите картинку справа</div>
+                </sc-if>
+                <sc-if value="{{ hasTextFront }}">
+                  <div onPointerDown="{{ startDragTextFront }}" style="position:absolute; left:{{ textFrontX }}px; top:{{ textFrontY }}px; font-family:{{ textFrontFont }}; font-size:{{ textFrontSize }}px; color:{{ textFrontColor }}; cursor:grab; user-select:none; white-space:nowrap; font-weight:700;">{{ textFrontContent }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ backEnabled }}">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <div style="font-weight:800; font-size:15px; color:#14181F; text-transform:uppercase; letter-spacing:0.5px;">Спина</div>
+              <div style="position:relative; width:{{ stageWidth }}px; height:{{ stageHeight }}px; max-width:100%; margin:0 auto; user-select:none; touch-action:none;">
+                <img key="{{ garmentAnimKey }}" src="{{ garmentPhotoSrcBack }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; animation:cs-photo-fade .35s ease;">
+                <sc-if value="{{ showTint }}">
+                  <div style="position:absolute; inset:0; background:{{ garmentColor }}; mix-blend-mode:multiply; opacity:0.5; pointer-events:none; transition:background-color .35s ease;"></div>
+                </sc-if>
+                <div ref="{{ zoneRefBack }}" style="position:absolute; left:{{ zoneBackLeft }}; top:{{ zoneBackTop }}; width:{{ zoneBackW }}; height:{{ zoneBackH }}; border:1.5px dashed #B3BCCC; overflow:hidden;">
+                  <sc-if value="{{ hasDesignBack }}">
+                    <img src="{{ designBackSrc }}" onPointerDown="{{ startDragBack }}" draggable="false" style="position:absolute; left:{{ designBackX }}px; top:{{ designBackY }}px; width:{{ designBackW }}px; height:auto; cursor:grab; user-select:none;">
+                  </sc-if>
+                  <sc-if value="{{ noDesignBack }}">
+                    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; color:#AEB6C2; font-size:13px; padding:16px;">Область печати<br>Загрузите картинку справа</div>
+                  </sc-if>
+                  <sc-if value="{{ hasTextBack }}">
+                    <div onPointerDown="{{ startDragTextBack }}" style="position:absolute; left:{{ textBackX }}px; top:{{ textBackY }}px; font-family:{{ textBackFont }}; font-size:{{ textBackSize }}px; color:{{ textBackColor }}; cursor:grab; user-select:none; white-space:nowrap; font-weight:700;">{{ textBackContent }}</div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="width:{{ stageTotalWidth }}px; max-width:100%;">
+          <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Комментарий к заказу</div>
+          <textarea value="{{ cComment }}" onChange="{{ setCComment }}" placeholder="Опишите пожелания: расположение принта, размер, кол-во изделий, цвет нитей и т.д." style="width:100%; min-height:90px; resize:vertical; padding:12px 14px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:14px; font-family:inherit; color:#333A45; box-sizing:border-box;"></textarea>
+        </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:18px; display:flex; flex-direction:column; gap:18px;">
+          <div>
+            <div onClick="{{ toggleTextFront }}" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+              <div style="font-weight:800; font-size:13px; color:#9AA3B2; text-transform:uppercase; letter-spacing:0.5px;">Текст (перед)</div>
+              <span style="color:{{ accentColor }}; font-weight:700; font-size:13px;">{{ textFrontToggleLabel }}</span>
+            </div>
+            <sc-if value="{{ textFrontOpen }}">
+            <div style="margin-top:10px;">
+            <input type="text" value="{{ textFrontContent }}" onChange="{{ setTextFront }}" placeholder="Ваш текст" style="width:100%; padding:11px 12px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:14px; box-sizing:border-box; margin-bottom:8px;">
+            <div style="display:flex; gap:8px; margin-bottom:8px;">
+              <select value="{{ textFrontFont }}" onChange="{{ setTextFrontFont }}" style="flex:1; padding:9px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:13px; background:#fff;">
+                <sc-for list="{{ fontOptionsList }}" as="fnt" hint-placeholder-count="10">
+                  <option value="{{ fnt.value }}">{{ fnt.label }}</option>
+                </sc-for>
+              </select>
+              <input type="color" value="{{ textFrontColor }}" onChange="{{ setTextFrontColor }}" style="width:40px; padding:0; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; cursor:pointer;">
+            </div>
+            <input type="range" min="12" max="72" step="1" value="{{ textFrontSize }}" onChange="{{ setTextFrontSize }}" onInput="{{ setTextFrontSize }}" style="width:100%; accent-color:{{ accentColor }};">
+            </div>
+            </sc-if>
+          </div>
+          <div>
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Добавьте (перед)</div>
+            <label style="display:block; background:{{ accentColor }}; color:#fff; text-align:center; padding:15px; border-radius:{{ smallRadius }}px; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 4px 14px rgba(27,79,160,0.28);" style-hover="opacity:0.92">
+              Загрузить картинку
+              <input type="file" accept="image/*" onChange="{{ onUpload }}" style="display:none;">
+            </label>
+            <sc-if value="{{ hasDesign }}">
+              <div onClick="{{ removeDesign }}" style="margin-top:8px; text-align:center; color:#C22A2A; font-weight:700; font-size:13px; cursor:pointer;">Удалить изображение</div>
+            </sc-if>
+          </div>
+          <div>
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Масштаб (перед)</div>
+            <div style="display:inline-flex; align-items:baseline; gap:6px; background:{{ accentLight }}; color:{{ accentColor }}; padding:6px 12px; border-radius:{{ smallRadius }}px; font-weight:800; font-size:16px; margin-bottom:10px; font-variant-numeric:tabular-nums;">{{ printFormatLabel }}<span style="font-weight:600; font-size:13px; opacity:0.85;">· ~{{ printCm }} см</span></div>
+            <input type="range" min="40" max="300" step="2" value="{{ designW }}" onChange="{{ setScale }}" onInput="{{ setScale }}" style="width:100%; accent-color:{{ accentColor }};">
+          </div>
+          <sc-if value="{{ backEnabled }}">
+            <div>
+              <div onClick="{{ toggleTextBack }}" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+                <div style="font-weight:800; font-size:13px; color:#9AA3B2; text-transform:uppercase; letter-spacing:0.5px;">Текст (спина)</div>
+                <span style="color:{{ accentColor }}; font-weight:700; font-size:13px;">{{ textBackToggleLabel }}</span>
+              </div>
+              <sc-if value="{{ textBackOpen }}">
+              <div style="margin-top:10px;">
+              <input type="text" value="{{ textBackContent }}" onChange="{{ setTextBack }}" placeholder="Ваш текст" style="width:100%; padding:11px 12px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:14px; box-sizing:border-box; margin-bottom:8px;">
+              <div style="display:flex; gap:8px; margin-bottom:8px;">
+                <select value="{{ textBackFont }}" onChange="{{ setTextBackFont }}" style="flex:1; padding:9px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:13px; background:#fff;">
+                  <sc-for list="{{ fontOptionsList }}" as="fnt" hint-placeholder-count="10">
+                    <option value="{{ fnt.value }}">{{ fnt.label }}</option>
+                  </sc-for>
+                </select>
+                <input type="color" value="{{ textBackColor }}" onChange="{{ setTextBackColor }}" style="width:40px; padding:0; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; cursor:pointer;">
+              </div>
+              <input type="range" min="12" max="72" step="1" value="{{ textBackSize }}" onChange="{{ setTextBackSize }}" onInput="{{ setTextBackSize }}" style="width:100%; accent-color:{{ accentColor }};">
+              </div>
+              </sc-if>
+            </div>
+            <div style="border-top:1px solid #EEF1F6; padding-top:16px;">
+              <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Добавьте (спина)</div>
+              <label style="display:block; background:{{ accentColor }}; color:#fff; text-align:center; padding:15px; border-radius:{{ smallRadius }}px; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 4px 14px rgba(27,79,160,0.28);" style-hover="opacity:0.92">
+                Загрузить картинку
+                <input type="file" accept="image/*" onChange="{{ onUploadBack }}" style="display:none;">
+              </label>
+              <sc-if value="{{ hasDesignBack }}">
+                <div onClick="{{ removeDesignBack }}" style="margin-top:8px; text-align:center; color:#C22A2A; font-weight:700; font-size:13px; cursor:pointer;">Удалить изображение</div>
+              </sc-if>
+            </div>
+            <div>
+              <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Масштаб (спина)</div>
+              <div style="display:inline-flex; align-items:baseline; gap:6px; background:{{ accentLight }}; color:{{ accentColor }}; padding:6px 12px; border-radius:{{ smallRadius }}px; font-weight:800; font-size:16px; margin-bottom:10px; font-variant-numeric:tabular-nums;">{{ printFormatLabelBack }}<span style="font-weight:600; font-size:13px; opacity:0.85;">· ~{{ printCmBack }} см</span></div>
+              <input type="range" min="40" max="300" step="2" value="{{ designBackW }}" onChange="{{ setScaleBack }}" onInput="{{ setScaleBack }}" style="width:100%; accent-color:{{ accentColor }};">
+            </div>
+          </sc-if>
+          <div style="background:{{ accentLight }}; border-radius:{{ smallRadius }}px; padding:14px 16px; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px; color:#454C59;"><span>{{ cProduct }}</span><span style="font-weight:700;">{{ cProductPrice }}</span></div>
+            <sc-if value="{{ hasFrontPrintCost }}">
+              <div style="display:flex; justify-content:space-between; font-size:13px; color:#454C59;"><span>Печать ({{ printFormatLabel }})</span><span style="font-weight:700;">{{ printPrice }}</span></div>
+            </sc-if>
+            <sc-if value="{{ hasBackPrintCost }}">
+              <div style="display:flex; justify-content:space-between; font-size:13px; color:#454C59;"><span>Печать на спине ({{ printFormatLabelBack }})</span><span style="font-weight:700;">{{ backPrintCostLabel }}</span></div>
+            </sc-if>
+            <sc-if value="{{ hasDesignerCost }}">
+              <div style="display:flex; justify-content:space-between; font-size:13px; color:#454C59;"><span>Помощь дизайнера</span><span style="font-weight:700;">{{ designerCostLabel }}</span></div>
+            </sc-if>
+            <div style="height:1px; background:rgba(0,0,0,0.08); margin:2px 0;"></div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-weight:800; font-size:16px;">Итого</span><span style="font-weight:800; font-size:26px; color:{{ accentColor }};">{{ totalPrice }}</span></div>
+          </div>
+          <div onClick="{{ go.orderConstructor }}" style="background:{{ accentColor }}; color:#fff; text-align:center; padding:16px; border-radius:{{ smallRadius }}px; font-weight:800; font-size:15px; cursor:pointer; line-height:1.4; box-shadow:0 4px 14px rgba(27,79,160,0.28);" style-hover="opacity:0.92">Просто отправить макет</div>
+          <sc-if value="{{ hasDesign }}">
+            <div onClick="{{ downloadMockup }}" style="background:#fff; color:{{ accentColor }}; text-align:center; padding:12px; border:1.5px solid {{ accentColor }}; border-radius:{{ smallRadius }}px; font-weight:700; font-size:13px; cursor:pointer;" style-hover="background:#F3F6FC">⬇ Скачать макет (PNG)</div>
+          </sc-if>
+        </div>
+
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ CART ============ -->
+  <sc-if value="{{ isCart }}">
+    <section data-screen-label="Корзина" style="max-width:800px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 8px;">Корзина</h1>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 32px;">Товары, которые вы выбрали в каталоге.</p>
+
+      <sc-if value="{{ cartIsEmpty }}">
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:48px; text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">🛒</div>
+          <div style="font-weight:800; font-size:18px; margin-bottom:10px;">Корзина пуста</div>
+          <div style="color:#6B7280; font-size:14px; margin-bottom:20px;">Добавьте товары из каталога, чтобы оформить заказ.</div>
+          <div onClick="{{ go.catalog }}" style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:13px 24px; border-radius:{{ buttonRadius }}px; font-weight:700; cursor:pointer;">Перейти в каталог</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ cartHasItems }}">
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; overflow:hidden; margin-bottom:24px;">
+          <sc-for list="{{ cartItems }}" as="item" hint-placeholder-count="3">
+            <div style="display:flex; align-items:center; gap:16px; padding:18px 22px; border-bottom:1px solid #EEF1F6;">
+              <div style="width:64px; height:64px; border-radius:{{ smallRadius }}px; overflow:hidden; flex-shrink:0; background:#F3F5F9;">
+                <image-slot id="{{ item.slotId }}" shape="rect" placeholder="Фото" src="{{ item.photo }}"></image-slot>
+              </div>
+              <div style="flex:1;">
+                <div style="font-weight:700; font-size:15px; margin-bottom:4px;">{{ item.name }}</div>
+                <div style="color:#6B7280; font-size:13px; line-height:1.5; margin-bottom:6px;">{{ item.desc }}</div>
+                <div style="color:{{ accentColor }}; font-weight:800; font-size:14px;">{{ item.price }}</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div onClick="{{ item.dec }}" style="width:28px; height:28px; border-radius:50%; background:#F3F5F9; display:flex; align-items:center; justify-content:center; cursor:pointer; font-weight:700; font-size:16px;">−</div>
+                <div style="min-width:20px; text-align:center; font-weight:700; font-size:15px;">{{ item.qty }}</div>
+                <div onClick="{{ item.inc }}" style="width:28px; height:28px; border-radius:50%; background:#F3F5F9; display:flex; align-items:center; justify-content:center; cursor:pointer; font-weight:700; font-size:16px;">+</div>
+              </div>
+              <div onClick="{{ item.remove }}" title="Удалить" style="width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#9AA3B2; font-size:16px;" style-hover="background:#F3F5F9; color:#C22A2A">✕</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:20px 22px; margin-bottom:24px;">
+          <div style="font-weight:700; font-size:15px;">Итого{{ cartUnpricedNote }}</div>
+          <div style="font-weight:800; font-size:22px; color:{{ accentColor }};">{{ cartTotal }} ₽</div>
+        </div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <div onClick="{{ go.orderCart }}" style="flex:1; background:{{ accentColor }}; color:#fff; text-align:center; padding:16px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:{{ accentHover }}">Оформить заказ</div>
+          <div onClick="{{ go.catalog }}" style="background:#fff; border:1.5px solid #DCE2EE; color:#14181F; padding:16px 24px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:16px; cursor:pointer;" style-hover="background:#F3F5F9">Продолжить покупки</div>
+        </div>
+      </sc-if>
+    </section>
+  </sc-if>
+
+  <!-- ============ DORA CASE STUDY ============ -->
+  <sc-if value="{{ isDora }}">
+    <section data-screen-label="Проект Дора" style="animation:cs-fade .4s ease;">
+      <div style="background:#0F1F3D; color:#fff; padding:64px 24px;">
+        <div style="max-width:900px; margin:0 auto;">
+          <div onClick="{{ go.portfolio }}" style="color:#8FA3C9; font-size:14px; font-weight:700; cursor:pointer; margin-bottom:20px;">← Назад в портфолио</div>
+          <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Авторский некоммерческий проект</div>
+          <h1 style="font-family:'Unbounded'; font-size:40px; font-weight:800; margin:0 0 20px; line-height:1.15;">Проект «Дора»</h1>
+          <p style="color:#C4CEE0; font-size:17px; line-height:1.7; margin:0;">Мерч-коллекция и дизайнерский журнал, посвящённые российской исполнительнице Дарье Шихановой (Дора). Идея проекта — показать, что музыкальный мерч может быть самостоятельным дизайнерским продуктом, а не просто одеждой с логотипом артиста: каждый предмет коллекции — отдельная визуальная история, основанная на треке, образе или символе, связанном с её творчеством.</p>
+        </div>
+      </div>
+
+      <div style="max-width:900px; margin:0 auto; padding:56px 24px;">
+        <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0 0 16px;">Проект создавался на протяжении нескольких месяцев и включал полный цикл разработки: поиск концепции, анализ песен и их смыслов, создание художественных эскизов, работу с иллюстраторами, разработку принтов, подбор технологий печати и вышивки, производство изделий, фотосъёмку, а также дизайн и вёрстку собственного журнала, рассказывающего историю создания коллекции.</p>
+        <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0;">Всего было разработано пять полноценных изделий, каждое посвящено отдельной композиции или образу — плюс один дополнительный предмет.</p>
+      </div>
+
+      <div style="max-width:1100px; margin:0 auto; padding:0 24px 24px; display:flex; flex-direction:column; gap:64px;">
+        <sc-for list="{{ doraItems }}" as="item" hint-placeholder-count="6">
+          <div style="display:grid; grid-template-columns:{{ item.cols }}; gap:40px; align-items:center;">
+            <sc-if value="{{ item.imageFirst }}">
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+            </sc-if>
+            <div>
+              <div style="color:{{ accentColor }}; font-weight:800; font-size:13px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px;">{{ item.tag }}</div>
+              <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:14px;">{{ item.name }}</div>
+              <div style="color:#454C59; font-size:15px; line-height:1.75;">{{ item.desc }}</div>
+            </div>
+            <sc-if value="{{ item.imageSecond }}">
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="background:{{ accentLight }}; padding:64px 24px;">
+        <div style="max-width:800px; margin:0 auto; text-align:center;">
+          <h2 style="font-family:'Unbounded'; font-size:26px; font-weight:800; margin:0 0 18px; color:{{ accentColor }};">Журнал проекта</h2>
+          <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0 0 24px;">Помимо одежды был создан полноценный дизайнерский журнал — не каталог товаров, а документальное сопровождение проекта: как рождались идеи, почему принимались те или иные дизайнерские решения, какие технологии использовались, какие сложности возникали и каким образом музыка превращалась в визуальный язык. Журнал играет роль «making of» и показывает весь путь создания коллекции.</p>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;">
+            <sc-for list="{{ doraJournalPages }}" as="jp" hint-placeholder-count="3">
+              <div style="width:100%; aspect-ratio:3/4; border-radius:{{ smallRadius }}px; overflow:hidden;"><image-slot id="{{ jp }}" shape="rect" placeholder="Разворот журнала"></image-slot></div>
+            </sc-for>
+          </div>
+          <a href="uploads/zhurnal-proekt-dora-szhatyy.pdf" target="_blank" style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:15px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; text-decoration:none;">Скачать журнал (PDF)</a>
+        </div>
+      </div>
+
+      <div style="max-width:800px; margin:0 auto; padding:64px 24px; text-align:center;">
+        <h2 style="font-family:'Unbounded'; font-size:24px; font-weight:800; margin:0 0 16px;">Особенность проекта</h2>
+        <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0 0 32px;">Это не коммерческий заказ и не официальная коллекция — личная инициатива автора, посвятившего несколько месяцев созданию профессиональной мерч-коллекции из любви к творчеству исполнителя. Проект объединяет графический дизайн, иллюстрацию, производство одежды, фотографию, видеосъёмку и издательский дизайн в единую историю, где каждая вещь становится частью общего повествования.</p>
+        <div onClick="{{ go.portfolio }}" style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:15px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; cursor:pointer;">← Назад в портфолио</div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ PRODUCT DETAIL ============ -->
+  <sc-if value="{{ isProduct }}">
+    <section data-screen-label="Товар" style="max-width:1100px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <div onClick="{{ go.catalog }}" style="color:{{ accentColor }}; font-weight:700; font-size:14px; cursor:pointer; margin-bottom:12px;">← Назад в каталог</div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:24px;">
+        <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="2">
+          <sc-if value="{{ bc.isLast }}">
+            <span style="color:#9AA3B2; font-size:13px;">{{ bc.label }}</span>
+          </sc-if>
+          <sc-if value="{{ bc.onClick }}">
+            <span onClick="{{ bc.onClick }}" style="color:{{ accentColor }}; font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline;">{{ bc.label }}</span>
+            <span style="color:#C3CCDC; font-size:13px;">→</span>
+          </sc-if>
+        </sc-for>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+        <div>
+          <div style="width:100%; aspect-ratio:3/4; border-radius:{{ cardRadius }}px; overflow:hidden; background:#F3F4F7; position:relative;">
+            <sc-if value="{{ activeProduct.badge }}">
+              <div style="position:absolute; top:10px; left:10px; z-index:2; background:#B5453F; color:#fff; font-weight:800; font-size:11px; padding:5px 10px; border-radius:5px;">{{ activeProduct.badge }}</div>
+            </sc-if>
+            <image-slot id="{{ activeProduct.slotId }}" shape="rect" placeholder="{{ activeProduct.name }}" src="{{ activeProductPhoto }}" style="position:absolute; inset:0; opacity:{{ frontOpacity }}; transition:opacity .35s ease;"></image-slot>
+            <sc-if value="{{ activeProductPhotoBack }}">
+              <img src="{{ activeProductPhotoBack }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ backOpacityDetail }}; transition:opacity .35s ease; pointer-events:none;">
+            </sc-if>
+            <sc-if value="{{ galleryOverride }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ galleryOverride }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ galleryOverrideOpacity }}; transition:opacity .35s ease;">
+            </sc-if>
+          </div>
+          <sc-if value="{{ hasAnyThumbs }}">
+            <div style="display:flex; gap:10px; margin-top:12px; overflow-x:auto; flex-wrap:nowrap; padding-bottom:4px;">
+              <sc-if value="{{ activeProductPhotoBack }}">
+                <div onClick="{{ setProductView.front }}" style="width:72px; height:96px; flex:0 0 auto; border-radius:{{ smallRadius }}px; overflow:hidden; cursor:pointer; border:{{ frontThumbBorder }};">
+                  <img src="{{ activeProductPhoto }}" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div onClick="{{ setProductView.back }}" style="width:72px; height:96px; flex:0 0 auto; border-radius:{{ smallRadius }}px; overflow:hidden; cursor:pointer; border:{{ backThumbBorder }};">
+                  <img src="{{ activeProductPhotoBack }}" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+              </sc-if>
+              <sc-for list="{{ galleryPhotos }}" as="g" hint-placeholder-count="3">
+                <div onClick="{{ g.onClick }}" style="width:72px; height:96px; flex:0 0 auto; border-radius:{{ smallRadius }}px; overflow:hidden; cursor:pointer; border:{{ g.border }};">
+                  <img src="{{ g.src }}" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <h1 style="font-family:'Unbounded'; font-size:30px; font-weight:800; margin:0 0 10px;">{{ activeProduct.name }}</h1>
+          <sc-if value="{{ activeProduct.hasDiscount }}">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+              <div style="color:#9AA3B2; font-size:18px; text-decoration:line-through;">{{ activeProduct.oldPrice }}</div>
+              <div style="font-weight:800; font-size:26px; color:{{ accentColor }};">{{ activeProduct.price }}</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ activeProduct.noCollection }}">
+            <div style="font-weight:800; font-size:26px; color:{{ accentColor }}; margin-bottom:20px;">{{ activeProduct.price }}</div>
+          </sc-if>
+          <div style="color:#454C59; font-size:15px; line-height:1.7; margin-bottom:28px;">{{ activeProduct.desc }}</div>
+
+          <sc-if value="{{ activeProduct.noCollection }}">
+            <div style="margin-bottom:24px;">
+              <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Цвет: {{ activeColorName }}</div>
+              <div style="display:flex; gap:10px;">
+                <sc-for list="{{ productColorSwatches }}" as="sw" hint-placeholder-count="2">
+                  <div onClick="{{ sw.onClick }}" style="width:36px; height:36px; border-radius:50%; background:{{ sw.hex }}; border:{{ sw.border }}; cursor:pointer; box-shadow:{{ sw.ring }};"></div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ activeProduct.singleColorOnly }}">
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:24px; text-transform:uppercase; letter-spacing:0.5px;">Цвет: {{ activeProduct.color }}</div>
+          </sc-if>
+          <sc-if value="{{ activeProduct.sizes }}">
+            <div style="margin-bottom:24px;">
+              <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Размер</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <sc-for list="{{ activeProductSizeOptions }}" as="sz" hint-placeholder-count="5">
+                  <div onClick="{{ sz.onClick }}" style="width:44px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:{{ smallRadius }}px; border:{{ sz.border }}; font-weight:700; font-size:13px; cursor:pointer; color:{{ sz.color }};">{{ sz.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="margin-bottom:28px;">
+            <div style="font-weight:800; font-size:13px; color:#9AA3B2; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Состав и уход</div>
+            <div style="color:#454C59; font-size:14px; line-height:1.7;">Состав: хлопок 100%<br>Плотность: 160–320 г/м² (зависит от модели)<br>Метод печати: DTF или термотрансфер — выбирается в конструкторе</div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #DCE2EE; border-radius:{{ smallRadius }}px; padding:8px 14px;">
+              <div onClick="{{ decProductQty }}" style="cursor:pointer; font-weight:800; font-size:18px; color:{{ accentColor }}; user-select:none;">−</div>
+              <div style="font-weight:700; font-size:15px; min-width:20px; text-align:center;">{{ productQty }}</div>
+              <div onClick="{{ incProductQty }}" style="cursor:pointer; font-weight:800; font-size:18px; color:{{ accentColor }}; user-select:none;">+</div>
+            </div>
+            <div onClick="{{ addActiveToCart }}" style="flex:1; background:{{ accentColor }}; color:#fff; text-align:center; padding:15px; border-radius:{{ buttonRadius }}px; font-weight:700; font-size:15px; cursor:pointer;">{{ activeAddLabel }}</div>
+            <div onClick="{{ toggleWishlist }}" style="width:52px; height:52px; border-radius:{{ buttonRadius }}px; border:1.5px solid #DCE2EE; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:20px; color:{{ wishlistColor }}; flex-shrink:0;">{{ wishlistIcon }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:64px;">
+        <h2 style="font-family:'Unbounded'; font-size:22px; font-weight:800; margin:0 0 20px;">Похожие товары</h2>
+        <div style="position:relative;">
+          <div onClick="{{ similarScrollLeft }}" style="position:absolute; left:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2;">←</div>
+          <div ref="{{ similarScrollRef }}" style="display:flex; gap:16px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:4px;">
+            <sc-for list="{{ similarProducts }}" as="sp" hint-placeholder-count="4">
+              <div onClick="{{ sp.openDetail }}" style="flex:0 0 200px; background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer;">
+                <div style="width:100%; aspect-ratio:3/4;"><image-slot id="{{ sp.slotId }}-sim" shape="rect" placeholder="{{ sp.name }}" src="{{ sp.photo }}"></image-slot></div>
+                <div style="padding:12px;">
+                  <div style="font-weight:700; font-size:13px; margin-bottom:4px;">{{ sp.name }}</div>
+                  <div style="color:{{ accentColor }}; font-weight:800; font-size:14px;">{{ sp.price }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div onClick="{{ similarScrollRight }}" style="position:absolute; right:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2;">→</div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+  <sc-if value="{{ isTitan }}">
+    <section data-screen-label="Проект Титан" style="animation:cs-fade .4s ease;">
+      <div style="background:#241417; color:#fff; padding:64px 24px;">
+        <div style="max-width:900px; margin:0 auto;">
+          <div onClick="{{ go.portfolio }}" style="color:#D9A9A9; font-size:14px; font-weight:700; cursor:pointer; margin-bottom:20px;">← Назад в портфолио</div>
+          <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Авторский фан-арт проект</div>
+          <h1 style="font-family:'Unbounded'; font-size:40px; font-weight:800; margin:0 0 20px; line-height:1.15;">Проект «Атака титанов»</h1>
+          <p style="color:#E3CFCF; font-size:17px; line-height:1.7; margin:0;">Небольшая мерч-коллекция, вдохновлённая любимым тёмным фэнтези-тайтлом про гигантов и борьбу человечества за выживание. Все иллюстрации — авторские: свои композиции и трактовки образов, без использования чужих логотипов, фирменных шрифтов или кадров.</p>
+        </div>
+      </div>
+
+      <div style="max-width:900px; margin:0 auto; padding:56px 24px;">
+        <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0;">Идея — передать атмосферу произведения через собственный визуальный язык: мрачную палитру, рваные текстуры, силуэты титанов и солдат разведкорпуса, нарисованные с нуля. Каждая вещь — отдельная сцена: побег, бой, память о павших товарищах.</p>
+      </div>
+
+      <div style="max-width:1100px; margin:0 auto; padding:0 24px 24px; display:flex; flex-direction:column; gap:64px;">
+        <sc-for list="{{ titanItems }}" as="item" hint-placeholder-count="3">
+          <div style="display:grid; grid-template-columns:{{ item.cols }}; gap:40px; align-items:center;">
+            <sc-if value="{{ item.imageFirst }}">
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+            </sc-if>
+            <div>
+              <div style="color:#B5453F; font-weight:800; font-size:13px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px;">{{ item.tag }}</div>
+              <div style="font-family:'Unbounded'; font-weight:800; font-size:26px; margin-bottom:14px;">{{ item.name }}</div>
+              <div style="color:#454C59; font-size:15px; line-height:1.75;">{{ item.desc }}</div>
+            </div>
+            <sc-if value="{{ item.imageSecond }}">
+              <div style="width:100%; aspect-ratio:4/5; border-radius:{{ cardRadius }}px; overflow:hidden;"><image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.name }}"></image-slot></div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="max-width:800px; margin:0 auto; padding:64px 24px; text-align:center;">
+        <h2 style="font-family:'Unbounded'; font-size:24px; font-weight:800; margin:0 0 16px;">Особенность проекта</h2>
+        <p style="color:#454C59; font-size:16px; line-height:1.8; margin:0 0 32px;">Это некоммерческая фан-работа — личная инициатива автора создать мерч по мотивам любимого произведения, полностью на собственных иллюстрациях и без использования охраняемых элементов оригинала.</p>
+        <div onClick="{{ go.portfolio }}" style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:15px 28px; border-radius:{{ buttonRadius }}px; font-weight:700; cursor:pointer;">← Назад в портфолио</div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ COLLECTION SHOPS ============ -->
+  <sc-if value="{{ isTitanShop }}">
+    <section data-screen-label="Коллекция Атака Титанов" style="animation:cs-fade .4s ease;">
+      <div style="max-width:1200px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="3">
+          <sc-if value="{{ bc.isLast }}">
+            <span style="color:#9AA3B2; font-size:13px;">{{ bc.label }}</span>
+          </sc-if>
+          <sc-if value="{{ bc.onClick }}">
+            <span onClick="{{ bc.onClick }}" style="color:{{ accentColor }}; font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline;">{{ bc.label }}</span>
+            <span style="color:#C3CCDC; font-size:13px;">→</span>
+          </sc-if>
+        </sc-for>
+      </div>
+      <div style="background:#241417; color:#fff; padding:64px 24px; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0;"><image-slot id="titan-shop-cover" shape="rect" placeholder="Обложка коллекции «Атака титанов»"></image-slot></div>
+        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); pointer-events:none;"></div>
+        <div style="max-width:1200px; margin:0 auto; position:relative;">
+          <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Коллекция · Аниме одежда</div>
+          <h1 style="font-family:'Unbounded'; font-size:40px; font-weight:800; margin:0 0 16px; line-height:1.15;">Атака титанов</h1>
+          <p style="color:#E3CFCF; font-size:16px; line-height:1.7; margin:0; max-width:640px;">Мерч в мрачной фэнтези-эстетике: авторские иллюстрации, никаких чужих логотипов и кадров.</p>
+        </div>
+      </div>
+      <div style="max-width:1200px; margin:0 auto; padding:48px 24px 88px;">
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <sc-for list="{{ titanCatalogProducts }}" as="p" hint-placeholder-count="6">
+            <div onClick="{{ p.openDetail }}" style="background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer; display:flex; flex-direction:column;">
+              <div style="position:relative; width:100%; aspect-ratio:3/4; background:#F3F4F7;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
+                <div style="position:absolute; top:10px; left:10px; z-index:3; background:#B5453F; color:#fff; font-weight:800; font-size:11px; letter-spacing:0.5px; padding:5px 10px; border-radius:5px;">{{ p.badge }}</div>
+                <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
+                  <sc-if value="{{ L.isMain }}">
+                    <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                  </sc-if>
+                  <sc-if value="{{ L.isOverlay }}">
+                    <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
+                  </sc-if>
+                </sc-for>
+                <sc-if value="{{ p.cardHasMulti }}">
+                  <div style="position:absolute; bottom:8px; left:0; right:0; z-index:3; display:flex; justify-content:center; gap:5px; pointer-events:none;">
+                    <sc-for list="{{ p.cardDots }}" as="d" hint-placeholder-count="2">
+                      <div style="width:6px; height:6px; border-radius:50%; background:{{ d.color }}; box-shadow:0 0 0 1px rgba(255,255,255,0.4);"></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+              <div style="padding:16px; display:flex; flex-direction:column; gap:8px;">
+                <div style="font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:0.3px;">{{ p.name }}</div>
+                <div style="color:{{ accentColor }}; font-weight:800; font-size:17px;">{{ p.price }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+  <sc-if value="{{ isDoraShop }}">
+    <section data-screen-label="Коллекция Дора" style="animation:cs-fade .4s ease;">
+      <div style="max-width:1200px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="3">
+          <sc-if value="{{ bc.isLast }}">
+            <span style="color:#9AA3B2; font-size:13px;">{{ bc.label }}</span>
+          </sc-if>
+          <sc-if value="{{ bc.onClick }}">
+            <span onClick="{{ bc.onClick }}" style="color:{{ accentColor }}; font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline;">{{ bc.label }}</span>
+            <span style="color:#C3CCDC; font-size:13px;">→</span>
+          </sc-if>
+        </sc-for>
+      </div>
+      <div style="background:#0F1F3D; color:#fff; padding:64px 24px; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0;"><image-slot id="dora-shop-cover" shape="rect" placeholder="Обложка коллекции «Дора»"></image-slot></div>
+        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); pointer-events:none;"></div>
+        <div style="max-width:1200px; margin:0 auto; position:relative;">
+          <div style="display:inline-block; background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:18px;">Коллекция · Музыка</div>
+          <h1 style="font-family:'Unbounded'; font-size:40px; font-weight:800; margin:0 0 16px; line-height:1.15;">Дора</h1>
+          <p style="color:#C4CEE0; font-size:16px; line-height:1.7; margin:0; max-width:640px;">Мерч-коллекция, посвящённая творчеству артистки — авторские иллюстрации на худи и свитшотах.</p>
+        </div>
+      </div>
+      <div style="max-width:1200px; margin:0 auto; padding:48px 24px 88px;">
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <sc-for list="{{ doraCatalogProducts }}" as="p" hint-placeholder-count="6">
+            <div onClick="{{ p.openDetail }}" style="background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer; display:flex; flex-direction:column;">
+              <div style="position:relative; width:100%; aspect-ratio:3/4; background:#F3F4F7;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
+                <div style="position:absolute; top:10px; left:10px; z-index:3; background:#1B4FA0; color:#fff; font-weight:800; font-size:11px; letter-spacing:0.5px; padding:5px 10px; border-radius:5px;">{{ p.badge }}</div>
+                <sc-for list="{{ p.cardLayers }}" as="L" hint-placeholder-count="4">
+                  <sc-if value="{{ L.isMain }}">
+                    <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.name }}" src="{{ L.src }}" style="position:absolute; inset:0; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }};"></image-slot>
+                  </sc-if>
+                  <sc-if value="{{ L.isOverlay }}">
+                    <img src="{{ L.src }}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ L.opacity }}; transition:opacity .35s ease; z-index:{{ L.z }}; pointer-events:none;">
+                  </sc-if>
+                </sc-for>
+                <sc-if value="{{ p.cardHasMulti }}">
+                  <div style="position:absolute; bottom:8px; left:0; right:0; z-index:3; display:flex; justify-content:center; gap:5px; pointer-events:none;">
+                    <sc-for list="{{ p.cardDots }}" as="d" hint-placeholder-count="2">
+                      <div style="width:6px; height:6px; border-radius:50%; background:{{ d.color }}; box-shadow:0 0 0 1px rgba(255,255,255,0.4);"></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+              <div style="padding:16px; display:flex; flex-direction:column; gap:8px;">
+                <div style="font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:0.3px;">{{ p.name }}</div>
+                <div style="color:{{ accentColor }}; font-weight:800; font-size:17px;">{{ p.price }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ ORDER FORM ============ -->
+  <sc-if value="{{ isOrder }}">
+    <section data-screen-label="Заказ" style="max-width:640px; margin:0 auto; padding:56px 24px 88px; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:36px; font-weight:800; margin:0 0 8px;">{{ orderTitle }}</h1>
+      <p style="color:#6B7280; font-size:16px; margin:0 0 32px;">{{ orderSubtitle }}</p>
+
+      <sc-if value="{{ cartHasItems }}">
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; overflow:hidden; margin-bottom:24px;">
+          <div style="padding:16px 20px; border-bottom:1px solid #EEF1F6; font-weight:800; font-size:14px; color:#6B7280; text-transform:uppercase; letter-spacing:0.4px;">Ваш заказ</div>
+          <sc-for list="{{ cartItems }}" as="item" hint-placeholder-count="3">
+            <div style="display:flex; align-items:center; gap:14px; padding:14px 20px; border-bottom:1px solid #EEF1F6;">
+              <div style="width:48px; height:48px; border-radius:{{ smallRadius }}px; overflow:hidden; flex-shrink:0; background:#F3F5F9;">
+                <image-slot id="{{ item.slotId }}" shape="rect" placeholder="Фото" src="{{ item.photo }}"></image-slot>
+              </div>
+              <div style="flex:1;">
+                <div style="font-weight:700; font-size:14px;">{{ item.name }}</div>
+                <div style="color:#9AA3B2; font-size:12px;">× {{ item.qty }}</div>
+              </div>
+              <div style="font-weight:800; font-size:14px; color:{{ accentColor }};">{{ item.price }}</div>
+            </div>
+          </sc-for>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px;">
+            <div style="font-weight:700; font-size:14px;">Итого{{ cartUnpricedNote }}</div>
+            <div style="font-weight:800; font-size:18px; color:{{ accentColor }};">{{ cartTotal }} ₽</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ cartIsEmpty }}">
+        <div style="background:{{ accentLight }}; border-radius:{{ cardRadius }}px; padding:16px 20px; margin-bottom:24px; font-size:14px; color:{{ accentColor }};">Корзина пуста — заявку можно оформить и без неё, просто опишите заказ в комментарии. <span style="text-decoration:underline; cursor:pointer;" onClick="{{ go.catalog }}">Перейти в каталог</span></div>
+      </sc-if>
+
+      <sc-if value="{{ formSubmitted }}">
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:36px; text-align:center;">
+          <div style="font-size:40px; margin-bottom:12px;">✓</div>
+          <div style="font-family:'Unbounded'; font-weight:700; font-size:20px; margin-bottom:10px;">Заявка отправлена!</div>
+          <div style="color:#454C59; font-size:15px; line-height:1.6; margin-bottom:20px;">Мы свяжемся с вами в ближайшее время. Если срочно — напишите сразу в <a href="https://t.me/cstmstd" target="_blank">Telegram @cstmstd</a>.</div>
+          <div style="display:inline-block; background:{{ accentColor }}; color:#fff; padding:13px 24px; border-radius:{{ smallRadius }}px; font-weight:700; cursor:pointer;" onClick="{{ go.home }}">На главную</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ formNotSubmitted }}">
+        <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:28px; display:flex; flex-direction:column; gap:18px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div>
+              <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Имя</label>
+              <input type="text" value="{{ form.name }}" onChange="{{ setField.name }}" placeholder="Как к вам обращаться" style="width:100%; padding:13px 14px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:15px;">
+            </div>
+            <div>
+              <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Телефон или Telegram</label>
+              <input type="text" value="{{ form.contact }}" onChange="{{ setField.contact }}" placeholder="+7 999 000-00-00 или @username" style="width:100%; padding:13px 14px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:15px;">
+            </div>
+          </div>
+          <sc-if value="{{ orderShowCommentAndFile }}">
+          <div>
+            <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Комментарий</label>
+            <textarea value="{{ form.comment }}" onChange="{{ setField.comment }}" placeholder="Опишите заказ или пришлите макет" rows="4" style="width:100%; padding:13px 14px; border-radius:{{ smallRadius }}px; border:1.5px solid #DCE2EE; font-size:15px; resize:vertical;"></textarea>
+          </div>
+          <div>
+            <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Файл макета (необязательно)</label>
+            <label style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:14px; border-radius:{{ smallRadius }}px; border:1.5px dashed #DCE2EE; font-size:14px; color:#6B7280; cursor:pointer; text-align:center;" style-hover="border-color:{{ accentColor }}; color:{{ accentColor }}">
+              {{ attachedFileLabel }}
+              <input type="file" onChange="{{ onAttachFile }}" style="display:none;">
+            </label>
+          </div>
+          </sc-if>
+          <div style="background:{{ submitBg }}; color:#fff; padding:16px; border-radius:{{ buttonRadius }}px; font-weight:700; text-align:center; cursor:pointer; font-size:16px;" style-hover="opacity:0.92" onClick="{{ submitForm }}">{{ orderSubmitLabel }}</div>
+          <div style="color:#9AA3B2; font-size:12px; text-align:center;">Отправляя форму, вы соглашаетесь на обработку контактных данных для связи по заказу.</div>
+        </div>
+      </sc-if>
+    </section>
+  </sc-if>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background:#0F1F3D; color:#C4CEE0; padding:48px 24px 28px; margin-top:auto;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+      <div style="max-width:320px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <img src="uploads/logo.png" style="width:36px; height:36px; border-radius:50%; flex-shrink:0; object-fit:contain;">
+          <div style="font-family:'Unbounded'; font-weight:700; font-size:14px; color:#fff;">КАСТОМ СТУДИЯ</div>
+        </div>
+        <div style="font-size:13px; line-height:1.7;">Печать на одежде в Санкт-Петербурге. DTF и термотрансфер.</div>
+      </div>
+      <div style="display:flex; gap:56px; flex-wrap:wrap;">
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:13px; margin-bottom:12px;">Разделы</div>
+          <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
+            <div style="font-size:13px; margin-bottom:10px; cursor:pointer;" onClick="{{ item.onClick }}">{{ item.label }}</div>
+          </sc-for>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:13px; margin-bottom:12px;">Контакты</div>
+          <div style="font-size:13px; margin-bottom:10px;">наб. Обводного канала, 136к1Б</div>
+          <div style="font-size:13px; margin-bottom:10px;"><a href="https://t.me/cstmstd" target="_blank" style="color:#C4CEE0;">Telegram @cstmstd</a></div>
+          <div style="font-size:13px;"><a href="https://vk.com/cstmstd" target="_blank" style="color:#C4CEE0;">ВКонтакте</a></div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1200px; margin:36px auto 0; padding-top:20px; border-top:1px solid #1E3358; font-size:12px; color:#7A88A6;">© 2026 Кастом Студия</div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;palette&quot;: {
+    &quot;editor&quot;: &quot;color&quot;,
+    &quot;default&quot;: [&quot;#1B4FA0&quot;, &quot;#123a7c&quot;, &quot;#EAF0FC&quot;],
+    &quot;tsType&quot;: &quot;string[]&quot;,
+    &quot;section&quot;: &quot;Внешний вид&quot;,
+    &quot;options&quot;: [
+      [&quot;#1B4FA0&quot;, &quot;#123a7c&quot;, &quot;#EAF0FC&quot;],
+      [&quot;#16181C&quot;, &quot;#000000&quot;, &quot;#EDEEF0&quot;],
+      [&quot;#C22A2A&quot;, &quot;#8f1717&quot;, &quot;#FBEAEA&quot;],
+      [&quot;#D9631E&quot;, &quot;#a84515&quot;, &quot;#FCEEE3&quot;]
+    ]
+  },
+  &quot;shape&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;default&quot;: &quot;rounded&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Внешний вид&quot;,
+    &quot;options&quot;: [&quot;rounded&quot;, &quot;sharp&quot;]
+  },
+  &quot;cardStyle&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;default&quot;: &quot;outlined&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Внешний вид&quot;,
+    &quot;options&quot;: [&quot;outlined&quot;, &quot;elevated&quot;]
+  }
+}">
+class Component extends DCLogic {
+  state = {
+    page: 'home',
+    wishlist: {},
+    selectedSize: null,
+    cardIndex: {},
+    cardColor: {},
+    orderSource: 'home',
+    form: { name: '', contact: '', product: '', method: 'DTF', qty: '', size: '', comment: '' },
+    formSubmitted: false,
+    attachedFileName: null,
+    wordmarkIndex: 0,
+    wordmarkVisible: true,
+    design: { src: null, x: 20, y: 20, w: 120 },
+    designBack: { src: null, x: 20, y: 20, w: 120 },
+    textFront: { content: '', font: "'PT Sans', sans-serif", size: 32, color: '#1A1A1A', x: 20, y: 20 },
+    textBack: { content: '', font: "'PT Sans', sans-serif", size: 32, color: '#1A1A1A', x: 20, y: 20 },
+    backEnabled: false,
+    garmentColor: '#ffffff',
+    designerServices: {},
+    cComment: '',
+    textFrontOpen: false,
+    textBackOpen: false,
+    productMenuOpen: false,
+    designerMenuOpen: false,
+    sizeMenuOpen: false,
+    cSize: 'M',
+    cProduct: 'Футболка стандарт',
+    cMethod: 'DTF',
+    drag: null,
+    contactMenuOpen: false,
+    collectionsMenuOpen: false,
+    heroIndex: 0,
+    heroPhotoIds: ['dora-cover','titan-cover','portfolio-0','portfolio-1'],
+    heroHover: { idx: null, x: 0, y: 0 },
+    heroFadingIdx: null,
+    cart: {},
+    cartOpen: false,
+  };
+
+  heroPhotoPool = ['dora-cover','dora-1','dora-2','dora-3','dora-4','dora-5','dora-6','titan-cover','titan-1','titan-2','titan-3','portfolio-strip-small','portfolio-strip-wide','portfolio-0','portfolio-1','portfolio-2','portfolio-3','portfolio-4','portfolio-5','titan-eren','titan-mikasa','titan-levi','titan-armin','titan-erwin','titan-hange','titan-historia','titan-jean','titan-annie','titan-pieck','dora-hoodie-1','dora-hoodie-2','dora-hoodie-3','dora-hoodie-4','dora-hoodie-5','dora-sweatshirt'];
+  pickHeroPhotos() {
+    const shuffled = [...this.heroPhotoPool].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 4);
+  }
+  openHeroProduct(id) {
+    const pr = (this._heroProducts || []).find((p) => p.slotId === id);
+    this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+  getHeroMeta(id) {
+    const pr = (this._heroProducts || []).find((p) => p.slotId === id);
+    if (pr && pr.collection) {
+      return { label: pr.name, desc: pr.desc, link: () => this.openHeroProduct(id), photo: pr.photo };
+    }
+    if (id.indexOf('dora') === 0) return { label: 'Проект «Дора»', desc: 'Мерч-коллекция и дизайнерский журнал, посвящённые творчеству Дарьи Шихановой.', link: () => this.setPage('dora'), photo: null };
+    if (id.indexOf('titan') === 0) return { label: 'Проект «Титан»', desc: 'Авторский фан-арт мерч в мрачной фэнтези-эстетике.', link: () => this.setPage('titan'), photo: null };
+    return { label: 'Наши работы', desc: 'Из портфолио готовых работ студии.', link: () => this.setPage('portfolio'), photo: null };
+  }
+  buildHeroTile(id, idx) {
+    const meta = this.getHeroMeta(id);
+    const hover = this.state.heroHover;
+    const isHovered = hover.idx === idx;
+    const isFading = this.state.heroFadingIdx === idx;
+    const mx = isHovered ? hover.x : 0;
+    const my = isHovered ? hover.y : 0;
+    const scale = isHovered ? 1.28 : 1.06;
+    return {
+      id,
+      label: meta.label,
+      desc: meta.desc,
+      hasLink: !!meta.link,
+      photoSrc: meta.photo || '',
+      onDetails: meta.link ? (e) => { e.stopPropagation(); meta.link(); } : null,
+      onTileClick: meta.link ? () => meta.link() : null,
+      hovered: isHovered,
+      notHovered: !isHovered,
+      overlayOpacity: isFading ? 1 : (isHovered ? 0.4 : 0),
+      overlayTransition: isFading ? 'opacity .38s ease' : 'opacity .3s ease',
+      blur: 'blur(0px)',
+      transform: `translate(${mx}px, ${my}px) scale(${scale})`,
+      onEnter: () => this.setState({ heroHover: { idx, x: 0, y: 0 } }),
+      onLeave: () => this.setState((s) => (s.heroHover.idx === idx ? { heroHover: { idx: null, x: 0, y: 0 } } : null)),
+      onMove: (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const relX = (e.clientX - rect.left) / rect.width - 0.5;
+        const relY = (e.clientY - rect.top) / rect.height - 0.5;
+        this.setState({ heroHover: { idx, x: -relX * 28, y: -relY * 28 } });
+      },
+    };
+  }
+
+  zoneRef = React.createRef();
+  similarScrollRef = React.createRef();
+  zoneRefBack = React.createRef();
+  marqueeRef = React.createRef();
+
+  onDragMove = (e) => {
+    const d = this.state.drag;
+    if (!d) return;
+    const side = d.side || 'front';
+    const key = d.key || (side === 'back' ? 'designBack' : 'design');
+    const zone = (side === 'back' ? this.zoneRefBack : this.zoneRef).current;
+    const zw = zone ? zone.clientWidth : 200;
+    const zh = zone ? zone.clientHeight : 260;
+    const isText = key === 'textFront' || key === 'textBack';
+    const w = isText ? (this.state[key].size || 32) * 3 : (this.state[key].w !== undefined ? this.state[key].w : 80);
+    let nx = d.origX + (e.clientX - d.startX);
+    let ny = d.origY + (e.clientY - d.startY);
+    nx = Math.max(-w * 0.4, Math.min(zw - w * 0.6, nx));
+    ny = Math.max(-w * 0.4, Math.min(zh - w * 0.3, ny));
+    this.setState((s) => ({ [key]: { ...s[key], x: nx, y: ny } }));
+  };
+
+  onDragEnd = () => {
+    if (this.state.drag) this.setState({ drag: null });
+  };
+
+  addToCart = (product) => {
+    this.setState((s) => {
+      const cart = { ...s.cart };
+      const existing = cart[product.slotId];
+      cart[product.slotId] = { name: product.name, price: product.price, desc: product.desc, photo: product.photo, qty: existing ? existing.qty + 1 : 1 };
+      return { cart, cartOpen: true };
+    });
+  };
+
+  changeCartQty = (id, delta) => {
+    this.setState((s) => {
+      const cart = { ...s.cart };
+      const item = cart[id];
+      if (!item) return {};
+      const qty = item.qty + delta;
+      if (qty <= 0) {
+        delete cart[id];
+      } else {
+        cart[id] = { ...item, qty };
+      }
+      return { cart };
+    });
+  };
+
+  parsePrice = (str) => {
+    if (!str) return null;
+    const m = str.replace(/\s/g, '').match(/(\d+)/);
+    return m ? parseInt(m[1], 10) : null;
+  };
+
+  removeFromCart = (id) => {
+    this.setState((s) => {
+      const cart = { ...s.cart };
+      delete cart[id];
+      return { cart };
+    });
+  };
+
+  downloadMockup = () => {
+    const loadImg = (src) => new Promise((res, rej) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => res(img);
+      img.onerror = rej;
+      img.src = src;
+    });
+    const gColorLower = (this.state.garmentColor || '#ffffff').toLowerCase();
+    const productImages = this._productImages || {};
+    (async () => {
+      try {
+        const zoneRect = this.zoneRef.current.getBoundingClientRect();
+        const stageRect = this.zoneRef.current.parentElement.getBoundingClientRect();
+        const relLeft = (zoneRect.left - stageRect.left) / stageRect.width;
+        const relTop = (zoneRect.top - stageRect.top) / stageRect.height;
+        const relW = zoneRect.width / stageRect.width;
+        const relH = zoneRect.height / stageRect.height;
+        const includeBack = this.state.backEnabled && this.state.designBack.src;
+        const panelW = 900, panelH = 1000;
+        const canvas = document.createElement('canvas');
+        canvas.width = includeBack ? panelW * 2 + 40 : panelW;
+        canvas.height = panelH;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const drawSide = async (offsetX, garmentSrc, design, zRect) => {
+          const garment = await loadImg(garmentSrc);
+          ctx.drawImage(garment, offsetX, 0, panelW, panelH);
+          if (design && design.src) {
+            const dImg = await loadImg(design.src);
+            const zx = offsetX + relLeft * panelW;
+            const zy = relTop * panelH;
+            const zw = relW * panelW;
+            const zh = relH * panelH;
+            const dW = (design.w / this.zoneRef.current.clientWidth) * zw;
+            const dH = dW * (dImg.height / dImg.width);
+            const dX = zx + (design.x / this.zoneRef.current.clientWidth) * zw;
+            const dY = zy + (design.y / this.zoneRef.current.clientHeight) * zh;
+            ctx.drawImage(dImg, dX, dY, dW, dH);
+          }
+        };
+
+        const productImg = (this._lastProductImg) || {};
+        await drawSide(0, productImg.front, this.state.design, null);
+        if (includeBack) {
+          await drawSide(panelW + 40, productImg.back, this.state.designBack, null);
+        }
+        const link = document.createElement('a');
+        link.download = 'custom-studio-mockup.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        alert('Не удалось собрать макет для скачивания. Попробуйте ещё раз.');
+      }
+    })();
+  };
+
+  wordmarks = [
+    'uploads/kastom-1861c736.png',
+    'uploads/custom-f29645c8.png',
+    'uploads/pechat-na-ti-06ad66e4.png',
+  ];
+
+  componentDidMount() {
+    this.setState({ heroPhotoIds: this.pickHeroPhotos() });
+    this._outsideClickHandler = (e) => {
+      if (!e.target.closest('[data-menu-root]')) {
+        this.setState((s) => (s.productMenuOpen || s.sizeMenuOpen || s.designerMenuOpen) ? { productMenuOpen: false, sizeMenuOpen: false, designerMenuOpen: false } : null);
+      }
+    };
+    document.addEventListener('pointerdown', this._outsideClickHandler);
+    this.wordmarks.forEach((src) => { const img = new Image(); img.src = src; });
+    const constructorImagePaths = [
+      'uploads/belaya-futbolka.png','uploads/chernaya-futbolka.png','uploads/futbolka-b-spina.png','uploads/futbolka-ch-spina.png',
+      'uploads/oversayz-b.png','uploads/oversayz-ch.png','uploads/oversayz-b-spina.png','uploads/oversayz-ch-spina.png',
+      'uploads/zhenskaya-futbolka-b.png','uploads/zhenskaya-futbolka-ch.png','uploads/zhenskaya-futbolka-b-spina.png','uploads/zhenskaya-futbolka-ch-spina.png',
+      'uploads/polo-b.png','uploads/polo-ch.png','uploads/polo-b-spina.png','uploads/polo-ch-spina.png',
+      'uploads/svitshot-b.png','uploads/svitshot-ch.png','uploads/svitshot-b-spina.png','uploads/svitshot-ch-spina.png',
+      'uploads/hudi-b.png','uploads/hudi-ch.png','uploads/hudi-b-spina.png','uploads/hudi-ch-spina.png',
+      'uploads/longsliv-b.png','uploads/longsliv-ch.png','uploads/longsliv-b-spina.png','uploads/longsliv-ch-spina.png',
+      'uploads/shopper-b.png','uploads/shopper-ch.png',
+      'uploads/zhiletka.png','uploads/zhiletka-spina.png',
+    ];
+    constructorImagePaths.forEach((src) => { const img = new Image(); img.src = src; });
+    this._wordmarkTimer = setInterval(() => {
+      this.setState((s) => ({ wordmarkIndex: (s.wordmarkIndex + 1) % this.wordmarks.length }));
+    }, 3000);
+    window.addEventListener('pointermove', this.onDragMove);
+    window.addEventListener('pointerup', this.onDragEnd);
+    this._heroTimer = null;
+    const scheduleHeroSwap = () => {
+      const delay = 7000 + Math.random() * 5000;
+      this._heroTimer = setTimeout(() => {
+        const slotIdx = Math.floor(Math.random() * this.state.heroPhotoIds.length);
+        this.setState({ heroFadingIdx: slotIdx });
+        setTimeout(() => {
+          this.setState((s) => {
+            const ids = [...s.heroPhotoIds];
+            const used = new Set(ids);
+            const options = this.heroPhotoPool.filter((id) => !used.has(id));
+            const pool = options.length ? options : this.heroPhotoPool;
+            ids[slotIdx] = pool[Math.floor(Math.random() * pool.length)];
+            return { heroPhotoIds: ids };
+          });
+          setTimeout(() => this.setState({ heroFadingIdx: null }), 30);
+        }, 380);
+        scheduleHeroSwap();
+      }, delay);
+    };
+    scheduleHeroSwap();
+    this._marqueeX = 0;
+    this._marqueeSpeed = 900;
+    this._marqueeLastT = null;
+    this._marqueeDragging = false;
+    this._marqueeDragLastX = 0;
+    this._marqueeDragLastT = 0;
+    this._marqueeVelocity = 0;
+    const step = (t) => {
+      if (this._marqueeLastT == null) this._marqueeLastT = t;
+      const dt = Math.min((t - this._marqueeLastT) / 1000, 0.05);
+      this._marqueeLastT = t;
+      const el = this.marqueeRef.current;
+      if (!this._marqueeDragging) {
+        const target = 22;
+        this._marqueeSpeed += (target - this._marqueeSpeed) * Math.min(dt * 1.4, 1);
+        this._marqueeX -= this._marqueeSpeed * dt;
+      }
+      if (el) {
+        const half = el.scrollWidth / 2;
+        if (half > 0) {
+          if (this._marqueeX <= -half) this._marqueeX += half;
+          if (this._marqueeX > 0) this._marqueeX -= half;
+        }
+        el.style.transform = 'translateX(' + this._marqueeX + 'px)';
+      }
+      this._marqueeRaf = requestAnimationFrame(step);
+    };
+    this._marqueeRaf = requestAnimationFrame(step);
+    setTimeout(() => this.forceUpdate(), 0);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('pointerdown', this._outsideClickHandler);
+    if (this._wordmarkTimer) clearInterval(this._wordmarkTimer);
+    if (this._heroTimer) clearTimeout(this._heroTimer);
+    if (this._marqueeRaf) cancelAnimationFrame(this._marqueeRaf);
+    window.removeEventListener('pointermove', this.onDragMove);
+    window.removeEventListener('pointerup', this.onDragEnd);
+  }
+
+  setPage = (p) => {
+    this.setState({ page: p });
+    if (p === 'reviews') { this._marqueeSpeed = 900; }
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  };
+
+  renderVals() {
+   try {
+    const palette = this.props.palette ?? ['#1B4FA0', '#123a7c', '#EAF0FC'];
+    const [accentColor, accentHover, accentLight] = palette;
+    const shape = this.props.shape ?? 'rounded';
+    const isSharp = shape === 'sharp';
+    const cardRadius = isSharp ? 2 : 16;
+    const buttonRadius = isSharp ? 4 : 12;
+    const heroRadius = isSharp ? 4 : 24;
+    const smallRadius = isSharp ? 2 : 9;
+    const cardStyleProp = this.props.cardStyle ?? 'outlined';
+    const isElevated = cardStyleProp === 'elevated';
+    const cardBorder = isElevated ? 'none' : '1px solid #E4E8F0';
+    const cardShadow = isElevated ? '0 10px 28px rgba(15,31,61,0.10)' : 'none';
+
+    const products = [
+      { slotId: 'p-tshirt-std', name: 'Футболка стандарт', price: '650 ₽', desc: 'Хлопковая футболка, плотность 180 г/м², печать одним принтом до А4.', photo: 'uploads/models/white-tshirt-standard-front.jpg', photoBack: 'uploads/models/white-tshirt-standard-back.jpg', blackPhoto: 'uploads/models/black-tshirt-standard-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-standard-back.jpg' },
+      { slotId: 'p-tshirt-prem', name: 'Футболка оверсайз премиум', price: '1 200 ₽', desc: 'Плотность 240 г/м², свободный крой, премиум-качество.', photo: 'uploads/models/white-tshirt-oversize-front.jpg', photoBack: 'uploads/models/white-tshirt-oversize-back.jpg', blackPhoto: 'uploads/models/black-tshirt-oversize-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-oversize-back.jpg' },
+      { slotId: 'p-tshirt-women', name: 'Женская футболка', price: '700 ₽', desc: 'Приталенный женский крой, плотность 180 г/м², мягкий хлопок.', photo: 'uploads/models/white-tshirt-women-front.jpg', photoBack: 'uploads/models/white-tshirt-women-back.jpg', blackPhoto: 'uploads/models/black-tshirt-women-front.jpg', blackPhotoBack: 'uploads/models/black-tshirt-women-back.jpg' },
+      { slotId: 'p-polo', name: 'Футболка поло', price: '850 ₽', desc: 'Классическое поло с воротником, плотность 180 г/м², под нанесение принта или лого.', photo: 'uploads/models/white-polo-front.jpg', photoBack: 'uploads/models/white-polo-back.jpg', blackPhoto: 'uploads/models/black-polo-front.jpg', blackPhotoBack: 'uploads/models/black-polo-back.jpg' },
+      { slotId: 'p-sweatshirt', name: 'Свитшот', price: '1 800 ₽', desc: 'Плотный свитшот без капюшона, плотность 320 г/м², приятный к телу.', photo: 'uploads/models/white-sweatshirt-front.jpg', photoBack: 'uploads/models/white-sweatshirt-back.jpg', blackPhoto: 'uploads/models/black-sweatshirt-front.jpg', blackPhotoBack: 'uploads/models/black-sweatshirt-back.jpg' },
+      { slotId: 'p-hoodie-std', name: 'Толстовка стандарт', price: '2 300 ₽', desc: 'Толстовка с капюшоном, плотность 340 г/м², классическая посадка.', photo: 'uploads/models/white-hoodie-front.jpg', photoBack: 'uploads/models/white-hoodie-back.jpg', blackPhoto: 'uploads/models/black-hoodie-front.jpg', blackPhotoBack: 'uploads/models/black-hoodie-back.jpg' },
+      { slotId: 'p-hoodie-over', name: 'Толстовка оверсайз', price: '2 800 ₽', desc: 'Свободный оверсайз силуэт, плотность 340 г/м².', photo: 'uploads/beloe-hudi-muzhskoe-oversayz-pered.jpg', photoBack: 'uploads/beloe-hudi-muzhskoe-oversayz-spina.jpg', blackPhoto: 'uploads/chernoe-hudi-muzhskoe-oversayz-pered.jpg', blackPhotoBack: 'uploads/chernoe-hudi-muzhskoe-oversayz-spina.jpg' },
+      { slotId: 'p-longsleeve', name: 'Лонгслив', price: '900 ₽', desc: 'Футболка с длинным рукавом, плотность 180 г/м², под сезон.', photo: 'uploads/models/white-longsleeve-front.jpg', photoBack: 'uploads/models/white-longsleeve-back.jpg', blackPhoto: 'uploads/models/black-longsleeve-front.jpg', blackPhotoBack: 'uploads/models/black-longsleeve-back.jpg' },
+      { slotId: 'p-shopper', name: 'Шоппер', price: '500 ₽', desc: 'Плотная сумка-шоппер под лого или принт.', photo: 'uploads/models/white-shopper-front.jpg', blackPhoto: 'uploads/models/black-shopper-front.jpg' },
+      { slotId: 'p-cap', name: 'Кепка', price: 'цена по запросу', desc: 'Кепка под вышивку или печать, уточняйте в Telegram.', photo: 'uploads/belaya-kepka-pered.jpg', photoBack: 'uploads/belaya-kepka-spina.jpg', blackPhoto: 'uploads/chernaya-kepka-pered.jpg', blackPhotoBack: 'uploads/chernaya-kepka-spina.jpg' },
+    ];
+
+    const titanProducts = [
+      { slotId: 'titan-eren', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРЕН ЙЕГЕР»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Эрена Йегера на груди, готичный принт «JAEGER» на спине.', photo: 'uploads/titan/eren-yeager-white-front.jpg', photoBack: 'uploads/titan/jaeger-logo-white-back.jpg', blackPhoto: 'uploads/titan/eren-yeager-black-front.jpg', blackPhotoBack: 'uploads/titan/jaeger-logo-black-back.jpg', gallery: ['uploads/eren-glavnaya.png', 'uploads/eren-print.jpg', 'uploads/eren.png'] },
+      { slotId: 'titan-mikasa', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «МИКАСА АККЕРМАН»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Микасы на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/mikasa-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/mikasa-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/mikasa-print.png', 'uploads/mikasa-i-eren.png'] },
+      { slotId: 'titan-levi', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЛЕВИ АККЕРМАН»', price: '1 990 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд капитана Леви на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/levi-ackerman-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/levi-ackerman-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/levi-glavnaya.png', 'uploads/levi-print.png'] },
+      { slotId: 'titan-armin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АРМИН АРЛЕРТ»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Армина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/armin-arlert-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/armin-arlert-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/armin-print.jpg'] },
+      { slotId: 'titan-erwin', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЭРВИН СМИТ»', price: '1 990 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд командующего Эрвина на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/erwin-smith-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/erwin-smith-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/ervin-glavnaya.png', 'uploads/ervin-print.jpg'] },
+      { slotId: 'titan-hange', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХАНЖЕ ЗОЕ»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Ханже Зое на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/hange-zoe-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/hange-zoe-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/handzhi-glavnaya.png', 'uploads/handzhi-print.jpg', 'uploads/handzhi.png'] },
+      { slotId: 'titan-historia', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ХИСТОРИЯ РАЙС»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд королевы Хистории на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/historia-reiss-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/historia-reiss-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/historiya-glavnaya.png', 'uploads/historiya-print.jpg'] },
+      { slotId: 'titan-jean', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ЖАН КИРШТАЙН»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Жана на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/jean-kirschtein-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/jean-kirschtein-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/zhan-glavnaya.png', 'uploads/zhan-print.png', 'uploads/zhan.png'] },
+      { slotId: 'titan-annie', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «АННИ ЛЕОНХАРТ»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Анни Леонхарт на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/annie-leonhart-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/annie-leonhart-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg', gallery: ['uploads/enni-glavnaya.png', 'uploads/enni-print.png', 'uploads/enni.png'] },
+      { slotId: 'titan-pieck', collection: 'titan', badge: 'АТ', name: 'ФУТБОЛКА | «ПИК ФИНГЕР»', price: '1 890 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 15 дней. Взгляд Пик Фингер на груди, авторский принт с мечом Разведкорпуса на спине.', photo: 'uploads/titan/pieck-finger-white-front.jpg', photoBack: 'uploads/titan/survey-corps-swords-white-back.jpg', blackPhoto: 'uploads/titan/pieck-finger-black-front.jpg', blackPhotoBack: 'uploads/titan/survey-corps-swords-black-back.jpg' },
+    ];
+
+    const doraProducts = [
+      { slotId: 'dora-hoodie-1', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕТ ТЕБЯ»', oldPrice: '7 990 ₽', price: '5 992 ₽', discount: '-25%', installment: '1 498 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Худи с карандашной иллюстрацией на спине — тема расставания и внутреннего надлома, дополнена пришивными элементами ткани.' },
+      { slotId: 'dora-hoodie-2', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «РОЗОВЫЕ ВОЛОСЫ»', oldPrice: '7 990 ₽', price: '6 392 ₽', discount: '-20%', installment: '1 598 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. На спине — путь героини от мечты к сцене, на груди — минималистичная вышивка.' },
+      { slotId: 'dora-hoodie-3', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LOVERBOY»', oldPrice: '8 490 ₽', price: '6 368 ₽', discount: '-25%', installment: '1 592 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Стилизованная Эйфелева башня на спине, лаконичный перед — вдохновлено клипом трека.' },
+      { slotId: 'dora-hoodie-4', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «НЕ ИГРА»', oldPrice: '7 990 ₽', price: '6 392 ₽', discount: '-20%', installment: '1 598 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Чёрный', desc: 'Срок производства от 20 дней. Игровые образы и пиксельная эстетика на груди, история на спине — по мотивам одноимённого трека.' },
+      { slotId: 'dora-hoodie-5', collection: 'dora', badge: 'ДОРА', name: 'ХУДИ | «LUNYA»', oldPrice: '6 990 ₽', price: '5 592 ₽', discount: '-20%', installment: '1 398 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Портрет собаки Доры — Лунтика — на спине, вышивка «LUNYA» на груди.' },
+      { slotId: 'dora-sweatshirt', collection: 'dora', badge: 'ДОРА', name: 'СВИТШОТ | «CUTE ROCK»', oldPrice: '5 490 ₽', price: '4 392 ₽', discount: '-20%', installment: '1 098 ₽', sizes: ['S','M','L','XL','2XL'], color: 'Белый', desc: 'Срок производства от 20 дней. Надпись выполнена объёмной вспенивающейся печатью — эффект ощущается на ощупь.' },
+    ];
+
+    const printFormats = [
+      { name: 'А3', size: '29×42 см', price: '700 ₽' },
+      { name: 'А4', size: '21×29 см', price: '600 ₽' },
+      { name: 'А5', size: '15×21 см', price: '500 ₽' },
+      { name: 'А6', size: '11×15 см', price: '400 ₽' },
+    ];
+
+    const addonServices = [
+      { name: 'Улучшение качества изображения', price: 'от 300 ₽/файл' },
+      { name: 'Удаление водяных знаков', price: 'от 300 ₽/файл' },
+      { name: 'Отрисовка изображения с нуля по описанию', price: 'от 500 ₽/файл' },
+      { name: 'Удаление фона', price: 'от 300 ₽/файл' },
+      { name: 'Ретушь', price: 'от 300 ₽/файл' },
+      { name: 'Преобразование в вектор (масштабирование без потери качества)', price: 'от 400 ₽/файл' },
+      { name: 'Помощь с композицией и расположением элементов', price: 'от 300 ₽/файл' },
+    ];
+
+    const howtoSteps = [
+      { num: '1', title: 'Выбор изделия, размера и цвета', desc: 'Берёте изделие из каталога (футболка, худи и т.д.) или приносите своё — уточняете размер и цвет.' },
+      { num: '2', title: 'Изображение и параметры печати', desc: 'Присылаете макет или текст в электронном виде, указываете размер и место принта (грудь, спина, рукав).' },
+      { num: '3', title: 'Согласование макета', desc: 'Делаем цифровой макет — как принт будет смотреться на изделии — и вносим правки, пока не утвердите. Нужен дизайнер? Поможем улучшить, отрисовать, убрать фон или подготовить файл к печати — как доп. услугу.' },
+      { num: '4', title: 'Предоплата и печать', desc: 'После утверждения макета — 100% предоплата удобным способом, и мы печатаем заказ.' },
+      { num: '5', title: 'Получение заказа', desc: 'Сообщаем, когда заказ готов. Забрать можно в студии на наб. Обводного канала, 136к1Б — или оформить доставку.' },
+    ];
+
+    const testimonials = [
+      { name: 'Angel', date: '29 мая 2026', stars: '★★★★★', text: 'Появилась идея, которую нужно было реализовать в очень сжатые сроки — несколько студий отказались из-за сложности. Здесь не только не отказали, а сделали даже лучше, чем я представляла. Огромная благодарность!' },
+      { name: 'Алиса Д.', date: '22 февраля 2026', stars: '★★★★★', text: 'Очень приятный персонал, максимально быстрая работа, качественные футболки и приятно удивившая адекватная цена. Буду обращаться ещё не раз!' },
+      { name: 'Анна Х.', date: '31 января 2026', stars: '★★★★★', text: 'Делали большой заказ в декабре на 25 изделий — футболки с наклейками и рубашки с вышивкой. Учли все пожелания, уточняли детали на каждом этапе и отдали точно в срок. Спустя месяц носки наклейки всё ещё как новые, ни одной трещинки. Спасибо за отличную работу и оперативность!' },
+      { name: 'Надежда К', date: '27 декабря 2025', stars: '★★★★★', text: 'Большое спасибо, очень рада, что нашла именно эту студию — клиентоориентированность и скорость на высоте! Заказала одну футболку в подарок, а потом решила заказать ещё — всё сделали быстро и качественно, доставили уже на следующий день.' },
+      { name: 'Яна Гаврилова', date: '27 декабря 2025', stars: '★★★★★', text: 'Давно не встречала настолько оперативно выполненный заказ. Всё — от подготовки макета до печати — сделано быстро и аккуратно. От чистого сердца рекомендую эту студию.' },
+      { name: 'Huplu Cat', date: '07 ноября 2025', stars: '★★★★★', text: 'Всё, что сказано в отзывах ниже, могу только подтвердить — приходите, не пожалеете.' },
+      { name: 'Ксения Сироткина', date: '31 октября 2025', stars: '★★★★★', text: 'Напечатали А4 на моей футболке за 5 минут и 600 рублей — в восторге. В других местах просят от 2000 рублей и печатают только на своих футболках. Очень комфортное общение, встретили у КПП, чтобы я не заблудилась. Больше никуда, кроме этой студии!' },
+      { name: 'Ульяна Кулыгина', date: '22 октября 2025', stars: '★★★★★', text: 'Мастера своего дела! Изделие выполнили в короткие сроки, что очень удобно, и дали рекомендации по уходу. Качество печати на высоте! Буду обращаться в дальнейшем.' },
+      { name: 'Милена Т.', date: '23 октября 2025', stars: '★★★★★', text: 'Заказ выполнен на высшем уровне — всё в срок и даже раньше! Очень приятно. Теперь будем обращаться только в эту студию и рекомендовать её другим.' },
+      { name: 'Nastasya', date: '26 ноября 2024', stars: '★★★★★', text: 'Всё отлично! Списались утром по поводу заказа — в тот же день сделали отрисовку и напечатали принт на футболке. Очень быстро, оперативно и по приятной цене.' },
+      { name: 'Сергей Максимов', date: '24 августа 2024', stars: '★★★★★', text: 'Крутой принт — договорились на более качественный образец, результат выглядит как из магазина. Приятный и общительный продавец, рекомендую доплатить, если хотите хороший результат.' },
+      { name: 'Максим М.', date: '21 августа 2024', stars: '★★★★★', text: 'Долго искал прямую печать на футболках — везде либо высокая цена, либо печатают только на своих футболках. Здесь взяли мою, подобрали рисунок, сделали быстро и качественно. Осенью закажу ещё, всем рекомендую!' },
+      { name: 'Анастасия Б.', date: '25 мая 2024', stars: '★★★★★', text: 'Нужно было нанести логотип танцевальной студии на футболку и спортивную куртку. Долго искала место с адекватной ценой и удобным графиком — и наконец нашла. Ехала с другого конца города, но оно того стоило: макет отправила заранее, а нанесение трёх логотипов заняло всего 15–20 минут. Выдали и памятку по уходу за одеждой.' },
+      { name: 'Светлана Назарова', date: '22 мая 2024', stars: '★★★★★', text: 'Работает приятный молодой человек, быстро накидал макет, учёл все пожелания. Печать на одежде была готова уже через 15 минут. Спасибо!' },
+    ];
+
+    const portfolioItems = Array.from({ length: 6 }).map((_, i) => ({ slotId: 'portfolio-' + i, label: 'Готовая работа' }));
+
+    const doraItems = [
+      { slotId: 'dora-1', tag: 'Худи 1', name: '«Нет тебя»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый эмоциональный дизайн коллекции. Основан на теме расставания, внутреннего надлома и воспоминаний — пустоты после окончания отношений, переданной через карандашную иллюстрацию, пришивные элементы ткани и сложную композицию. Именно с этого дизайна начался весь проект, хотя завершён он был последним.' },
+      { slotId: 'dora-2', tag: 'Худи 2', name: '«Розовые волосы»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Работа о пути человека к собственной мечте. Композиция показывает две версии Доры — маленькую девочку, которая только мечтает о сцене, и взрослую артистку, уже добившуюся успеха. Между ними — толпа зрителей и фиолетовый дым, символизирующие время, путь и внутренний рост. На груди — минималистичная вышивка; во время работы над этим дизайном был разработан единый модельный лист персонажа Доры для всей коллекции.' },
+      { slotId: 'dora-3', tag: 'Худи 3', name: '«Loverboy»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Самый визуальный дизайн проекта, вдохновлённый клипом песни. Центральный элемент — стилизованная Эйфелева башня, вокруг которой построена вся композиция. Главная задача — баланс между высокой детализацией и современным минимализмом: передняя часть изделия выполнена максимально просто, чтобы не конкурировать с крупной композицией на спине.' },
+      { slotId: 'dora-4', tag: 'Худи 4', name: '«Не игра»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'Дизайн основан на одноимённом треке и его обложке — в работе объединены игровые образы из PUBG Mobile, пиксельная эстетика и сюжет песни. На груди — два персонажа, выходящие из дыма, на спине — история человека, настолько увлечённого игрой, что он перестаёт замечать любимого человека. Идея дизайна: любовь может превращаться в войну, если люди перестают видеть друг друга.' },
+      { slotId: 'dora-5', tag: 'Худи 5', name: '«LUNYA»', cols: '1fr 1fr', imageFirst: true, imageSecond: false, desc: 'Худи, посвящённая собаке Доры — Лунтику. Самый минималистичный предмет коллекции: на спине — портрет Лунтика, вдохновлённый стилистикой клипа Sia — Chandelier, на груди — аккуратная вышивка имени «LUNYA». Задача — современная вещь, которая выглядит ярко, но остаётся удобной для повседневной носки.' },
+      { slotId: 'dora-6', tag: 'Дополнительный предмет', name: 'Свитшот «Cute Rock»', cols: '1fr 1fr', imageFirst: false, imageSecond: true, desc: 'В отличие от остальных изделий, здесь акцент сделан не на иллюстрации, а на материале: надпись выполнена объёмной вспенивающейся полиуретановой печатью, благодаря чему дизайн воспринимается не только визуально, но и тактильно.' },
+    ];
+    const doraJournalPages = ['dora-journal-1', 'dora-journal-2', 'dora-journal-3'];
+
+    const navRaw = [
+      { key: 'home', label: 'Главная' },
+      { key: 'catalog', label: 'Каталог' },
+      { key: 'constructor', label: 'Конструктор' },
+      { key: 'howto', label: 'Как заказать' },
+      { key: 'portfolio', label: 'Портфолио' },
+      { key: 'reviews', label: 'Отзывы' },
+      { key: 'about', label: 'О нас' },
+      { key: 'contacts', label: 'Контакты' },
+    ];
+    const navItems = navRaw.map((n) => ({
+      label: n.label,
+      onClick: () => this.setPage(n.key),
+      color: this.state.page === n.key ? accentColor : '#454C59',
+      bg: this.state.page === n.key ? accentLight : 'transparent',
+    }));
+
+    const go = {
+      home: () => this.setPage('home'),
+      catalog: () => this.setPage('catalog'),
+      cart: () => this.setPage('cart'),
+      portfolio: () => this.setPage('portfolio'),
+      dora: () => this.setPage('dora'),
+      titan: () => this.setPage('titan'),
+      doraShop: () => this.setPage('dora-shop'),
+      titanShop: () => this.setPage('titan-shop'),
+      product: (id) => {
+        const pr = products.find((p) => p.slotId === id);
+        this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
+        if (typeof window !== 'undefined') window.scrollTo(0, 0);
+      },
+      howto: () => this.setPage('howto'),
+      order: () => this.setPage('order'),
+      orderHome: () => { this.setState({ orderSource: 'home' }); this.setPage('order'); },
+      orderConstructor: () => { this.setState({ orderSource: 'constructor' }); this.setPage('order'); },
+      orderCart: () => { this.setState({ orderSource: 'cart' }); this.setPage('order'); },
+      constructor: () => this.setPage('constructor'),
+    };
+
+    products.push(...titanProducts, ...doraProducts);
+    this._heroProducts = products;
+    if (!this._productsPreloaded) {
+      this._productsPreloaded = true;
+      const seen = new Set();
+      const priority = [];
+      const rest = [];
+      products.forEach((p) => {
+        [p.photo, p.blackPhoto].forEach((src) => { if (src && !seen.has(src)) { seen.add(src); priority.push(src); } });
+        [p.photoBack, p.blackPhotoBack, ...(p.gallery || [])].forEach((src) => { if (src && !seen.has(src)) { seen.add(src); rest.push(src); } });
+      });
+      const load = (list) => list.forEach((src) => { const img = new Image(); img.src = src; });
+      load(priority);
+      const idle = (typeof window !== 'undefined' && window.requestIdleCallback) ? window.requestIdleCallback : (fn) => setTimeout(fn, 400);
+      idle(() => load(rest));
+    }
+    const multiColorIds = ['p-tshirt-std','p-tshirt-women','p-tshirt-prem','p-polo','p-sweatshirt','p-hoodie-std','p-hoodie-over','p-longsleeve','p-shopper','p-cap','titan-eren','titan-mikasa','titan-levi','titan-armin','titan-erwin','titan-hange','titan-historia','titan-jean','titan-annie','titan-pieck'];
+    const enrichedProducts = products.map((p) => {
+      const hasColorOptions = multiColorIds.includes(p.slotId);
+      const photos = hasColorOptions
+        ? [p.photo, p.photoBack, p.blackPhoto || p.photo, p.blackPhotoBack || p.photoBack, ...(p.gallery || [])].filter(Boolean)
+        : [p.photo, p.photoBack, ...(p.gallery || [])].filter(Boolean);
+      const rawIdx = this.state.cardIndex[p.slotId] || 0;
+      const idx = ((rawIdx % photos.length) + photos.length) % photos.length;
+      return {
+        ...p,
+        hasColorOptions,
+        stopNav: (e) => e.stopPropagation(),
+        addToCart: () => this.addToCart(p),
+        addToCartStop: (e) => { e.stopPropagation(); this.addToCart(p); },
+        openDetail: () => go.product(p.slotId),
+        cartLabel: this.state.cart[p.slotId] ? 'В корзине · ' + this.state.cart[p.slotId].qty : 'В корзину',
+        cardPhotoSrc: photos[idx],
+        cardHasMulti: photos.length > 1,
+        cardDots: photos.map((_, i) => ({ color: i === idx ? accentColor : '#C3CCDC' })),
+        cardLayers: photos.map((src, i) => ({ src, isMain: i === 0, isOverlay: i !== 0, opacity: i === idx ? 1 : 0, z: i === idx ? 2 : 1 })),
+        cardScrubEnter: () => {
+          if (hasColorOptions && photos.length >= 3) this.setState((s) => ({ cardIndex: { ...s.cardIndex, [p.slotId]: 2 } }));
+        },
+        cardScrubMove: (e) => {
+          if (photos.length < 2) return;
+          const rect = e.currentTarget.getBoundingClientRect();
+          const frac = (e.clientX - rect.left) / rect.width;
+          const hoverIdx = Math.min(photos.length - 1, Math.max(0, Math.floor(frac * photos.length)));
+          if (hoverIdx !== idx) this.setState((s) => ({ cardIndex: { ...s.cardIndex, [p.slotId]: hoverIdx } }));
+        },
+        cardScrubLeave: () => this.setState((s) => ({ cardIndex: { ...s.cardIndex, [p.slotId]: 0 } })),
+      };
+    });
+
+    const swatchDefs = [
+      { name: 'Белый', hex: '#ffffff' },
+      { name: 'Чёрный', hex: '#1A1A1A' },
+    ];
+    const garmentColors = swatchDefs.map((c) => ({
+      name: c.name,
+      hex: c.hex,
+      onClick: () => this.setState({ garmentColor: c.hex }),
+      border: c.hex.toLowerCase() === '#ffffff' ? '1.5px solid #D0D5DE' : '1.5px solid rgba(0,0,0,0.08)',
+      ring: this.state.garmentColor === c.hex ? '0 0 0 2px #fff, 0 0 0 4px ' + accentColor : 'none',
+    }));
+
+    const makeOnUpload = (key) => (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        this.setState({ [key]: { src: ev.target.result, x: 20, y: 20, w: 120 } });
+      };
+      reader.readAsDataURL(file);
+    };
+    const makeRemoveDesign = (key) => () => this.setState({ [key]: { src: null, x: 20, y: 20, w: 120 } });
+    const makeSetScale = (key) => (e) => {
+      const w = parseInt(e.target.value, 10);
+      this.setState((s) => ({ [key]: { ...s[key], w } }));
+    };
+    const makeStartDrag = (key, side) => (e) => {
+      e.preventDefault();
+      this.setState({ drag: { key, side, startX: e.clientX, startY: e.clientY, origX: this.state[key].x, origY: this.state[key].y } });
+    };
+    const fontOptions = [
+      "'PT Sans', sans-serif",
+      "'Roboto', sans-serif",
+      "'Montserrat', sans-serif",
+      "'Unbounded', sans-serif",
+      "'Oswald', sans-serif",
+      "'Playfair Display', serif",
+      "'Merriweather', serif",
+      "'Comfortaa', cursive",
+      "'Marck Script', cursive",
+      "'JetBrains Mono', monospace",
+    ];
+    const fontLabels = { "'PT Sans', sans-serif": 'PT Sans', "'Roboto', sans-serif": 'Roboto', "'Montserrat', sans-serif": 'Montserrat', "'Unbounded', sans-serif": 'Unbounded', "'Oswald', sans-serif": 'Oswald', "'Playfair Display', serif": 'Playfair Display', "'Merriweather', serif": 'Merriweather', "'Comfortaa', cursive": 'Comfortaa', "'Marck Script', cursive": 'Marck Script', "'JetBrains Mono', monospace": 'JetBrains Mono' };
+    const fontOptionsList = fontOptions.map((f) => ({ value: f, label: fontLabels[f] }));
+    const makeSetText = (key, field) => (e) => {
+      const value = e.target.value;
+      this.setState((s) => ({ [key]: { ...s[key], [field]: value } }));
+    };
+    const setTextFront = makeSetText('textFront', 'content');
+    const setTextFrontFont = makeSetText('textFront', 'font');
+    const setTextFrontSize = (e) => { const v = parseInt(e.target.value, 10); this.setState((s) => ({ textFront: { ...s.textFront, size: v } })); };
+    const setTextFrontColor = makeSetText('textFront', 'color');
+    const setTextBack = makeSetText('textBack', 'content');
+    const setTextBackFont = makeSetText('textBack', 'font');
+    const setTextBackSize = (e) => { const v = parseInt(e.target.value, 10); this.setState((s) => ({ textBack: { ...s.textBack, size: v } })); };
+    const setTextBackColor = makeSetText('textBack', 'color');
+    const startDragTextFront = makeStartDrag('textFront', 'front');
+    const startDragTextBack = makeStartDrag('textBack', 'back');
+    const onUpload = makeOnUpload('design');
+    const removeDesign = makeRemoveDesign('design');
+    const setScale = makeSetScale('design');
+    const startDrag = makeStartDrag('design', 'front');
+    const onUploadBack = makeOnUpload('designBack');
+    const removeDesignBack = makeRemoveDesign('designBack');
+    const setScaleBack = makeSetScale('designBack');
+    const startDragBack = makeStartDrag('designBack', 'back');
+    const toggleBackEnabled = () => this.setState((s) => ({ backEnabled: !s.backEnabled }));
+    const cProductOptions = ['Футболка стандарт', 'Футболка оверсайз', 'Женская футболка', 'Поло', 'Свитшот', 'Толстовка (худи)', 'Лонгслив', 'Шоппер', 'Жилетка сигнальная'];
+
+    const cProductPrices = {
+      'Футболка стандарт': '650 ₽',
+      'Футболка оверсайз': '1 200 ₽',
+      'Женская футболка': '700 ₽',
+      'Поло': '850 ₽',
+      'Свитшот': '1 800 ₽',
+      'Толстовка (худи)': '2 300 ₽',
+      'Лонгслив': '900 ₽',
+      'Шоппер': '500 ₽',
+      'Жилетка сигнальная': '450 ₽',
+    };
+    const cProductOptionsWithPrice = cProductOptions.map((opt) => ({
+      value: opt,
+      price: cProductPrices[opt] || '',
+      bg: this.state.cProduct === opt ? accentLight : '#fff',
+      onClick: () => this.setState({ cProduct: opt, productMenuOpen: false }),
+    }));
+    const toggleProductMenu = () => this.setState((s) => ({ productMenuOpen: !s.productMenuOpen, designerMenuOpen: false, sizeMenuOpen: false }));
+    const toggleDesignerMenu = () => this.setState((s) => ({ designerMenuOpen: !s.designerMenuOpen, productMenuOpen: false, sizeMenuOpen: false }));
+    const toggleSizeMenu = () => this.setState((s) => ({ sizeMenuOpen: !s.sizeMenuOpen, productMenuOpen: false, designerMenuOpen: false }));
+    const toggleTextFront = () => this.setState((s) => ({ textFrontOpen: !s.textFrontOpen }));
+    const toggleTextBack = () => this.setState((s) => ({ textBackOpen: !s.textBackOpen }));
+    const cSizeList = ['S', 'M', 'L', 'XL', 'XXL', '3XL'];
+    const cSizeOptions = cSizeList.map((sz) => ({
+      value: sz,
+      bg: this.state.cSize === sz ? accentLight : '#fff',
+      onClick: () => this.setState({ cSize: sz, sizeMenuOpen: false }),
+    }));
+    const cProductDescs = {
+      'Футболка стандарт': 'Хлопковая футболка, печать одним принтом до А4.',
+      'Футболка оверсайз': 'Плотная ткань, свободный крой, премиум-качество.',
+      'Женская футболка': 'Приталенный женский крой, мягкий хлопок.',
+      'Поло': 'Классическое поло с воротником, под нанесение принта или лого.',
+      'Свитшот': 'Плотный свитшот без капюшона, плотность 320 г/м², приятный к телу.',
+      'Толстовка (худи)': 'Толстовка с капюшоном, классическая посадка.',
+      'Лонгслив': 'Футболка с длинным рукавом, плотность 180 г/м², под сезон.',
+      'Шоппер': 'Плотная сумка-шоппер под лого или принт.',
+      'Жилетка сигнальная': 'Сигнальная жилетка под нанесение лого или принта.',
+    };
+
+    const garmentMap = {
+      'Футболка стандарт': { img: 'uploads/futbolka-b.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Футболка оверсайз': { img: 'uploads/oversayz-b-2.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Женская футболка': { img: 'uploads/zhenskaya-b.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Поло': { img: 'uploads/polo-b.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Свитшот': { img: 'uploads/svitshot-b-2.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Толстовка (худи)': { img: 'uploads/hudi-b-2.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Лонгслив': { img: 'uploads/long-b.png', zone: ['26%', '22%', '48%', '62%'] },
+      'Шоппер': { img: 'uploads/shopper-b-2.png', zone: ['32%', '48%', '38%', '36%'] },
+    };
+    const currentGarment = garmentMap[this.state.cProduct] || garmentMap['Футболка стандарт'];
+    const backZoneMap = {
+      'Шоппер': ['32%', '48%', '38%', '36%'],
+    };
+    const backZone = backZoneMap[this.state.cProduct] || ['26%', '15%', '48%', '68%'];
+    const isColored = (this.state.garmentColor || '#ffffff').toLowerCase() !== '#ffffff';
+    const gColorLower = (this.state.garmentColor || '#ffffff').toLowerCase();
+    const productImages = {
+      'Футболка стандарт': { front: 'uploads/belaya-futbolka.png', frontBlack: 'uploads/chernaya-futbolka.png', back: 'uploads/futbolka-b-spina.png', backBlack: 'uploads/futbolka-ch-spina.png' },
+      'Футболка оверсайз': { front: 'uploads/oversayz-b.png', frontBlack: 'uploads/oversayz-ch.png', back: 'uploads/oversayz-b-spina.png', backBlack: 'uploads/oversayz-ch-spina.png' },
+      'Женская футболка': { front: 'uploads/zhenskaya-futbolka-b.png', frontBlack: 'uploads/zhenskaya-futbolka-ch.png', back: 'uploads/zhenskaya-futbolka-b-spina.png', backBlack: 'uploads/zhenskaya-futbolka-ch-spina.png' },
+      'Поло': { front: 'uploads/polo-b.png', frontBlack: 'uploads/polo-ch.png', back: 'uploads/polo-b-spina.png', backBlack: 'uploads/polo-ch-spina.png' },
+      'Свитшот': { front: 'uploads/svitshot-b.png', frontBlack: 'uploads/svitshot-ch.png', back: 'uploads/svitshot-b-spina.png', backBlack: 'uploads/svitshot-ch-spina.png' },
+      'Толстовка (худи)': { front: 'uploads/hudi-b.png', frontBlack: 'uploads/hudi-ch.png', back: 'uploads/hudi-b-spina.png', backBlack: 'uploads/hudi-ch-spina.png' },
+      'Лонгслив': { front: 'uploads/longsliv-b.png', frontBlack: 'uploads/longsliv-ch.png', back: 'uploads/longsliv-b-spina.png', backBlack: 'uploads/longsliv-ch-spina.png' },
+      'Шоппер': { front: 'uploads/shopper-b.png', frontBlack: 'uploads/shopper-ch.png', back: 'uploads/shopper-b.png', backBlack: 'uploads/shopper-ch.png' },
+      'Жилетка сигнальная': { front: 'uploads/zhiletka.png', back: 'uploads/zhiletka-spina.png' },
+    };
+    const productImg = productImages[this.state.cProduct] || productImages['Футболка стандарт'];
+    this._lastProductImg = productImg;
+    this._productImages = productImages;
+    const garmentPhotoSrc = (gColorLower === '#1a1a1a' && productImg.frontBlack) ? productImg.frontBlack : productImg.front;
+    const garmentPhotoSrcBack = (gColorLower === '#1a1a1a' && productImg.backBlack) ? productImg.backBlack : productImg.back;
+    const showTint = gColorLower !== '#ffffff' && gColorLower !== '#1a1a1a';
+
+    const zonePxWidth = 640 * 0.48;
+    const realZoneCm = 42;
+    const computeFormat = (w) => {
+      const cm = Math.round((w / zonePxWidth) * realZoneCm);
+      let label, price;
+      if (cm <= 12.5) { label = 'А6'; price = '400 ₽'; }
+      else if (cm <= 18) { label = 'А5'; price = '500 ₽'; }
+      else if (cm <= 25) { label = 'А4'; price = '600 ₽'; }
+      else if (cm <= 36) { label = 'А3'; price = '700 ₽'; }
+      else { label = 'А2'; price = '1000 ₽'; }
+      return { cm, label, price };
+    };
+    const frontFormat = this.state.design.src ? computeFormat(this.state.design.w) : (this.state.textFront.content ? computeFormat(this.state.textFront.size * 4) : { cm: 0, label: '—', price: '0 ₽' });
+    const backFormat = this.state.designBack.src ? computeFormat(this.state.designBack.w) : (this.state.textBack.content ? computeFormat(this.state.textBack.size * 4) : { cm: 0, label: '—', price: '0 ₽' });
+    const printCmVal = frontFormat.cm;
+    const printFormatLabel = frontFormat.label;
+    const printPrice = frontFormat.price;
+
+    const parsePrice = (s) => parseInt(String(s || '0').replace(/[^\d]/g, ''), 10) || 0;
+    const designerCostSum = Object.keys(this.state.designerServices)
+      .filter((k) => this.state.designerServices[k])
+      .reduce((sum, k) => {
+        const svc = { quality: 300, prep: 300, draw: 400, custom: 500 }[k] || 0;
+        return sum + svc;
+      }, 0);
+    const productCostVal = parsePrice(cProductPrices[this.state.cProduct]);
+    const frontHasContent = !!(this.state.design.src || this.state.textFront.content);
+    const printCostVal = frontHasContent ? parsePrice(printPrice) : 0;
+    const backHasContent = this.state.backEnabled && !!(this.state.designBack.src || this.state.textBack.content);
+    const backPrintCostVal = backHasContent ? parsePrice(backFormat.price) : 0;
+    const totalVal = productCostVal + printCostVal + backPrintCostVal + designerCostSum;
+    const setField = {};
+    ['name', 'contact', 'product', 'method', 'qty', 'size', 'comment'].forEach((f) => {
+      setField[f] = (e) => this.setState((s) => ({ form: { ...s.form, [f]: e.target.value } }));
+    });
+
+    const productOptions = ['Выберите изделие', ...products.map((p) => p.name)];
+
+    const vals = {
+      isHome: this.state.page === 'home',
+      isCatalog: this.state.page === 'catalog',
+      isProduct: this.state.page === 'product',
+      isHowto: this.state.page === 'howto',
+      isPortfolio: this.state.page === 'portfolio',
+      isDora: this.state.page === 'dora',
+      isTitan: this.state.page === 'titan',
+      isTitanShop: this.state.page === 'titan-shop',
+      isDoraShop: this.state.page === 'dora-shop',
+      titanItems: [
+        { slotId: 'titan-1', tag: 'Худи', name: '«Разведкорпус»', desc: 'Силуэт солдата на фоне заходящего солнца и крылья свободы на спине — печать DTF по плотному худи.', cols: '1fr 1fr', imageFirst: true },
+        { slotId: 'titan-2', tag: 'Свитшот', name: '«За стеной»', desc: 'Минималистичная композиция: разрушенные стены и тень титана на горизонте.', cols: '1fr 1fr', imageSecond: true },
+        { slotId: 'titan-3', tag: 'Футболка', name: '«Память»', desc: 'Список имён и символ клятвы — дань памяти павшим персонажам, выполнено вышивкой и печатью.', cols: '1fr 1fr', imageFirst: true },
+      ],
+      isReviews: this.state.page === 'reviews',
+      isAbout: this.state.page === 'about',
+      isContacts: this.state.page === 'contacts',
+      isConstructor: this.state.page === 'constructor',
+      isCart: this.state.page === 'cart',
+      isOrder: this.state.page === 'order',
+      hasDesign: !!this.state.design.src,
+      noDesign: !this.state.design.src,
+      designSrc: this.state.design.src,
+      designX: this.state.design.x,
+      designY: this.state.design.y,
+      designW: this.state.design.w,
+      garmentColor: this.state.garmentColor,
+      garmentImg: currentGarment.img,
+      garmentPhotoSrc,
+      garmentAnimKey: `${this.state.cProduct}-${gColorLower}`,
+      showTint,
+      zoneLeft: currentGarment.zone[0],
+      zoneTop: currentGarment.zone[1],
+      zoneW: currentGarment.zone[2],
+      zoneH: currentGarment.zone[3],
+      zoneBackLeft: backZone[0],
+      zoneBackTop: backZone[1],
+      zoneBackW: backZone[2],
+      zoneBackH: backZone[3],
+      cComment: this.state.cComment,
+      setCComment: (e) => this.setState({ cComment: e.target.value }),
+      garmentColors,
+      designerServices: [
+        { key: 'quality', name: 'Улучшение качества изображения', price: 'от 300 ₽' },
+        { key: 'prep', name: 'Подготовка изображения к печати', price: 'от 300 ₽' },
+        { key: 'draw', name: 'Отрисовка изображения', price: 'от 400 ₽' },
+        { key: 'custom', name: 'Индивидуальные предпочтения', price: 'от 500 ₽' },
+      ].map((d) => {
+        const checked = !!this.state.designerServices[d.key];
+        return {
+          ...d,
+          checked,
+          bg: checked ? accentLight : '#fff',
+          borderStyle: checked ? '1.5px solid ' + accentColor : '1.5px solid #E7EAF1',
+          boxBg: checked ? accentColor : '#fff',
+          boxBorder: checked ? '1.5px solid ' + accentColor : '1.5px solid #C9CFDB',
+          onToggle: () => this.setState((s) => ({ designerServices: { ...s.designerServices, [d.key]: !s.designerServices[d.key] } })),
+        };
+      }),
+      onUpload,
+      removeDesign,
+      setScale,
+      startDrag,
+      zoneRef: this.zoneRef,
+      downloadMockup: this.downloadMockup,
+      fontOptions,
+      fontOptionsList,
+      textFrontContent: this.state.textFront.content,
+      setTextFront,
+      textFrontFont: this.state.textFront.font,
+      setTextFrontFont,
+      textFrontSize: this.state.textFront.size,
+      setTextFrontSize,
+      textFrontColor: this.state.textFront.color,
+      setTextFrontColor,
+      hasTextFront: !!this.state.textFront.content,
+      textFrontOpen: this.state.textFrontOpen,
+      toggleTextFront,
+      textFrontToggleLabel: this.state.textFrontOpen ? 'Свернуть' : (this.state.textFront.content ? 'Изменить' : '+ Добавить'),
+      textFrontX: this.state.textFront.x,
+      textFrontY: this.state.textFront.y,
+      startDragTextFront,
+      textBackContent: this.state.textBack.content,
+      setTextBack,
+      textBackFont: this.state.textBack.font,
+      setTextBackFont,
+      textBackSize: this.state.textBack.size,
+      setTextBackSize,
+      textBackColor: this.state.textBack.color,
+      setTextBackColor,
+      hasTextBack: !!this.state.textBack.content,
+      textBackOpen: this.state.textBackOpen,
+      toggleTextBack,
+      textBackToggleLabel: this.state.textBackOpen ? 'Свернуть' : (this.state.textBack.content ? 'Изменить' : '+ Добавить'),
+      textBackX: this.state.textBack.x,
+      textBackY: this.state.textBack.y,
+      startDragTextBack,
+      hasDesignBack: !!this.state.designBack.src,
+      noDesignBack: !this.state.designBack.src,
+      designBackSrc: this.state.designBack.src,
+      designBackX: this.state.designBack.x,
+      designBackY: this.state.designBack.y,
+      designBackW: this.state.designBack.w,
+      onUploadBack,
+      removeDesignBack,
+      setScaleBack,
+      startDragBack,
+      zoneRefBack: this.zoneRefBack,
+      garmentPhotoSrcBack,
+      backEnabled: this.state.backEnabled,
+      toggleBackEnabled,
+      printFormatLabelBack: 'Формат ' + backFormat.label,
+      printCmBack: backFormat.cm,
+      printPriceBack: backFormat.price,
+      stageWidth: this.state.backEnabled ? 420 : 640,
+      stageHeight: this.state.backEnabled ? 472 : 720,
+      stageTotalWidth: this.state.backEnabled ? 420 * 2 + 16 : 640,
+      backToggleBg: this.state.backEnabled ? accentColor : '#D9DEE7',
+      backToggleLeft: this.state.backEnabled ? '20px' : '2px',
+      cProduct: this.state.cProduct,
+      setCProduct: (e) => this.setState({ cProduct: e.target.value }),
+      cMethod: this.state.cMethod,
+      setCMethod: (e) => this.setState({ cMethod: e.target.value }),
+      cProductOptions,
+      cProductOptionsWithPrice,
+      cProductPrice: cProductPrices[this.state.cProduct] || '',
+      printFormatLabel: 'Формат ' + printFormatLabel,
+      printCm: printCmVal,
+      printPrice,
+      hasBackPrintCost: backPrintCostVal > 0,
+      hasFrontPrintCost: printCostVal > 0,
+      backPrintCostLabel: `${backPrintCostVal} ₽`,
+      hasDesignerCost: designerCostSum > 0,
+      designerCostLabel: `от ${designerCostSum} ₽`,
+      totalPrice: `${totalVal} ₽`,
+      cProductDesc: cProductDescs[this.state.cProduct] || '',
+      garmentColorName: gColorLower === '#1a1a1a' ? 'Чёрный' : 'Белый',
+      productMenuOpen: this.state.productMenuOpen,
+      toggleProductMenu,
+      productMenuArrow: this.state.productMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      designerMenuOpen: this.state.designerMenuOpen,
+      toggleDesignerMenu,
+      cSize: this.state.cSize,
+      cSizeOptions,
+      sizeMenuOpen: this.state.sizeMenuOpen,
+      toggleSizeMenu,
+      sizeMenuArrow: this.state.sizeMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      designerMenuArrow: this.state.designerMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      designerServicesSummary: (() => {
+        const n = Object.values(this.state.designerServices).filter(Boolean).length;
+        return n ? `Выбрано: ${n}` : 'Не требуется';
+      })(),
+      contactMenuOpen: this.state.contactMenuOpen,
+      contactMenuOpacity: this.state.contactMenuOpen ? 1 : 0,
+      contactMenuTransform: this.state.contactMenuOpen ? 'translateY(0)' : 'translateY(-6px)',
+      contactMenuPointerEvents: this.state.contactMenuOpen ? 'auto' : 'none',
+      heroSlidesTop3: this.state.heroPhotoIds.slice(1, 4).map((id, i) => ({
+        ...this.buildHeroTile(id, i + 1),
+        placeholder: 'Фото готовой работы ' + (i + 1),
+      })),
+      heroPhotoMain: this.state.heroPhotoIds[0],
+      heroMainTile: this.buildHeroTile(this.state.heroPhotoIds[0], 0),
+      toggleCart: () => this.setState((s) => ({ cartOpen: !s.cartOpen })),
+      cartHasItems: Object.keys(this.state.cart).length > 0,
+      cartIsEmpty: Object.keys(this.state.cart).length === 0,
+      cartCount: Object.values(this.state.cart).reduce((sum, it) => sum + it.qty, 0),
+      cartItems: Object.entries(this.state.cart).map(([id, it]) => ({
+        name: it.name,
+        price: it.price,
+        desc: it.desc,
+        qty: it.qty,
+        photo: it.photo,
+        slotId: 'cart-' + id,
+        inc: () => this.changeCartQty(id, 1),
+        dec: () => this.changeCartQty(id, -1),
+        remove: () => this.removeFromCart(id),
+      })),
+      cartTotal: (() => {
+        let sum = 0;
+        let hasUnpriced = false;
+        Object.values(this.state.cart).forEach((it) => {
+          const p = this.parsePrice(it.price);
+          if (p == null) { hasUnpriced = true; } else { sum += p * it.qty; }
+        });
+        return sum;
+      })(),
+      cartHasUnpriced: Object.values(this.state.cart).some((it) => this.parsePrice(it.price) == null),
+      cartUnpricedNote: Object.values(this.state.cart).some((it) => this.parsePrice(it.price) == null) ? ' (без учёта позиций «по запросу»)' : '',
+      cartMenuOpacity: this.state.cartOpen ? 1 : 0,
+      cartMenuTransform: this.state.cartOpen ? 'translateY(0)' : 'translateY(-6px)',
+      cartMenuPointerEvents: this.state.cartOpen ? 'auto' : 'none',
+      openContactMenu: () => this.setState({ contactMenuOpen: true }),
+      closeContactMenu: () => this.setState({ contactMenuOpen: false }),
+      openCollectionsMenu: () => this.setState({ collectionsMenuOpen: true }),
+      closeCollectionsMenu: () => this.setState({ collectionsMenuOpen: false }),
+      collectionsColor: (this.state.page === 'dora' || this.state.page === 'titan') ? accentColor : '#454C59',
+      collectionsMenuOpacity: this.state.collectionsMenuOpen ? 1 : 0,
+      collectionsMenuTransform: this.state.collectionsMenuOpen ? 'translateY(0)' : 'translateY(-6px)',
+      collectionsMenuPointer: this.state.collectionsMenuOpen ? 'auto' : 'none',
+      navItemsBeforeCollections: navItems.slice(0, 2),
+      navItemsAfterCollections: navItems.slice(2),
+      collectionGroups: [
+        { label: 'Аниме одежда', items: [{ label: 'Атака титанов', onClick: go.titanShop }] },
+        { label: 'Музыка', items: [{ label: 'Дора', onClick: go.doraShop }] },
+      ],
+      wordmarkSlides: this.wordmarks.map((src, i) => ({ src, opacity: this.state.wordmarkIndex === i ? 1 : 0 })),
+      accentColor,
+      accentHover,
+      accentLight,
+      cardRadius,
+      buttonRadius,
+      heroRadius,
+      smallRadius,
+      cardBorder,
+      cardShadow,
+      navDisplay: 'flex',
+      navItems,
+      go,
+      goHome: go.home,
+      breadcrumbItems: (() => {
+        const page = this.state.page;
+        if (page === 'catalog') {
+          return [{ label: 'Главная', onClick: go.home }, { label: 'Каталог', onClick: null }];
+        }
+        if (page === 'titan-shop') {
+          return [{ label: 'Главная', onClick: go.home }, { label: 'Коллекции', onClick: null }, { label: 'Атака титанов', onClick: null }];
+        }
+        if (page === 'dora-shop') {
+          return [{ label: 'Главная', onClick: go.home }, { label: 'Коллекции', onClick: null }, { label: 'Дора', onClick: null }];
+        }
+        if (page === 'product') {
+          const p = products.find((pr) => pr.slotId === this.state.activeProductId) || {};
+          if (p.collection === 'titan') {
+            return [{ label: 'Главная', onClick: go.home }, { label: 'Коллекции', onClick: null }, { label: 'Атака титанов', onClick: go.titanShop }, { label: p.name || 'Товар', onClick: null }];
+          }
+          if (p.collection === 'dora') {
+            return [{ label: 'Главная', onClick: go.home }, { label: 'Коллекции', onClick: null }, { label: 'Дора', onClick: go.doraShop }, { label: p.name || 'Товар', onClick: null }];
+          }
+          return [{ label: 'Главная', onClick: go.home }, { label: 'Каталог', onClick: go.catalog }, { label: p.name || 'Товар', onClick: null }];
+        }
+        return [];
+      })().map((it, i, arr) => ({ ...it, isLast: i === arr.length - 1 })),
+      methods: [
+        { title: 'DTF печать', desc: 'Яркая печать, держится долго, любые цвета и мелкие детали' },
+        { title: 'Термотрансфер', desc: 'Плёночное нанесение, отлично для простых форм и логотипов' },
+        { title: 'Своя вещь', desc: 'Принесите изделие — напечатаем принт на нём' },
+        { title: 'Свой макет', desc: 'Или поможем подготовить и нарисовать изображение' },
+      ],
+      homeProducts: enrichedProducts.filter((p) => !p.collection).slice(0, 4),
+      allProducts: enrichedProducts.filter((p) => !p.collection),
+      titanCatalogProducts: enrichedProducts.filter((p) => p.collection === 'titan'),
+      doraCatalogProducts: enrichedProducts.filter((p) => p.collection === 'dora'),
+      printFormats,
+      addonServices,
+      activeProduct: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        const found = p || products[0] || {};
+        const hasColorOptions = multiColorIds.includes(found.slotId);
+        return { ...found, hasDiscount: !!found.oldPrice, noCollection: hasColorOptions, hasColorOptions, singleColorOnly: !!found.collection && !hasColorOptions };
+      })(),
+      galleryPhotos: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        return ((p && p.gallery) || []).map((src) => ({
+          src,
+          onClick: () => this.setState({ galleryOverride: src }),
+          border: this.state.galleryOverride === src ? '2px solid ' + accentColor : '1.5px solid #DCE2EE',
+        }));
+      })(),
+      galleryOverride: this.state.galleryOverride,
+      hasAnyThumbs: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        if (!p) return false;
+        const back = this.state.activeProductColor === 'black' ? (p.blackPhotoBack || p.photoBack) : p.photoBack;
+        return !!back || !!(p.gallery && p.gallery.length);
+      })(),
+      mainPhotoOpacity: this.state.galleryOverride ? 0 : 1,
+      galleryOverrideOpacity: this.state.galleryOverride ? 1 : 0,
+      activeProductSizeOptions: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        return ((p && p.sizes) || []).map((s) => ({
+          label: s,
+          onClick: () => this.setState({ selectedSize: s }),
+          border: this.state.selectedSize === s ? '2px solid ' + accentColor : '1.5px solid #DCE2EE',
+          color: this.state.selectedSize === s ? accentColor : '#454C59',
+        }));
+      })(),
+      wishlistIcon: this.state.wishlist[this.state.activeProductId] ? '♥' : '♡',
+      wishlistColor: this.state.wishlist[this.state.activeProductId] ? accentColor : '#9AA3B2',
+      toggleWishlist: () => {
+        const id = this.state.activeProductId;
+        this.setState((s) => ({ wishlist: { ...s.wishlist, [id]: !s.wishlist[id] } }));
+      },
+      activeProductPhoto: (() => {
+        const photoMap = {
+          'p-tshirt-std': { white: 'uploads/models/white-tshirt-standard-front.jpg', black: 'uploads/models/black-tshirt-standard-front.jpg' },
+          'p-tshirt-women': { white: 'uploads/models/white-tshirt-women-front.jpg', black: 'uploads/models/black-tshirt-women-front.jpg' },
+          'p-tshirt-prem': { white: 'uploads/models/white-tshirt-oversize-front.jpg', black: 'uploads/models/black-tshirt-oversize-front.jpg' },
+          'p-polo': { white: 'uploads/models/white-polo-front.jpg', black: 'uploads/models/black-polo-front.jpg' },
+          'p-sweatshirt': { white: 'uploads/models/white-sweatshirt-front.jpg', black: 'uploads/models/black-sweatshirt-front.jpg' },
+          'p-hoodie-std': { white: 'uploads/models/white-hoodie-front.jpg', black: 'uploads/models/black-hoodie-front.jpg' },
+          'p-hoodie-over': { white: 'uploads/beloe-hudi-muzhskoe-oversayz-pered.jpg', black: 'uploads/chernoe-hudi-muzhskoe-oversayz-pered.jpg' },
+          'p-cap': { white: 'uploads/belaya-kepka-pered.jpg', black: 'uploads/chernaya-kepka-pered.jpg' },
+          'p-longsleeve': { white: 'uploads/models/white-longsleeve-front.jpg', black: 'uploads/models/black-longsleeve-front.jpg' },
+          'p-shopper': { white: 'uploads/models/white-shopper-front.jpg', black: 'uploads/models/black-shopper-front.jpg' },
+        };
+        const entry = photoMap[this.state.activeProductId];
+        const cur = products.find((pr) => pr.slotId === this.state.activeProductId) || {};
+        const fallback = this.state.activeProductColor === 'black' ? (cur.blackPhoto || cur.photo) : cur.photo;
+        return (entry && entry[this.state.activeProductColor]) || fallback || '';
+      })(),
+      activeProductPhotoBack: (() => {
+        const photoMapBack = {
+          'p-tshirt-std': { white: 'uploads/models/white-tshirt-standard-back.jpg', black: 'uploads/models/black-tshirt-standard-back.jpg' },
+          'p-tshirt-women': { white: 'uploads/models/white-tshirt-women-back.jpg', black: 'uploads/models/black-tshirt-women-back.jpg' },
+          'p-tshirt-prem': { white: 'uploads/models/white-tshirt-oversize-back.jpg', black: 'uploads/models/black-tshirt-oversize-back.jpg' },
+          'p-polo': { white: 'uploads/models/white-polo-back.jpg', black: 'uploads/models/black-polo-back.jpg' },
+          'p-sweatshirt': { white: 'uploads/models/white-sweatshirt-back.jpg', black: 'uploads/models/black-sweatshirt-back.jpg' },
+          'p-hoodie-std': { white: 'uploads/models/white-hoodie-back.jpg', black: 'uploads/models/black-hoodie-back.jpg' },
+          'p-hoodie-over': { white: 'uploads/beloe-hudi-muzhskoe-oversayz-spina.jpg', black: 'uploads/chernoe-hudi-muzhskoe-oversayz-spina.jpg' },
+          'p-cap': { white: 'uploads/belaya-kepka-spina.jpg', black: 'uploads/chernaya-kepka-spina.jpg' },
+          'p-longsleeve': { white: 'uploads/models/white-longsleeve-back.jpg', black: 'uploads/models/black-longsleeve-back.jpg' },
+        };
+        const entry = photoMapBack[this.state.activeProductId];
+        const cur = products.find((pr) => pr.slotId === this.state.activeProductId) || {};
+        const fallback = this.state.activeProductColor === 'black' ? (cur.blackPhotoBack || cur.photoBack) : cur.photoBack;
+        return (entry && entry[this.state.activeProductColor]) || fallback || '';
+      })(),
+      frontOpacity: this.state.productView === 'back' ? 0 : 1,
+      backOpacityDetail: this.state.productView === 'back' ? 1 : 0,
+      frontThumbBorder: this.state.productView === 'back' ? '1.5px solid #DCE2EE' : '2px solid ' + accentColor,
+      backThumbBorder: this.state.productView === 'back' ? '2px solid ' + accentColor : '1.5px solid #DCE2EE',
+      setProductView: {
+        front: () => this.setState({ productView: 'front', galleryOverride: null }),
+        back: () => this.setState({ productView: 'back', galleryOverride: null }),
+      },
+      activeColorName: this.state.activeProductColor === 'black' ? 'Чёрный' : 'Белый',
+      productColorSwatches: ['white', 'black'].map((c) => ({
+        hex: c === 'white' ? '#ffffff' : '#1A1A1A',
+        border: this.state.activeProductColor === c ? '2px solid ' + accentColor : '1.5px solid #D0D5DE',
+        ring: this.state.activeProductColor === c ? '0 0 0 3px ' + accentLight : 'none',
+        onClick: () => this.setState({ activeProductColor: c }),
+      })),
+      productQty: this.state.productQty,
+      decProductQty: () => this.setState((s) => ({ productQty: Math.max(1, s.productQty - 1) })),
+      incProductQty: () => this.setState((s) => ({ productQty: s.productQty + 1 })),
+      addActiveToCart: () => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        if (!p) return;
+        for (let i = 0; i < this.state.productQty; i++) this.addToCart(p);
+      },
+      activeAddLabel: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        return p && this.state.cart[p.slotId] ? 'В корзине · ' + this.state.cart[p.slotId].qty : 'Добавить в корзину';
+      })(),
+      similarProducts: (() => {
+        const cur = products.find((pr) => pr.slotId === this.state.activeProductId);
+        const pool = enrichedProducts.filter((p) => p.slotId !== this.state.activeProductId);
+        return cur && cur.collection ? pool.filter((p) => p.collection === cur.collection) : pool.filter((p) => !p.collection);
+      })(),
+      similarScrollRef: this.similarScrollRef,
+      similarScrollLeft: () => { if (this.similarScrollRef.current) this.similarScrollRef.current.scrollBy({ left: -220, behavior: 'smooth' }); },
+      similarScrollRight: () => { if (this.similarScrollRef.current) this.similarScrollRef.current.scrollBy({ left: 220, behavior: 'smooth' }); },
+      howtoSteps,
+      testimonials,
+      featuredTestimonials: testimonials.slice(0, 3),
+      marqueeTestimonials: testimonials.concat(testimonials),
+      marqueeRef: this.marqueeRef,
+      marqueeDragStart: (e) => {
+        this._marqueeDragging = true;
+        this._marqueeDragLastX = e.clientX;
+        this._marqueeDragLastT = performance.now();
+        this._marqueeVelocity = 0;
+        if (e.target.setPointerCapture) { try { e.target.setPointerCapture(e.pointerId); } catch (err) {} }
+      },
+      marqueeDragMove: (e) => {
+        if (!this._marqueeDragging) return;
+        const now = performance.now();
+        const dx = e.clientX - this._marqueeDragLastX;
+        const dt = Math.max((now - this._marqueeDragLastT) / 1000, 0.001);
+        this._marqueeX += dx;
+        this._marqueeVelocity = dx / dt;
+        this._marqueeDragLastX = e.clientX;
+        this._marqueeDragLastT = now;
+      },
+      marqueeDragEnd: () => {
+        if (!this._marqueeDragging) return;
+        this._marqueeDragging = false;
+        this._marqueeSpeed = -this._marqueeVelocity;
+      },
+      portfolioItems,
+      doraItems,
+      doraJournalPages,
+      form: this.state.form,
+      setField,
+      productOptions,
+      formSubmitted: this.state.formSubmitted,
+      formNotSubmitted: !this.state.formSubmitted,
+      submitBg: accentColor,
+      submitForm: () => this.setState({ formSubmitted: true }),
+      attachedFileLabel: this.state.attachedFileName ? '📎 ' + this.state.attachedFileName : 'Прикрепить файл макета',
+      onAttachFile: (e) => {
+        const file = e.target.files && e.target.files[0];
+        this.setState({ attachedFileName: file ? file.name : null });
+      },
+      sizeIsUniversal: this.state.form.product === 'Шоппер' || this.state.form.product === 'Кепка',
+      sizeIsSelectable: this.state.form.product !== 'Шоппер' && this.state.form.product !== 'Кепка',
+      sizeOptions: ['S', 'M', 'L', 'XL', 'XXL', '3XL'],
+      orderShowCommentAndFile: this.state.orderSource !== 'constructor' && this.state.orderSource !== 'cart',
+      orderTitle: this.state.orderSource === 'constructor' ? 'Отправить макет' : 'Оформить заказ',
+      orderSubtitle: this.state.orderSource === 'constructor'
+        ? 'Оставьте контакты — мы получим ваш макет из конструктора и свяжемся для уточнения деталей и оплаты.'
+        : 'Заполните форму — мы свяжемся с вами в Telegram или по телефону для уточнения деталей и оплаты.',
+      orderSubmitLabel: this.state.orderSource === 'constructor' ? 'Просто отправить макет' : 'Отправить заявку',
+    };
+    this._lastVals = vals;
+    return vals;
+   } catch (e) {
+     console.error('renderVals crash, returning previous values', e.stack || e);
+     return this._lastVals || {};
+   }
+  }
+}
+
+</script>
+</body>
+</html>
