@@ -20,9 +20,9 @@
     body { margin: 0; background: #F3F5F9; }
     * { box-sizing: border-box; }
     body { font-family: 'Manrope', sans-serif; }
-    ::selection { background: {{ accentColor }}; color: #fff; }
-    a { color: {{ accentColor }}; text-decoration: none; }
-    a:hover { color: {{ accentHover }}; }
+    ::selection { background: #1B4FA0; color: #fff; }
+    a { color: #1B4FA0; text-decoration: none; }
+    a:hover { color: #123a7c; }
     input, textarea, select { font-family: 'Manrope', sans-serif; }
     .cs-nav::-webkit-scrollbar { display: none; }
     @keyframes cs-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -92,7 +92,7 @@
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="/cdn-cgi/l/email-protection#32514103050201725f535b5e1c4047" onClick="{{ copyEmail }}" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">{{ headerEmailLabel }}</a>
+            <a href="mailto:cs1703@mail.ru" onClick="{{ copyEmail }}" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">{{ headerEmailLabel }}</a>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
         <div style="display:flex; flex-direction:column; gap:8px;">
           <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Telegram</a>
           <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Max</a>
-          <a href="/cdn-cgi/l/email-protection#543727656364671439353d387a2621" onClick="{{ copyEmail }}" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">{{ headerEmailLabel }}</a>
+          <a href="mailto:cs1703@mail.ru" onClick="{{ copyEmail }}" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">{{ headerEmailLabel }}</a>
         </div>
       </div>
     </div>
@@ -421,11 +421,16 @@
   </sc-if>
 
   <sc-if value="{{ mediaOpen }}">
-    <div onClick="{{ closeMedia }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:{{ lightboxPad }}; cursor:zoom-out; overflow:hidden;">
+    <div onClick="{{ closeMedia }}" onTouchStart="{{ mediaTouchStart }}" onTouchEnd="{{ mediaTouchEnd }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:{{ lightboxPad }}; cursor:zoom-out; overflow:hidden; touch-action:pan-y;">
       <div onClick="{{ closeMedia }}" style="position:absolute; top:24px; right:28px; z-index:2; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.12); color:#fff; font-size:28px; font-weight:300; cursor:pointer; line-height:1;">×</div>
       <sc-if value="{{ mediaHasMultiple }}">
-        <div onClick="{{ mediaPrev }}" style="position:absolute; left:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
-        <div onClick="{{ mediaNext }}" style="position:absolute; right:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+        <div onClick="{{ mediaPrev }}" style="position:absolute; left:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ mediaArrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+        <div onClick="{{ mediaNext }}" style="position:absolute; right:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ mediaArrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+        <div style="position:absolute; bottom:18px; left:0; right:0; display:{{ mediaDotsDisplay }}; justify-content:center; gap:6px; z-index:2; pointer-events:none;">
+          <sc-for list="{{ mediaDots }}" as="d" hint-placeholder-count="3">
+            <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:all .25s ease;"></div>
+          </sc-for>
+        </div>
       </sc-if>
       <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
         <img src="{{ mediaSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
@@ -495,11 +500,58 @@
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
           <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
-          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#36554507010605765b575f5a184443" onClick="{{ copyEmail }}">{{ footerEmailLabel }}</a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="mailto:cs1703@mail.ru" onClick="{{ copyEmail }}">{{ footerEmailLabel }}</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
-          <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
+          <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Реквизиты</div>
+          <div style="font-size:14px; line-height:1.6; color:#454C59; margin-bottom:22px;">Малханов Владимир Андреевич<br>Плательщик налога на профессиональный доход (самозанятый)<br>ИНН 032601801103</div>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <span style="font-size:14px; font-weight:600; color:{{ accentColor }}; cursor:pointer;" onClick="{{ go.delivery }}">Доставка и оплата</span>
+            <span style="font-size:14px; font-weight:600; color:{{ accentColor }}; cursor:pointer;" onClick="{{ go.offer }}">Публичная оферта</span>
+          </div>
         </div>
         <div style="border-radius:{{ cardRadius }}px; overflow:hidden;"><iframe src="https://yandex.ru/map-widget/v1/?z=12&amp;ol=biz&amp;oid=224123468063" width="100%" height="100%" style="border:0; display:block; min-height:320px;" loading="lazy"></iframe></div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ DELIVERY ============ -->
+  <sc-if value="{{ isDelivery }}">
+    <section data-screen-label="Доставка и оплата" style="max-width:800px; margin:0 auto; padding:{{ pagePad }}; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:clamp(26px, 6vw, 36px); font-weight:800; margin:0 0 28px;">Доставка и оплата</h1>
+      <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:28px; margin-bottom:20px;">
+        <div style="font-family:'Unbounded'; font-weight:700; font-size:16px; margin-bottom:10px;">Доставка</div>
+        <p style="color:#454C59; font-size:15px; line-height:1.7; margin:0 0 12px;">После готовности заказа отправляем его удобным для вас способом:</p>
+        <ul style="color:#454C59; font-size:15px; line-height:1.9; margin:0 0 12px; padding-left:20px;">
+          <li>Яндекс Доставка (пункты выдачи)</li>
+          <li>СДЭК</li>
+          <li>Почта России</li>
+        </ul>
+        <p style="color:#454C59; font-size:15px; line-height:1.7; margin:0;">Способ и стоимость доставки согласовываем с клиентом индивидуально после оформления заказа — до отправки вы точно знаете сумму и сроки.</p>
+      </div>
+      <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:28px;">
+        <div style="font-family:'Unbounded'; font-weight:700; font-size:16px; margin-bottom:10px;">Оплата</div>
+        <p style="color:#454C59; font-size:15px; line-height:1.7; margin:0 0 12px;">Принимаем оплату картой и через СБП. Оплата проводится через защищённый платёжный сервис — данные карты не передаются нам и не хранятся на сайте.</p>
+        <p style="color:#454C59; font-size:15px; line-height:1.7; margin:0;">Работаю как самозанятый — после оплаты формирую и высылаю электронный чек через приложение «Мой налог».</p>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ OFFER ============ -->
+  <sc-if value="{{ isOffer }}">
+    <section data-screen-label="Публичная оферта" style="max-width:800px; margin:0 auto; padding:{{ pagePad }}; animation:cs-fade .4s ease;">
+      <h1 style="font-family:'Unbounded'; font-size:clamp(26px, 6vw, 36px); font-weight:800; margin:0 0 8px;">Публичная оферта</h1>
+      <p style="color:#9AA3B2; font-size:14px; margin:0 0 28px;">Договор оказания услуг / купли-продажи</p>
+      <div style="background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; border-radius:{{ cardRadius }}px; padding:28px; color:#454C59; font-size:15px; line-height:1.8;">
+        <p style="margin:0 0 16px;"><b>1. Общие положения</b><br>Настоящий документ является публичной офертой Малханова Владимира Андреевича, плательщика налога на профессиональный доход (самозанятого), ИНН 032601801103 (далее — «Исполнитель»), адресованной физическим лицам, и содержит все существенные условия изготовления и/или продажи изделий с печатью (далее — «Товар»). Оформление заказа на сайте означает полное и безоговорочное принятие условий настоящей оферты (акцепт).</p>
+        <p style="margin:0 0 16px;"><b>2. Предмет договора</b><br>Исполнитель обязуется изготовить и передать Заказчику Товар (одежда и сопутствующие изделия с нанесением печати/вышивки) согласно оформленному заказу, а Заказчик обязуется принять и оплатить Товар на условиях настоящей оферты.</p>
+        <p style="margin:0 0 16px;"><b>3. Оформление заказа</b><br>Заказ оформляется через сайт, конструктор изделия или напрямую в переписке (Telegram, ВКонтакте, почта). Перед изготовлением Исполнитель согласовывает с Заказчиком макет, размер, цвет и итоговую стоимость.</p>
+        <p style="margin:0 0 16px;"><b>4. Цена и оплата</b><br>Стоимость Товара указывается на сайте или согласовывается индивидуально для нестандартных заказов. Оплата производится картой или через СБП в размере 100% предоплаты, если иное не согласовано отдельно. После оплаты Исполнитель предоставляет электронный чек, сформированный в приложении «Мой налог».</p>
+        <p style="margin:0 0 16px;"><b>5. Изготовление и доставка</b><br>Срок изготовления согласовывается индивидуально и зависит от загруженности и сложности заказа. Готовый Товар отправляется способом, согласованным с Заказчиком (Яндекс Доставка, СДЭК, Почта России). Стоимость доставки оплачивается Заказчиком дополнительно, если не указано иное.</p>
+        <p style="margin:0 0 16px;"><b>6. Возврат и обмен</b><br>Поскольку изделия изготавливаются по индивидуальному заказу (с уникальным нанесением), они не подлежат возврату и обмену по статье 26.1 закона «О защите прав потребителей», за исключением случаев обнаружения производственного брака. При обнаружении брака Заказчик вправе обратиться к Исполнителю в течение 14 дней с момента получения Товара для замены изделия или возврата средств.</p>
+        <p style="margin:0 0 16px;"><b>7. Ответственность сторон</b><br>Исполнитель не несёт ответственности за задержки доставки по вине транспортных компаний. Заказчик несёт ответственность за корректность предоставленных данных (адрес, размер, макет) при оформлении заказа.</p>
+        <p style="margin:0 0 16px;"><b>8. Контакты и реквизиты</b><br>Малханов Владимир Андреевич<br>Плательщик налога на профессиональный доход (самозанятый), ИНН 032601801103<br>Телефон: +7 968 180 79 08<br>Почта: cs1703@mail.ru</p>
+        <p style="margin:0; color:#9AA3B2; font-size:13px;">Редакция от 20 июля 2026 г.</p>
       </div>
     </section>
   </sc-if>
@@ -1100,11 +1152,16 @@
   </sc-if>
 
   <sc-if value="{{ lightboxOpen }}">
-    <div onClick="{{ closeLightbox }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:{{ lightboxPad }}; cursor:zoom-out; overflow:hidden;">
+    <div onClick="{{ closeLightbox }}" onTouchStart="{{ detailPhotoNav.onTouchStart }}" onTouchEnd="{{ detailPhotoNav.onTouchEnd }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:{{ lightboxPad }}; cursor:zoom-out; overflow:hidden; touch-action:pan-y;">
       <div onClick="{{ closeLightbox }}" style="position:absolute; top:24px; right:28px; z-index:2; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.12); color:#fff; font-size:28px; font-weight:300; cursor:pointer; line-height:1;">×</div>
       <sc-if value="{{ detailPhotoNav.hasMultiple }}">
-        <div onClick="{{ detailPhotoNav.prev }}" style="position:absolute; left:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
-        <div onClick="{{ detailPhotoNav.next }}" style="position:absolute; right:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+        <div onClick="{{ detailPhotoNav.prev }}" style="position:absolute; left:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ detailPhotoNav.arrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+        <div onClick="{{ detailPhotoNav.next }}" style="position:absolute; right:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ detailPhotoNav.arrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+        <div style="position:absolute; bottom:18px; left:0; right:0; display:{{ detailPhotoNav.fullscreenDotsDisplay }}; justify-content:center; gap:6px; z-index:2; pointer-events:none;">
+          <sc-for list="{{ detailPhotoNav.fullscreenDots }}" as="d" hint-placeholder-count="3">
+            <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:all .25s ease;"></div>
+          </sc-for>
+        </div>
       </sc-if>
       <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
         <img src="{{ detailPhotoNav.currentSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
@@ -1382,6 +1439,11 @@
           <div style="font-size:13px; margin-bottom:10px;"><a href="https://t.me/cstmstd" target="_blank" style="color:#C4CEE0;">Telegram @cstmstd</a></div>
           <div style="font-size:13px;"><a href="https://vk.com/cstmstd" target="_blank" style="color:#C4CEE0;">ВКонтакте</a></div>
         </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:13px; margin-bottom:12px;">Информация</div>
+          <div style="font-size:13px; margin-bottom:10px; cursor:pointer;" onClick="{{ go.delivery }}">Доставка и оплата</div>
+          <div style="font-size:13px; margin-bottom:10px; cursor:pointer;" onClick="{{ go.offer }}">Публичная оферта</div>
+        </div>
       </div>
     </div>
     <div style="max-width:1200px; margin:36px auto 0; padding-top:20px; border-top:1px solid #1E3358; font-size:12px; color:#7A88A6;">© 2026 Кастом Студия</div>
@@ -1390,7 +1452,7 @@
 </div>
 
 </x-dc>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{
+<script type="text/x-dc" data-dc-script data-props="{
   &quot;palette&quot;: {
     &quot;editor&quot;: &quot;color&quot;,
     &quot;default&quot;: [&quot;#1B4FA0&quot;, &quot;#123a7c&quot;, &quot;#EAF0FC&quot;],
@@ -1480,6 +1542,14 @@ class Component extends DCLogic {
   mediaNext = (e) => {
     if (e) e.stopPropagation();
     this.setState((s) => ({ mediaIndex: (s.mediaIndex + 1) % s.mediaList.length, productZoomed: false, productZoomY: 0.5 }));
+  };
+  mediaTouchStart = (e) => { this._mediaTouchX = e.touches[0].clientX; this._mediaTouchY = e.touches[0].clientY; };
+  mediaTouchEnd = (e) => {
+    if (this._mediaTouchX == null || !this.state.mediaList) return;
+    const dx = e.changedTouches[0].clientX - this._mediaTouchX;
+    const dy = e.changedTouches[0].clientY - (this._mediaTouchY || 0);
+    this._mediaTouchX = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) this.mediaNext(); else this.mediaPrev(); }
   };
   openHeroProduct(id) {
     const pr = (this._heroProducts || []).find((p) => p.slotId === id);
@@ -2035,6 +2105,8 @@ class Component extends DCLogic {
       },
       orderCart: () => { this.setState({ orderSource: 'cart', formSubmitted: false }); this.setPage('order'); },
       constructor: () => this.setPage('constructor'),
+      delivery: () => this.setPage('delivery'),
+      offer: () => this.setPage('offer'),
     };
 
     products.push(...titanProducts, ...doraProducts);
@@ -2289,6 +2361,8 @@ class Component extends DCLogic {
       isReviews: this.state.page === 'reviews',
       isAbout: this.state.page === 'about',
       isContacts: this.state.page === 'contacts',
+      isDelivery: this.state.page === 'delivery',
+      isOffer: this.state.page === 'offer',
       isConstructor: this.state.page === 'constructor',
       isCart: this.state.page === 'cart',
       isOrder: this.state.page === 'order',
@@ -2694,11 +2768,16 @@ class Component extends DCLogic {
           else if (src === back) this.setState({ productView: 'back', galleryOverride: null });
           else this.setState({ galleryOverride: src });
         };
+        const doPrev = () => goTo(seq[(idx - 1 + seq.length) % seq.length]);
+        const doNext = () => goTo(seq[(idx + 1) % seq.length]);
         return {
           currentSrc,
           hasMultiple: seq.length > 1,
-          prev: (e) => { if (e) e.stopPropagation(); goTo(seq[(idx - 1 + seq.length) % seq.length]); },
-          next: (e) => { if (e) e.stopPropagation(); goTo(seq[(idx + 1) % seq.length]); },
+          prev: (e) => { if (e) e.stopPropagation(); doPrev(); },
+          next: (e) => { if (e) e.stopPropagation(); doNext(); },
+          arrowDisplay: isMobile ? 'none' : 'flex',
+          fullscreenDotsDisplay: (isMobile && seq.length > 1) ? 'flex' : 'none',
+          fullscreenDots: seq.map((s, i) => ({ w: i === idx ? '20px' : '7px', bg: i === idx ? '#fff' : 'rgba(255,255,255,0.35)' })),
           photos: seq.map((src) => ({ src })),
           dots: seq.map((s, i) => ({ w: i === idx ? '20px' : '7px', bg: i === idx ? accentColor : 'rgba(20,24,31,0.22)' })),
           onScroll: (e) => {
@@ -2708,6 +2787,14 @@ class Component extends DCLogic {
               const i = Math.round(el.scrollLeft / el.clientWidth);
               if (i >= 0 && i < seq.length && i !== idx) goTo(seq[i]);
             }, 90);
+          },
+          onTouchStart: (e) => { this._lbTouchX = e.touches[0].clientX; this._lbTouchY = e.touches[0].clientY; },
+          onTouchEnd: (e) => {
+            if (this._lbTouchX == null) return;
+            const dx = e.changedTouches[0].clientX - this._lbTouchX;
+            const dy = e.changedTouches[0].clientY - (this._lbTouchY || 0);
+            this._lbTouchX = null;
+            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) doNext(); else doPrev(); }
           },
         };
       })(),
@@ -2840,6 +2927,11 @@ class Component extends DCLogic {
       closeMedia: this.closeMedia,
       mediaPrev: this.mediaPrev,
       mediaNext: this.mediaNext,
+      mediaTouchStart: this.mediaTouchStart,
+      mediaTouchEnd: this.mediaTouchEnd,
+      mediaArrowDisplay: isMobile ? 'none' : 'flex',
+      mediaDotsDisplay: (isMobile && this.state.mediaList !== null && this.state.mediaList.length > 1) ? 'flex' : 'none',
+      mediaDots: this.state.mediaList ? this.state.mediaList.map((_, i) => ({ w: i === this.state.mediaIndex ? '20px' : '7px', bg: i === this.state.mediaIndex ? '#fff' : 'rgba(255,255,255,0.35)' })) : [],
       form: this.state.form,
       setField,
       productOptions,
