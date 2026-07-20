@@ -90,7 +90,7 @@
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="/cdn-cgi/l/email-protection#f89b8bc9cfc8cbb8959991d68a8d" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Почта</a>
+            <a href="/cdn-cgi/l/email-protection#52312163656261123f333b3e7c2027" onClick="{{ copyEmail }}" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">{{ headerEmailLabel }}</a>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
         <div style="display:flex; flex-direction:column; gap:8px;">
           <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Telegram</a>
           <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Max</a>
-          <a href="/cdn-cgi/l/email-protection#41223270767172012c20286f3334" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Почта</a>
+          <a href="/cdn-cgi/l/email-protection#e28191d3d5d2d1a28f838b8ecc9097" onClick="{{ copyEmail }}" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">{{ headerEmailLabel }}</a>
         </div>
       </div>
     </div>
@@ -493,7 +493,7 @@
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
           <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
-          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#9af9e9abadaaa9daf7fbf3b4e8ef"><span class="__cf_email__" data-cfemail="bcdfcf8d8b8c8ffcd1ddd592cec9">[email&#160;protected]</span></a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#d9baaae8eee9ea99b4b8b0b5f7abac" onClick="{{ copyEmail }}">{{ footerEmailLabel }}</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
           <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
         </div>
@@ -867,7 +867,7 @@
 
   <!-- ============ PRODUCT DETAIL ============ -->
   <sc-if value="{{ isProduct }}">
-    <section data-screen-label="Товар" style="max-width:1100px; margin:0 auto; padding:{{ pagePad }}; animation:cs-fade .4s ease;">
+    <section data-screen-label="Товар" style="max-width:1100px; margin:0 auto; padding:{{ pagePad }}; padding-bottom:{{ detailPadBottom }}; animation:cs-fade .4s ease;">
       <div onClick="{{ activeProduct.backClick }}" style="color:{{ accentColor }}; font-weight:700; font-size:14px; cursor:pointer; margin-bottom:12px;">{{ activeProduct.backLabel }}</div>
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:24px;">
         <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="2">
@@ -919,7 +919,7 @@
           </sc-if>
         </div>
         <div style="display:flex; flex-direction:column;">
-          <h1 style="font-family:'Unbounded'; font-size:30px; font-weight:800; margin:0 0 10px;">{{ activeProduct.name }}</h1>
+          <h1 style="font-family:'Unbounded'; font-size:{{ detailTitleSize }}; font-weight:800; margin:0 0 10px;">{{ activeProduct.name }}</h1>
           <sc-if value="{{ activeProduct.hasDiscount }}">
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
               <div style="color:#9AA3B2; font-size:18px; text-decoration:line-through;">{{ activeProduct.oldPrice }}</div>
@@ -960,7 +960,7 @@
             <div style="color:#454C59; font-size:14px; line-height:1.7;">Состав: хлопок 100%<br>Плотность: 160–320 г/м² (зависит от модели)<br>Метод печати: DTF или термотрансфер — выбирается в конструкторе</div>
           </div>
 
-          <div style="display:flex; align-items:center; gap:16px;">
+          <div style="{{ detailActionStyle }}">
             <div style="display:flex; align-items:center; gap:12px; border:1.5px solid #DCE2EE; border-radius:{{ smallRadius }}px; padding:8px 14px;">
               <div onClick="{{ decProductQty }}" style="cursor:pointer; font-weight:800; font-size:18px; color:{{ accentColor }}; user-select:none;">−</div>
               <div style="font-weight:700; font-size:15px; min-width:20px; text-align:center;">{{ productQty }}</div>
@@ -1070,7 +1070,7 @@
         </div>
       </div>
       <div style="max-width:1200px; margin:0 auto; padding:48px 24px 88px;">
-        <div style="display:grid; grid-template-columns:{{ grid3or1 }}; gap:20px;">
+        <div style="display:grid; grid-template-columns:{{ gridShop }}; gap:20px;">
           <sc-for list="{{ titanCatalogProducts }}" as="p" hint-placeholder-count="6">
             <div onClick="{{ p.openDetail }}" style="background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer; display:flex; flex-direction:column;">
               <div style="position:relative; width:100%; aspect-ratio:3/4; background:#F3F4F7;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
@@ -1124,7 +1124,7 @@
         </div>
       </div>
       <div style="max-width:1200px; margin:0 auto; padding:48px 24px 88px;">
-        <div style="display:grid; grid-template-columns:{{ grid3or1 }}; gap:20px;">
+        <div style="display:grid; grid-template-columns:{{ gridShop }}; gap:20px;">
           <sc-for list="{{ doraCatalogProducts }}" as="p" hint-placeholder-count="6">
             <div onClick="{{ p.openDetail }}" style="background:#fff; border-radius:{{ cardRadius }}px; overflow:hidden; border:{{ cardBorder }}; cursor:pointer; display:flex; flex-direction:column;">
               <div style="position:relative; width:100%; aspect-ratio:3/4; background:#F3F4F7;" onMouseEnter="{{ p.cardScrubEnter }}" onMouseMove="{{ p.cardScrubMove }}" onMouseLeave="{{ p.cardScrubLeave }}">
@@ -1220,7 +1220,12 @@
             </label>
           </div>
           </sc-if>
-          <div style="background:{{ submitBg }}; color:#fff; padding:16px; border-radius:{{ buttonRadius }}px; font-weight:700; text-align:center; cursor:pointer; font-size:16px;" style-hover="opacity:0.92" onClick="{{ submitForm }}">{{ orderSubmitLabel }}</div>
+          <div style="background:{{ submitBg }}; color:#fff; padding:16px; border-radius:{{ buttonRadius }}px; font-weight:700; text-align:center; cursor:pointer; font-size:16px; opacity:{{ submittingOpacity }}; pointer-events:{{ submittingPointer }};" style-hover="opacity:0.92" onClick="{{ submitForm }}">{{ orderSubmitLabel }}</div>
+          <sc-if value="{{ submitError }}">
+            <div style="background:#FDECEC; border:1px solid #F3B9B9; border-radius:{{ smallRadius }}px; padding:14px 16px; font-size:14px; color:#8A2A2A; line-height:1.5;">
+              Не получилось отправить — похоже, проблема с соединением. Проверьте интернет и <span style="text-decoration:underline; cursor:pointer; font-weight:700;" onClick="{{ retrySubmit }}">попробуйте ещё раз</span>, либо напишите нам напрямую в <a href="https://t.me/cstmstd" target="_blank" style="font-weight:700;">Telegram</a>.
+            </div>
+          </sc-if>
           <div style="color:#9AA3B2; font-size:12px; text-align:center;">Отправляя форму, вы соглашаетесь на обработку контактных данных для связи по заказу.</div>
         </div>
       </sc-if>
@@ -1620,13 +1625,32 @@ class Component extends DCLogic {
     window.removeEventListener('pointerup', this.onDragEnd);
   }
 
+  copyEmail = (e) => {
+    if (e) e.preventDefault();
+    const email = 'cs1703@mail.ru';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).catch(() => {});
+    }
+    this.setState({ emailCopied: true });
+    clearTimeout(this._emailCopiedTimer);
+    this._emailCopiedTimer = setTimeout(() => this.setState({ emailCopied: false }), 1800);
+  };
+
   setPage = (p) => {
     this.setState({ page: p, lightboxOpen: false, mediaList: null, mediaIndex: null });
     if (p === 'reviews') { this._marqueeSpeed = 900; }
     if (typeof window !== 'undefined') window.scrollTo(0, 0);
   };
 
+  fetchWithTimeout(url, opts, ms) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms || 10000);
+    return fetch(url, { ...opts, signal: ctrl.signal }).finally(() => clearTimeout(timer));
+  }
+
   async sendOrderToTelegram() {
+    if (this.state.submitting) return;
+    this.setState({ submitting: true, submitError: false });
     const TG_TOKEN = '8983804440:AAEVVYIcD-f5YcPY3h3_Sguw6w0QRlkMD10';
     const TG_CHAT_ID = '1730911641';
     const f = this.state.form;
@@ -1657,55 +1681,68 @@ class Component extends DCLogic {
       }
     }
     const text = lines.join('\n');
-    try {
-      await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT_ID, text }),
-      });
-      if (src === 'constructor') {
-        try {
-          const dataUrl = this.state.orderMockupDataUrl;
-          if (dataUrl) {
-            const blob = await (await fetch(dataUrl)).blob();
-            const fd = new FormData();
-            fd.append('chat_id', TG_CHAT_ID);
-            fd.append('caption', 'Готовый макет на изделии');
-            fd.append('photo', blob, 'mockup.png');
-            await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd });
-          }
-        } catch (e) {
-          console.error('Mockup send failed', e);
-        }
+    let sentOk = false;
+    for (let attempt = 0; attempt < 2 && !sentOk; attempt++) {
+      try {
+        const res = await this.fetchWithTimeout('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TG_CHAT_ID, text }),
+        }, 10000);
+        sentOk = !!(res && res.ok);
+      } catch (e) {
+        console.error('Telegram send failed (attempt ' + attempt + ')', e);
       }
+    }
+    if (!sentOk) {
+      this.setState({ submitting: false, submitError: true });
+      return;
+    }
+    // Text message confirmed — show success right away; photos/mockup upload best-effort in background.
+    this.setState({ submitting: false, formSubmitted: true });
+    (async () => {
       const sendPhotoUrl = async (relSrc, caption) => {
         if (!relSrc) return;
         try {
-          const blob = await (await fetch(relSrc)).blob();
+          const blob = await (await this.fetchWithTimeout(relSrc, {}, 10000)).blob();
           const fd = new FormData();
           fd.append('chat_id', TG_CHAT_ID);
           fd.append('caption', caption);
           fd.append('photo', blob, 'photo.jpg');
-          await fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd });
+          await this.fetchWithTimeout('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd }, 15000);
         } catch (e) {
           console.error('Photo send failed', e);
         }
       };
-      if (src !== 'constructor' && src !== 'cart') {
-        const p = (this._allProducts || []).find((pr) => pr.name === f.product);
-        if (p && p.photo) await sendPhotoUrl(p.photo, p.name);
-      }
-      if (src === 'cart') {
-        const items = Object.values(this.state.cart);
-        for (const it of items) {
-          if (it.photo) await sendPhotoUrl(it.photo, it.name);
+      try {
+        if (src === 'constructor') {
+          const dataUrl = this.state.orderMockupDataUrl;
+          if (dataUrl) {
+            const blob = await (await this.fetchWithTimeout(dataUrl, {}, 10000)).blob();
+            const fd = new FormData();
+            fd.append('chat_id', TG_CHAT_ID);
+            fd.append('caption', 'Готовый макет на изделии');
+            fd.append('photo', blob, 'mockup.png');
+            await this.fetchWithTimeout('https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto', { method: 'POST', body: fd }, 15000);
+          }
         }
+        if (src !== 'constructor' && src !== 'cart') {
+          const p = (this._allProducts || []).find((pr) => pr.name === f.product);
+          if (p && p.photo) await sendPhotoUrl(p.photo, p.name);
+        }
+        if (src === 'cart') {
+          const items = Object.values(this.state.cart);
+          for (const it of items) {
+            if (it.photo) await sendPhotoUrl(it.photo, it.name);
+          }
+        }
+      } catch (e) {
+        console.error('Background media send failed', e);
       }
-    } catch (e) {
-      console.error('Telegram send failed', e);
-    }
-    this.setState({ formSubmitted: true });
+    })();
   }
+
+  retrySubmit = () => { this.setState({ submitError: false }); this.sendOrderToTelegram(); };
   renderVals() {
    try {
     const palette = this.props.palette ?? ['#1B4FA0', '#123a7c', '#EAF0FC'];
@@ -1716,6 +1753,7 @@ class Component extends DCLogic {
     const grid2or1 = isMobile ? '1fr' : '1fr 1fr';
     const grid3or1 = isMobile ? 'repeat(1,1fr)' : (isTablet ? 'repeat(2,1fr)' : 'repeat(3,1fr)');
     const grid4cols = isMobile ? 'repeat(2,1fr)' : (isTablet ? 'repeat(3,1fr)' : 'repeat(4,1fr)');
+    const gridShop = isMobile ? 'repeat(2,1fr)' : (isTablet ? 'repeat(3,1fr)' : 'repeat(3,1fr)');
     const heroSplitCols = isMobile ? '1fr' : '1fr 1.15fr';
     const storyItemColsBase = (cols) => (isMobile ? '1fr' : cols);
     const shape = this.props.shape ?? 'rounded';
@@ -2645,8 +2683,16 @@ class Component extends DCLogic {
       productOptions,
       formSubmitted: this.state.formSubmitted,
       formNotSubmitted: !this.state.formSubmitted,
-      submitBg: accentColor,
+      copyEmail: this.copyEmail,
+      headerEmailLabel: this.state.emailCopied ? 'Скопировано!' : 'Почта',
+      footerEmailLabel: this.state.emailCopied ? 'Скопировано! cs1703@mail.ru' : 'cs1703@mail.ru',
+      submitting: !!this.state.submitting,
+      submitError: !!this.state.submitError,
+      submitBg: this.state.submitting ? '#9AA3B2' : accentColor,
+      submittingOpacity: this.state.submitting ? '0.7' : '1',
+      submittingPointer: this.state.submitting ? 'none' : 'auto',
       submitForm: () => this.sendOrderToTelegram(),
+      retrySubmit: this.retrySubmit,
       attachedFileLabel: this.state.attachedFileName ? '📎 ' + this.state.attachedFileName : 'Прикрепить файл макета',
       onAttachFile: (e) => {
         const file = e.target.files && e.target.files[0];
@@ -2660,12 +2706,16 @@ class Component extends DCLogic {
       orderSubtitle: this.state.orderSource === 'constructor'
         ? 'Оставьте контакты — мы получим ваш макет из конструктора и свяжемся для уточнения деталей и оплаты.'
         : 'Заполните форму — мы свяжемся с вами в Telegram или по телефону для уточнения деталей и оплаты.',
-      orderSubmitLabel: this.state.orderSource === 'constructor' ? 'Просто отправить макет' : 'Отправить заявку',
+      orderSubmitLabel: this.state.submitting ? 'Отправляем…' : (this.state.orderSource === 'constructor' ? 'Просто отправить макет' : 'Отправить заявку'),
       isMobile,
       isTablet,
       grid2or1,
       grid3or1,
       grid4cols,
+      gridShop,
+      detailTitleSize: isMobile ? '22px' : '30px',
+      detailPadBottom: isMobile ? '128px' : '88px',
+      detailActionStyle: isMobile ? 'display:flex; align-items:center; gap:12px; position:fixed; left:0; right:0; bottom:0; z-index:90; background:#fff; border-top:1px solid #E4E8F0; box-shadow:0 -8px 24px rgba(15,31,61,0.10); padding:10px 16px calc(10px + env(safe-area-inset-bottom));' : 'display:flex; align-items:center; gap:16px;',
       heroSplitCols,
       navOverflow: isMobile ? 'auto' : 'visible',
       heroPadding: isMobile ? '48px 20px' : '96px 24px',
