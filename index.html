@@ -421,20 +421,35 @@
   </sc-if>
 
   <sc-if value="{{ mediaOpen }}">
-    <div onClick="{{ closeMedia }}" onTouchStart="{{ mediaTouchStart }}" onTouchEnd="{{ mediaTouchEnd }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:{{ lightboxPad }}; cursor:zoom-out; overflow:hidden; touch-action:pan-y;">
-      <div onClick="{{ closeMedia }}" style="position:absolute; top:24px; right:28px; z-index:2; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.12); color:#fff; font-size:28px; font-weight:300; cursor:pointer; line-height:1;">×</div>
-      <sc-if value="{{ mediaHasMultiple }}">
-        <div onClick="{{ mediaPrev }}" style="position:absolute; left:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ mediaArrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
-        <div onClick="{{ mediaNext }}" style="position:absolute; right:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ mediaArrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
-        <div style="position:absolute; bottom:18px; left:0; right:0; display:{{ mediaDotsDisplay }}; justify-content:center; gap:6px; z-index:2; pointer-events:none;">
-          <sc-for list="{{ mediaDots }}" as="d" hint-placeholder-count="3">
-            <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:all .25s ease;"></div>
+    <div style="position:fixed; inset:0; background:rgba(10,12,16,0.95); z-index:200; overflow:hidden;">
+      <div onClick="{{ closeMedia }}" style="position:absolute; top:24px; right:20px; z-index:6; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.14); color:#fff; font-size:28px; font-weight:300; cursor:pointer; line-height:1;">×</div>
+      <sc-if value="{{ fsSwipe }}">
+        <div ref="{{ mediaGalRef }}" onScroll="{{ onMediaFsScroll }}" class="cs-nosb" style="position:absolute; inset:0; display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;">
+          <sc-for list="{{ mediaPhotos }}" as="ph" hint-placeholder-count="2">
+            <div onClick="{{ closeMedia }}" style="flex:0 0 100%; width:100%; height:100%; scroll-snap-align:center; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;">
+              <img src="{{ ph.src }}" style="max-width:100%; max-height:100%; object-fit:contain; display:block; pointer-events:none;">
+            </div>
           </sc-for>
         </div>
+        <sc-if value="{{ mediaHasMultiple }}">
+          <div ref="{{ mediaFsDotsRef }}" style="position:absolute; bottom:calc(20px + env(safe-area-inset-bottom,0px)); left:0; right:0; display:flex; justify-content:center; gap:6px; z-index:5; pointer-events:none;">
+            <sc-for list="{{ mediaDots }}" as="d" hint-placeholder-count="3">
+              <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:width .2s ease, background .2s ease;"></div>
+            </sc-for>
+          </div>
+        </sc-if>
       </sc-if>
-      <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
-        <img src="{{ mediaSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
-      </div>
+      <sc-if value="{{ fsDesktop }}">
+        <div onClick="{{ closeMedia }}" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:40px; cursor:zoom-out;">
+          <sc-if value="{{ mediaHasMultiple }}">
+            <div onClick="{{ mediaPrev }}" style="position:absolute; left:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+            <div onClick="{{ mediaNext }}" style="position:absolute; right:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+          </sc-if>
+          <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
+            <img src="{{ mediaSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
+          </div>
+        </div>
+      </sc-if>
     </div>
   </sc-if>
 
@@ -1034,7 +1049,7 @@
           <sc-if value="{{ activeProduct.badge }}">
             <div style="position:absolute; top:22px; right:14px; z-index:5; background:#B5453F; color:#fff; font-weight:800; font-size:11px; padding:5px 10px; border-radius:6px;">{{ activeProduct.badge }}</div>
           </sc-if>
-          <div ref="{{ mobGalRef }}" onScroll="{{ detailPhotoNav.onScroll }}" class="cs-nosb" style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; height:clamp(300px, 44vh, 440px); -webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <div ref="{{ mobGalRef }}" onScroll="{{ detailPhotoNav.onScroll }}" class="cs-nosb" style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; height:clamp(300px, 44vh, 440px); -webkit-overflow-scrolling:touch; scrollbar-width:none; overscroll-behavior-x:contain;">
             <sc-for list="{{ detailPhotoNav.photos }}" as="ph" hint-placeholder-count="2">
               <div onClick="{{ openLightbox }}" style="flex:0 0 100%; width:100%; scroll-snap-align:center; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding:26px 32px; box-sizing:border-box; overflow:hidden;">
                 <img src="{{ ph.src }}" loading="lazy" decoding="async" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
@@ -1042,9 +1057,9 @@
             </sc-for>
           </div>
           <sc-if value="{{ detailPhotoNav.hasMultiple }}">
-            <div style="position:absolute; bottom:12px; left:0; right:0; display:flex; justify-content:center; gap:6px; z-index:4; pointer-events:none;">
+            <div ref="{{ detailPhotoNav.dotsRef }}" style="position:absolute; bottom:12px; left:0; right:0; display:flex; justify-content:center; gap:6px; z-index:4; pointer-events:none;">
               <sc-for list="{{ detailPhotoNav.dots }}" as="d" hint-placeholder-count="3">
-                <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:all .25s ease;"></div>
+                <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:width .2s ease, background .2s ease;"></div>
               </sc-for>
             </div>
           </sc-if>
@@ -1152,20 +1167,35 @@
   </sc-if>
 
   <sc-if value="{{ lightboxOpen }}">
-    <div onClick="{{ closeLightbox }}" onTouchStart="{{ detailPhotoNav.onTouchStart }}" onTouchEnd="{{ detailPhotoNav.onTouchEnd }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.92); z-index:200; display:flex; align-items:center; justify-content:center; padding:{{ lightboxPad }}; cursor:zoom-out; overflow:hidden; touch-action:pan-y;">
-      <div onClick="{{ closeLightbox }}" style="position:absolute; top:24px; right:28px; z-index:2; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.12); color:#fff; font-size:28px; font-weight:300; cursor:pointer; line-height:1;">×</div>
-      <sc-if value="{{ detailPhotoNav.hasMultiple }}">
-        <div onClick="{{ detailPhotoNav.prev }}" style="position:absolute; left:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ detailPhotoNav.arrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
-        <div onClick="{{ detailPhotoNav.next }}" style="position:absolute; right:{{ lightboxArrowOffset }}; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:{{ detailPhotoNav.arrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
-        <div style="position:absolute; bottom:18px; left:0; right:0; display:{{ detailPhotoNav.fullscreenDotsDisplay }}; justify-content:center; gap:6px; z-index:2; pointer-events:none;">
-          <sc-for list="{{ detailPhotoNav.fullscreenDots }}" as="d" hint-placeholder-count="3">
-            <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:all .25s ease;"></div>
+    <div style="position:fixed; inset:0; background:rgba(10,12,16,0.95); z-index:200; overflow:hidden;">
+      <div onClick="{{ closeLightbox }}" style="position:absolute; top:24px; right:20px; z-index:6; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.14); color:#fff; font-size:28px; font-weight:300; cursor:pointer; line-height:1;">×</div>
+      <sc-if value="{{ fsSwipe }}">
+        <div ref="{{ detailPhotoNav.galRef }}" onScroll="{{ detailPhotoNav.onFsScroll }}" class="cs-nosb" style="position:absolute; inset:0; display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;">
+          <sc-for list="{{ detailPhotoNav.photos }}" as="ph" hint-placeholder-count="2">
+            <div onClick="{{ closeLightbox }}" style="flex:0 0 100%; width:100%; height:100%; scroll-snap-align:center; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;">
+              <img src="{{ ph.src }}" style="max-width:100%; max-height:100%; object-fit:contain; display:block; pointer-events:none;">
+            </div>
           </sc-for>
         </div>
+        <sc-if value="{{ detailPhotoNav.hasMultiple }}">
+          <div ref="{{ detailPhotoNav.fsDotsRef }}" style="position:absolute; bottom:calc(20px + env(safe-area-inset-bottom,0px)); left:0; right:0; display:flex; justify-content:center; gap:6px; z-index:5; pointer-events:none;">
+            <sc-for list="{{ detailPhotoNav.fullscreenDots }}" as="d" hint-placeholder-count="3">
+              <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:width .2s ease, background .2s ease;"></div>
+            </sc-for>
+          </div>
+        </sc-if>
       </sc-if>
-      <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
-        <img src="{{ detailPhotoNav.currentSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
-      </div>
+      <sc-if value="{{ fsDesktop }}">
+        <div onClick="{{ closeLightbox }}" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:40px; cursor:zoom-out;">
+          <sc-if value="{{ detailPhotoNav.hasMultiple }}">
+            <div onClick="{{ detailPhotoNav.prev }}" style="position:absolute; left:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+            <div onClick="{{ detailPhotoNav.next }}" style="position:absolute; right:24px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; z-index:3;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></div>
+          </sc-if>
+          <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
+            <img src="{{ detailPhotoNav.currentSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
+          </div>
+        </div>
+      </sc-if>
     </div>
   </sc-if>
   <sc-if value="{{ sizeTableOpen }}" hint-placeholder-val="{{ false }}">
@@ -1443,6 +1473,7 @@
           <div style="color:#fff; font-weight:700; font-size:13px; margin-bottom:12px;">Информация</div>
           <div style="font-size:13px; margin-bottom:10px; cursor:pointer;" onClick="{{ go.delivery }}">Доставка и оплата</div>
           <div style="font-size:13px; margin-bottom:10px; cursor:pointer;" onClick="{{ go.offer }}">Публичная оферта</div>
+          <div style="font-size:12px; color:#7A88A6; margin-top:14px;">Малханов В. А., самозанятый<br>ИНН 032601801103</div>
         </div>
       </div>
     </div>
@@ -1532,9 +1563,34 @@ class Component extends DCLogic {
     return shuffled.slice(0, 4);
   }
   openMedia(list, i) {
+    this._mediaPositioned = false;
     this.setState({ mediaList: list, mediaIndex: i, productZoomed: false, productZoomY: 0.5 });
   }
-  closeMedia = () => this.setState({ mediaList: null, mediaIndex: null, productZoomed: false, productZoomY: 0.5 });
+  closeMedia = () => { this._mediaPositioned = false; this.setState({ mediaList: null, mediaIndex: null, productZoomed: false, productZoomY: 0.5 }); };
+  _syncDotsEl(dotsEl, i, activeColor, inactiveColor) {
+    if (!dotsEl) return;
+    const kids = dotsEl.children;
+    for (let k = 0; k < kids.length; k++) {
+      const on = k === i;
+      kids[k].style.width = on ? '22px' : '7px';
+      kids[k].style.background = on ? activeColor : inactiveColor;
+    }
+  }
+  _onGalleryScroll(scrollEl, dotsRef, activeColor, inactiveColor, onSettle) {
+    if (!scrollEl) return;
+    const w = scrollEl.clientWidth || 1;
+    if (this._galRaf) cancelAnimationFrame(this._galRaf);
+    this._galRaf = requestAnimationFrame(() => {
+      this._galRaf = null;
+      const i = Math.round(scrollEl.scrollLeft / w);
+      this._syncDotsEl(dotsRef && dotsRef.current, i, activeColor, inactiveColor);
+    });
+    clearTimeout(this._galSettleTimer);
+    this._galSettleTimer = setTimeout(() => {
+      const i = Math.round(scrollEl.scrollLeft / (scrollEl.clientWidth || 1));
+      if (onSettle) onSettle(i);
+    }, 110);
+  }
   mediaPrev = (e) => {
     if (e) e.stopPropagation();
     this.setState((s) => ({ mediaIndex: (s.mediaIndex - 1 + s.mediaList.length) % s.mediaList.length, productZoomed: false, productZoomY: 0.5 }));
@@ -1601,6 +1657,11 @@ class Component extends DCLogic {
   zoneRef = React.createRef();
   similarScrollRef = React.createRef();
   mobGalRef = React.createRef();
+  mobDotsRef = React.createRef();
+  lightboxGalRef = React.createRef();
+  lbDotsRef = React.createRef();
+  mediaGalRef = React.createRef();
+  mediaDotsRef = React.createRef();
   zoneRefBack = React.createRef();
   marqueeRef = React.createRef();
 
@@ -2770,37 +2831,26 @@ class Component extends DCLogic {
         };
         const doPrev = () => goTo(seq[(idx - 1 + seq.length) % seq.length]);
         const doNext = () => goTo(seq[(idx + 1) % seq.length]);
+        const scrollFs = (dir) => { const el = this.lightboxGalRef.current; if (el) el.scrollBy({ left: el.clientWidth * dir, behavior: 'smooth' }); else (dir < 0 ? doPrev() : doNext()); };
         return {
           currentSrc,
           hasMultiple: seq.length > 1,
-          prev: (e) => { if (e) e.stopPropagation(); doPrev(); },
-          next: (e) => { if (e) e.stopPropagation(); doNext(); },
+          prev: (e) => { if (e) e.stopPropagation(); scrollFs(-1); },
+          next: (e) => { if (e) e.stopPropagation(); scrollFs(1); },
           arrowDisplay: isMobile ? 'none' : 'flex',
-          fullscreenDotsDisplay: (isMobile && seq.length > 1) ? 'flex' : 'none',
-          fullscreenDots: seq.map((s, i) => ({ w: i === idx ? '20px' : '7px', bg: i === idx ? '#fff' : 'rgba(255,255,255,0.35)' })),
+          fullscreenDots: seq.map((s, i) => ({ w: i === idx ? '22px' : '7px', bg: i === idx ? '#fff' : 'rgba(255,255,255,0.35)' })),
           photos: seq.map((src) => ({ src })),
-          dots: seq.map((s, i) => ({ w: i === idx ? '20px' : '7px', bg: i === idx ? accentColor : 'rgba(20,24,31,0.22)' })),
-          onScroll: (e) => {
-            const el = e.currentTarget;
-            clearTimeout(this._mobGalTimer);
-            this._mobGalTimer = setTimeout(() => {
-              const i = Math.round(el.scrollLeft / el.clientWidth);
-              if (i >= 0 && i < seq.length && i !== idx) goTo(seq[i]);
-            }, 90);
-          },
-          onTouchStart: (e) => { this._lbTouchX = e.touches[0].clientX; this._lbTouchY = e.touches[0].clientY; },
-          onTouchEnd: (e) => {
-            if (this._lbTouchX == null) return;
-            const dx = e.changedTouches[0].clientX - this._lbTouchX;
-            const dy = e.changedTouches[0].clientY - (this._lbTouchY || 0);
-            this._lbTouchX = null;
-            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) doNext(); else doPrev(); }
-          },
+          dots: seq.map((s, i) => ({ w: i === idx ? '22px' : '7px', bg: i === idx ? accentColor : 'rgba(20,24,31,0.22)' })),
+          dotsRef: this.mobDotsRef,
+          fsDotsRef: this.lbDotsRef,
+          galRef: (el) => { this.lightboxGalRef.current = el; if (el && !this._lbPositioned) { this._lbPositioned = true; el.scrollLeft = el.clientWidth * idx; } },
+          onScroll: (e) => this._onGalleryScroll(e.currentTarget, this.mobDotsRef, accentColor, 'rgba(20,24,31,0.22)', (i) => { if (i >= 0 && i < seq.length && i !== idx) goTo(seq[i]); }),
+          onFsScroll: (e) => this._onGalleryScroll(e.currentTarget, this.lbDotsRef, '#fff', 'rgba(255,255,255,0.35)', (i) => { if (i >= 0 && i < seq.length && i !== idx) goTo(seq[i]); }),
         };
       })(),
       lightboxOpen: this.state.lightboxOpen,
-      openLightbox: () => this.setState({ lightboxOpen: true, productZoomed: false, productZoomY: 0.5 }),
-      closeLightbox: () => this.setState({ lightboxOpen: false, productZoomed: false, productZoomY: 0.5 }),
+      openLightbox: () => { this._lbPositioned = false; this.setState({ lightboxOpen: true, productZoomed: false, productZoomY: 0.5 }); },
+      closeLightbox: () => { this._lbPositioned = false; this.setState({ lightboxOpen: false, productZoomed: false, productZoomY: 0.5 }); },
       productZoomed: this.state.productZoomed,
       toggleProductZoom: (e) => { if (e) e.stopPropagation(); this.setState((s) => ({ productZoomed: !s.productZoomed, productZoomY: 0.5 })); },
       onProductZoomMove: (e) => {
@@ -2931,7 +2981,13 @@ class Component extends DCLogic {
       mediaTouchEnd: this.mediaTouchEnd,
       mediaArrowDisplay: isMobile ? 'none' : 'flex',
       mediaDotsDisplay: (isMobile && this.state.mediaList !== null && this.state.mediaList.length > 1) ? 'flex' : 'none',
-      mediaDots: this.state.mediaList ? this.state.mediaList.map((_, i) => ({ w: i === this.state.mediaIndex ? '20px' : '7px', bg: i === this.state.mediaIndex ? '#fff' : 'rgba(255,255,255,0.35)' })) : [],
+      mediaDots: this.state.mediaList ? this.state.mediaList.map((_, i) => ({ w: i === this.state.mediaIndex ? '22px' : '7px', bg: i === this.state.mediaIndex ? '#fff' : 'rgba(255,255,255,0.35)' })) : [],
+      mediaPhotos: this.state.mediaList ? this.state.mediaList.map((src) => ({ src })) : [],
+      mediaGalRef: (el) => { this.mediaGalRef.current = el; if (el && !this._mediaPositioned) { this._mediaPositioned = true; el.scrollLeft = el.clientWidth * (this.state.mediaIndex || 0); } },
+      mediaFsDotsRef: this.mediaDotsRef,
+      onMediaFsScroll: (e) => this._onGalleryScroll(e.currentTarget, this.mediaDotsRef, '#fff', 'rgba(255,255,255,0.35)', (i) => { if (this.state.mediaList && i >= 0 && i < this.state.mediaList.length && i !== this.state.mediaIndex) this.setState({ mediaIndex: i }); }),
+      fsSwipe: vw < 1024,
+      fsDesktop: vw >= 1024,
       form: this.state.form,
       setField,
       productOptions,
