@@ -26,6 +26,8 @@
     input, textarea, select { font-family: 'Manrope', sans-serif; }
     .cs-nav::-webkit-scrollbar { display: none; }
     @keyframes cs-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes cs-sheet-up { from { transform: translateY(48px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .cs-nosb::-webkit-scrollbar { display: none; }
     @keyframes cs-photo-fade { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
     @keyframes cs-cat-walk { 0% { left: -60px; transform: scaleX(1); } 48% { left: calc(100% + 60px); transform: scaleX(1); } 50% { left: calc(100% + 60px); transform: scaleX(-1); } 98% { left: -60px; transform: scaleX(-1); } 100% { left: -60px; transform: scaleX(1); } }
     @keyframes cs-cat-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
@@ -90,7 +92,7 @@
           <div style="background:#fff; border:1px solid #E4E8F0; border-radius:{{ smallRadius }}px; box-shadow:0 12px 28px rgba(15,31,61,0.14); overflow:hidden;">
             <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F;" style-hover="background:#F3F5F9">Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">Max</a>
-            <a href="/cdn-cgi/l/email-protection#52312163656261123f333b3e7c2027" onClick="{{ copyEmail }}" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">{{ headerEmailLabel }}</a>
+            <a href="/cdn-cgi/l/email-protection#32514103050201725f535b5e1c4047" onClick="{{ copyEmail }}" style="display:block; padding:12px 16px; font-weight:600; font-size:14px; color:#14181F; border-top:1px solid #EEF1F6;" style-hover="background:#F3F5F9">{{ headerEmailLabel }}</a>
           </div>
         </div>
       </div>
@@ -124,7 +126,7 @@
         <div style="display:flex; flex-direction:column; gap:8px;">
           <a href="https://t.me/cstmstd" target="_blank" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Telegram</a>
           <a href="https://max.ru/u/f9LHodD0cOKXCSHY-8x9y4CnsVZDpuSW8mDdPWQgsaXmqOvgThQMOOQfs94" target="_blank" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">Max</a>
-          <a href="/cdn-cgi/l/email-protection#e28191d3d5d2d1a28f838b8ecc9097" onClick="{{ copyEmail }}" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">{{ headerEmailLabel }}</a>
+          <a href="/cdn-cgi/l/email-protection#543727656364671439353d387a2621" onClick="{{ copyEmail }}" style="display:block; padding:14px 16px; border-radius:12px; background:#F3F5F9; font-weight:700; font-size:15px; color:#14181F;">{{ headerEmailLabel }}</a>
         </div>
       </div>
     </div>
@@ -493,7 +495,7 @@
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Телефон</div>
           <div style="font-size:16px; margin-bottom:22px;"><a href="tel:+79681807908">+7 968 180 79 08</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Почта</div>
-          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#d9baaae8eee9ea99b4b8b0b5f7abac" onClick="{{ copyEmail }}">{{ footerEmailLabel }}</a></div>
+          <div style="font-size:16px; margin-bottom:22px;"><a href="/cdn-cgi/l/email-protection#36554507010605765b575f5a184443" onClick="{{ copyEmail }}">{{ footerEmailLabel }}</a></div>
           <div style="font-weight:700; font-size:14px; color:#9AA3B2; margin-bottom:6px;">Группа ВКонтакте</div>
           <div style="font-size:16px;"><a href="https://vk.com/cstmstd" target="_blank">vk.com/cstmstd</a></div>
         </div>
@@ -867,7 +869,8 @@
 
   <!-- ============ PRODUCT DETAIL ============ -->
   <sc-if value="{{ isProduct }}">
-    <section data-screen-label="Товар" style="max-width:1100px; margin:0 auto; padding:{{ pagePad }}; padding-bottom:{{ detailPadBottom }}; animation:cs-fade .4s ease;">
+    <section data-screen-label="Товар" style="max-width:1100px; margin:0 auto; padding:{{ detailSectionPad }}; animation:cs-fade .4s ease;">
+      <sc-if value="{{ isDesktopDetail }}" hint-placeholder-val="{{ true }}">
       <div onClick="{{ activeProduct.backClick }}" style="color:{{ accentColor }}; font-weight:700; font-size:14px; cursor:pointer; margin-bottom:12px;">{{ activeProduct.backLabel }}</div>
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:24px;">
         <sc-for list="{{ breadcrumbItems }}" as="bc" hint-placeholder-count="2">
@@ -971,8 +974,111 @@
           </div>
         </div>
       </div>
+      </sc-if>
 
-      <div style="margin-top:64px;">
+      <sc-if value="{{ isMobileDetail }}" hint-placeholder-val="{{ false }}">
+        <div style="position:relative; background:#fff; border-bottom:1px solid #EEF1F6;">
+          <div onClick="{{ activeProduct.backClick }}" style="position:absolute; top:12px; left:12px; z-index:5; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.92); box-shadow:0 2px 10px rgba(15,31,61,0.14); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#14181F;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+          <sc-if value="{{ activeProduct.badge }}">
+            <div style="position:absolute; top:22px; right:14px; z-index:5; background:#B5453F; color:#fff; font-weight:800; font-size:11px; padding:5px 10px; border-radius:6px;">{{ activeProduct.badge }}</div>
+          </sc-if>
+          <div ref="{{ mobGalRef }}" onScroll="{{ detailPhotoNav.onScroll }}" class="cs-nosb" style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; height:clamp(300px, 44vh, 440px); -webkit-overflow-scrolling:touch; scrollbar-width:none;">
+            <sc-for list="{{ detailPhotoNav.photos }}" as="ph" hint-placeholder-count="2">
+              <div onClick="{{ openLightbox }}" style="flex:0 0 100%; width:100%; scroll-snap-align:center; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding:26px 32px; box-sizing:border-box; overflow:hidden;">
+                <img src="{{ ph.src }}" loading="lazy" decoding="async" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ detailPhotoNav.hasMultiple }}">
+            <div style="position:absolute; bottom:12px; left:0; right:0; display:flex; justify-content:center; gap:6px; z-index:4; pointer-events:none;">
+              <sc-for list="{{ detailPhotoNav.dots }}" as="d" hint-placeholder-count="3">
+                <div style="width:{{ d.w }}; height:7px; border-radius:4px; background:{{ d.bg }}; transition:all .25s ease;"></div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <div style="padding:16px 18px 4px; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <sc-if value="{{ activeProduct.hasDiscount }}">
+              <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
+                <div style="font-weight:800; font-size:24px; color:{{ accentColor }};">{{ activeProduct.price }}</div>
+                <div style="color:#9AA3B2; font-size:15px; text-decoration:line-through;">{{ activeProduct.oldPrice }}</div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ activeProduct.priceOnly }}">
+              <div style="font-weight:800; font-size:24px; color:{{ accentColor }}; margin-bottom:6px;">{{ activeProduct.price }}</div>
+            </sc-if>
+            <h1 style="font-size:17px; font-weight:600; line-height:1.4; margin:0; color:#14181F; font-family:'Manrope', sans-serif;">{{ activeProduct.name }}</h1>
+          </div>
+          <sc-if value="{{ activeProduct.hasColorOptions }}">
+            <div>
+              <div style="font-weight:700; font-size:13px; color:#6B7280; margin-bottom:6px;">Цвет: <span style="color:#14181F;">{{ activeColorName }}</span></div>
+              <div style="display:flex; gap:4px; margin-left:-4px;">
+                <sc-for list="{{ productColorSwatches }}" as="sw" hint-placeholder-count="2">
+                  <div onClick="{{ sw.onClick }}" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                    <div style="width:34px; height:34px; border-radius:50%; background:{{ sw.hex }}; border:{{ sw.border }}; box-shadow:{{ sw.ring }}; transition:box-shadow .2s ease;"></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ activeProduct.singleColorOnly }}">
+            <div style="font-weight:700; font-size:13px; color:#6B7280;">Цвет: <span style="color:#14181F;">{{ activeProduct.color }}</span></div>
+          </sc-if>
+          <sc-if value="{{ activeProduct.sizes }}">
+            <div>
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                <div style="font-weight:700; font-size:13px; color:#6B7280;">Размер</div>
+                <div onClick="{{ openSizeTable }}" style="font-weight:700; font-size:13px; color:{{ accentColor }}; cursor:pointer; padding:8px 0 8px 12px;">Таблица размеров</div>
+              </div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <sc-for list="{{ activeProductSizeOptions }}" as="sz" hint-placeholder-count="5">
+                  <div onClick="{{ sz.onClick }}" style="min-width:56px; height:44px; padding:0 12px; display:flex; align-items:center; justify-content:center; border-radius:12px; border:{{ sz.mBorder }}; background:{{ sz.bg }}; color:{{ sz.color }}; font-weight:700; font-size:14px; cursor:pointer; transition:all .2s ease; box-sizing:border-box;">{{ sz.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <div>
+            <div style="max-height:{{ descMaxH }}; overflow:hidden; color:#454C59; font-size:14px; line-height:1.65; transition:max-height .35s ease;">{{ activeProduct.desc }}</div>
+            <sc-if value="{{ showDescToggle }}">
+              <div onClick="{{ toggleDesc }}" style="color:{{ accentColor }}; font-weight:700; font-size:14px; padding:10px 0 2px; cursor:pointer;">{{ descToggleLabel }}</div>
+            </sc-if>
+          </div>
+          <div>
+            <div style="border-top:1px solid #EEF1F6;"></div>
+            <div onClick="{{ toggleAccSpec }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; cursor:pointer; min-height:44px; box-sizing:border-box;">
+              <div style="font-weight:700; font-size:15px;">Характеристики</div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA3B2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ accSpecChev }}; transition:transform .25s ease; flex-shrink:0;"><path d="M6 9l6 6 6-6"></path></svg>
+            </div>
+            <sc-if value="{{ accSpecOpen }}">
+              <div style="padding:0 0 14px; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; justify-content:space-between; gap:16px; font-size:14px;"><span style="color:#6B7280;">Состав</span><span style="color:#14181F; text-align:right;">хлопок 100%</span></div>
+                <div style="display:flex; justify-content:space-between; gap:16px; font-size:14px;"><span style="color:#6B7280;">Плотность</span><span style="color:#14181F; text-align:right;">160–320 г/м² (зависит от модели)</span></div>
+              </div>
+            </sc-if>
+            <div style="border-top:1px solid #EEF1F6;"></div>
+            <div onClick="{{ toggleAccPrint }}" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; cursor:pointer; min-height:44px; box-sizing:border-box;">
+              <div style="font-weight:700; font-size:15px;">Печать</div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA3B2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ accPrintChev }}; transition:transform .25s ease; flex-shrink:0;"><path d="M6 9l6 6 6-6"></path></svg>
+            </div>
+            <sc-if value="{{ accPrintOpen }}">
+              <div style="padding:0 0 14px; color:#454C59; font-size:14px; line-height:1.65;">Метод печати: DTF или термотрансфер — выбирается в конструкторе.</div>
+            </sc-if>
+            <div style="border-top:1px solid #EEF1F6;"></div>
+          </div>
+        </div>
+        <div style="position:fixed; left:0; right:0; bottom:0; z-index:90; background:rgba(255,255,255,0.97); backdrop-filter:blur(14px); border-top:1px solid #E9EDF3; box-shadow:0 -8px 24px rgba(15,31,61,0.08); padding:10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; background:#F3F5F9; border-radius:14px; height:50px; flex-shrink:0;">
+            <div onClick="{{ decProductQty }}" style="width:44px; height:50px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:{{ accentColor }}; cursor:pointer; user-select:none;">−</div>
+            <div style="min-width:18px; text-align:center; font-weight:800; font-size:15px;">{{ productQty }}</div>
+            <div onClick="{{ incProductQty }}" style="width:44px; height:50px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:{{ accentColor }}; cursor:pointer; user-select:none;">+</div>
+          </div>
+          <div onClick="{{ addActiveToCart }}" style="flex:1; height:50px; background:{{ accentColor }}; color:#fff; border-radius:14px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 8px 20px rgba(31,61,143,0.22);">{{ activeAddLabel }}</div>
+          <div onClick="{{ toggleWishlist }}" style="width:50px; height:50px; border-radius:14px; background:#F3F5F9; display:flex; align-items:center; justify-content:center; font-size:22px; color:{{ wishlistColor }}; cursor:pointer; flex-shrink:0;">{{ wishlistIcon }}</div>
+        </div>
+      </sc-if>
+
+      <div style="{{ similarWrapStyle }}">
         <h2 style="font-family:'Unbounded'; font-size:22px; font-weight:800; margin:0 0 20px;">Похожие товары</h2>
         <div style="position:relative;">
           <div onClick="{{ similarScrollLeft }}" style="position:absolute; left:-18px; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:{{ cardBorder }}; box-shadow:{{ cardShadow }}; display:{{ similarArrowDisplay }}; align-items:center; justify-content:center; cursor:pointer; z-index:2; color:#14181F;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
@@ -1002,6 +1108,25 @@
       </sc-if>
       <div onClick="{{ toggleProductZoom }}" onMouseMove="{{ onProductZoomMove }}" style="max-width:90vw; max-height:90vh; overflow:hidden; cursor:{{ productZoomCursor }};">
         <img src="{{ detailPhotoNav.currentSrc }}" style="display:block; max-width:90vw; max-height:90vh; object-fit:contain; transform:{{ productZoomTransform }}; transition:transform .15s ease-out;">
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ sizeTableOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeSizeTable }}" style="position:fixed; inset:0; background:rgba(10,12,16,0.5); z-index:210; display:flex; align-items:flex-end; justify-content:center;">
+      <div onClick="{{ stopClick }}" style="background:#fff; width:100%; max-width:560px; border-radius:20px 20px 0 0; padding:20px 20px calc(24px + env(safe-area-inset-bottom, 0px)); animation:cs-sheet-up .3s ease;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+          <div style="font-weight:800; font-size:17px;">Таблица размеров</div>
+          <div onClick="{{ closeSizeTable }}" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#F3F5F9; font-size:22px; cursor:pointer; line-height:1;">×</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #EEF1F6; font-weight:800; font-size:13px; color:#9AA3B2; text-transform:uppercase; letter-spacing:0.5px;">
+          <span>Размер</span><span>Российский размер</span>
+        </div>
+        <sc-for list="{{ sizeTableRows }}" as="r" hint-placeholder-count="5">
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #F3F5F9; font-size:15px;">
+            <span style="font-weight:700;">{{ r.label }}</span><span style="color:#454C59;">{{ r.ru }}</span>
+          </div>
+        </sc-for>
+        <div style="color:#9AA3B2; font-size:12px; margin-top:12px; line-height:1.5;">Точные замеры зависят от модели — подскажем при оформлении заказа.</div>
       </div>
     </div>
   </sc-if>
@@ -1405,6 +1530,7 @@ class Component extends DCLogic {
 
   zoneRef = React.createRef();
   similarScrollRef = React.createRef();
+  mobGalRef = React.createRef();
   zoneRefBack = React.createRef();
   marqueeRef = React.createRef();
 
@@ -1887,8 +2013,9 @@ class Component extends DCLogic {
       titanShop: () => this.setPage('titan-shop'),
       product: (id) => {
         const pr = products.find((p) => p.slotId === id);
-        this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', galleryOverride: null, lightboxOpen: false, productZoomed: false, productZoomY: 0.5, selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null });
+        this.setState({ page: 'product', activeProductId: id, activeProductColor: 'white', productQty: 1, productView: 'front', galleryOverride: null, lightboxOpen: false, productZoomed: false, productZoomY: 0.5, selectedSize: (pr && pr.sizes) ? pr.sizes[0] : null, descExpanded: false, accSpecOpen: false, accPrintOpen: false, sizeTableOpen: false });
         if (typeof window !== 'undefined') window.scrollTo(0, 0);
+        if (this.mobGalRef && this.mobGalRef.current) this.mobGalRef.current.scrollTo({ left: 0 });
       },
       howto: () => this.setPage('howto'),
       order: () => this.setPage('order'),
@@ -2444,7 +2571,7 @@ class Component extends DCLogic {
         const found = p || products[0] || {};
         const hasColorOptions = multiColorIds.includes(found.slotId);
         const isCollectionProduct = !!found.collection;
-        return { ...found, hasDiscount: !!found.oldPrice, noCollection: hasColorOptions, hasColorOptions, singleColorOnly: !!found.collection && !hasColorOptions,
+        return { ...found, hasDiscount: !!found.oldPrice, priceOnly: !found.oldPrice, noCollection: hasColorOptions, hasColorOptions, singleColorOnly: !!found.collection && !hasColorOptions,
           backLabel: isCollectionProduct ? '← Назад в коллекцию' : '← Назад в каталог',
           backClick: found.collection === 'titan' ? go.titanShop : found.collection === 'dora' ? go.doraShop : go.catalog };
       })(),
@@ -2472,6 +2599,8 @@ class Component extends DCLogic {
           onClick: () => this.setState({ selectedSize: s }),
           border: this.state.selectedSize === s ? '2px solid ' + accentColor : '1.5px solid #DCE2EE',
           color: this.state.selectedSize === s ? accentColor : '#454C59',
+          bg: this.state.selectedSize === s ? '#fff' : '#F3F5F9',
+          mBorder: this.state.selectedSize === s ? '2px solid ' + accentColor : '1.5px solid #E4E8F0',
         }));
       })(),
       wishlistIcon: this.state.wishlist[this.state.activeProductId] ? '♥' : '♡',
@@ -2570,6 +2699,16 @@ class Component extends DCLogic {
           hasMultiple: seq.length > 1,
           prev: (e) => { if (e) e.stopPropagation(); goTo(seq[(idx - 1 + seq.length) % seq.length]); },
           next: (e) => { if (e) e.stopPropagation(); goTo(seq[(idx + 1) % seq.length]); },
+          photos: seq.map((src) => ({ src })),
+          dots: seq.map((s, i) => ({ w: i === idx ? '20px' : '7px', bg: i === idx ? accentColor : 'rgba(20,24,31,0.22)' })),
+          onScroll: (e) => {
+            const el = e.currentTarget;
+            clearTimeout(this._mobGalTimer);
+            this._mobGalTimer = setTimeout(() => {
+              const i = Math.round(el.scrollLeft / el.clientWidth);
+              if (i >= 0 && i < seq.length && i !== idx) goTo(seq[i]);
+            }, 90);
+          },
         };
       })(),
       lightboxOpen: this.state.lightboxOpen,
@@ -2603,6 +2742,29 @@ class Component extends DCLogic {
       activeAddLabel: (() => {
         const p = products.find((pr) => pr.slotId === this.state.activeProductId);
         return p && this.state.cart[p.slotId] ? 'В корзине · ' + this.state.cart[p.slotId].qty : 'Добавить в корзину';
+      })(),
+      mobGalRef: this.mobGalRef,
+      descMaxH: this.state.descExpanded ? '3000px' : '92px',
+      toggleDesc: () => this.setState((s) => ({ descExpanded: !s.descExpanded })),
+      descToggleLabel: this.state.descExpanded ? 'Свернуть' : 'Показать полностью',
+      showDescToggle: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        return ((p && p.desc) || '').length > 150;
+      })(),
+      accSpecOpen: !!this.state.accSpecOpen,
+      toggleAccSpec: () => this.setState((s) => ({ accSpecOpen: !s.accSpecOpen })),
+      accSpecChev: this.state.accSpecOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      accPrintOpen: !!this.state.accPrintOpen,
+      toggleAccPrint: () => this.setState((s) => ({ accPrintOpen: !s.accPrintOpen })),
+      accPrintChev: this.state.accPrintOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      sizeTableOpen: !!this.state.sizeTableOpen,
+      openSizeTable: () => this.setState({ sizeTableOpen: true }),
+      closeSizeTable: () => this.setState({ sizeTableOpen: false }),
+      stopClick: (e) => e.stopPropagation(),
+      sizeTableRows: (() => {
+        const p = products.find((pr) => pr.slotId === this.state.activeProductId);
+        const ru = { XS: '44', S: '46', M: '48', L: '50', XL: '52', '2XL': '54', XXL: '56' };
+        return ((p && p.sizes) || []).map((s) => ({ label: s, ru: ru[s] || '—' }));
       })(),
       similarProducts: (() => {
         const cur = products.find((pr) => pr.slotId === this.state.activeProductId);
@@ -2714,8 +2876,11 @@ class Component extends DCLogic {
       grid4cols,
       gridShop,
       detailTitleSize: isMobile ? '22px' : '30px',
-      detailPadBottom: isMobile ? '128px' : '88px',
-      detailActionStyle: isMobile ? 'display:flex; align-items:center; gap:12px; position:fixed; left:0; right:0; bottom:0; z-index:90; background:#fff; border-top:1px solid #E4E8F0; box-shadow:0 -8px 24px rgba(15,31,61,0.10); padding:10px 16px calc(10px + env(safe-area-inset-bottom));' : 'display:flex; align-items:center; gap:16px;',
+      detailSectionPad: isMobile ? '0 0 124px' : '56px 24px 88px',
+      similarWrapStyle: isMobile ? 'margin-top:36px; padding:0 18px;' : 'margin-top:64px;',
+      isDesktopDetail: !isMobile,
+      isMobileDetail: isMobile,
+      detailActionStyle: 'display:flex; align-items:center; gap:16px;',
       heroSplitCols,
       navOverflow: isMobile ? 'auto' : 'visible',
       heroPadding: isMobile ? '48px 20px' : '96px 24px',
